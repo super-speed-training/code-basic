@@ -51,6 +51,7 @@ namespace CodeBasic.Tests
         [InlineData(3, 3, 3, "Club", "Diamond", "Heart", HandType.ตอง, 9, 5)]
         [InlineData(13, 12, 11, "Club", "Diamond", "Heart", HandType.ผี, 0, 3)]
         [InlineData(2, 3, 4, "Club", "Diamond", "Heart", HandType.เรียง, 9, 3)]
+        [InlineData(4, 5, 3, "Club", "Diamond", "Heart", HandType.เรียง, 2, 3)]
         public void HandCalculatorShouldWork(int CardNo1, int CardNo2, int CardNo3, string CardSymbol1, string CardSymbol2, string CardSymbol3, HandType expectedHandType, int expectedPoint, int expectedBetRate)
         {
             var pokdeng = new Pokdeng();
