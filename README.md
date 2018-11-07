@@ -21,4 +21,4 @@
 
 # Youtube
 * [ความรู้ในวีดีโอ 5-17 จะสามารถแก้ปัญหานี้ได้](https://www.youtube.com/playlist?list=PLUjAn8nwWnijERZ3HpzBk7NfSrau74_lQ)
-* [คอร์สในการเขียน TDD](https://www.youtube.com/watch?v=k8pnhUebGTg&list=PLUjAn8nwWniiL3ToFK8PfmAo8U6IoGAkg)
+* [คอร์สในการเขียน TDD](https://www.youtube.com/playlist?list=PLUjAn8nwWniiL3ToFK8PfmAo8U6IoGAkg)
