@@ -130,12 +130,12 @@ namespace CodeBasic
                 if (CardNo1 > CardNo2)
                 {
                     SwitchCardInHand(ref CardNo1, ref CardNo2, ref CardSymbol1, ref CardSymbol2);
-                    if (CardNo2 > CardNo3)
-                    {
-                        SwitchCardInHand(ref CardNo2, ref CardNo3, ref CardSymbol2, ref CardSymbol3);
-                        if (CardNo1 > CardNo2)
-                            SwitchCardInHand(ref CardNo1, ref CardNo2, ref CardSymbol1, ref CardSymbol2);
-                    }
+                }
+                if (CardNo2 > CardNo3)
+                {
+                    SwitchCardInHand(ref CardNo2, ref CardNo3, ref CardSymbol2, ref CardSymbol3);
+                    if (CardNo1 > CardNo2)
+                        SwitchCardInHand(ref CardNo1, ref CardNo2, ref CardSymbol1, ref CardSymbol2);
                 }
                 if (CardNo1 + 1 == CardNo2 && CardNo2 + 1 == CardNo3)
                 {
