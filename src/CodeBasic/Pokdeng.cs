@@ -27,11 +27,15 @@ namespace CodeBasic
 
             if (p1Rank != p2Rank)
             {
-                if (p1Rank > p2Rank)
+                if (IsDoubleOrTrippleRank(p1Rank) && IsDoubleOrTrippleRank(p2Rank))
+                {
+                    UpdateBalanceByComparingScore(betAmount, p1Cards, p2Cards);
+                }
+                else if (p1Rank > p2Rank)
                 {
                     PlayerBalance -= betAmount * YieldFactor(p1Cards);
                 }
-                else
+                else // p1Rank < p2Rank
                 {
                     PlayerBalance += betAmount * YieldFactor(p1Cards);
                 }
@@ -40,18 +44,23 @@ namespace CodeBasic
             {
                 if (true != DrawIfSameRank(p1Rank))
                 {
-                    var p1Score = SumScore(p1Cards);
-                    var p2Score = SumScore(p2Cards);
-
-                    if (p1Score > p2Score)
-                    {
-                        PlayerBalance -= betAmount * YieldFactor(p1Cards);
-                    }
-                    else if (p1Score < p2Score)
-                    {
-                        PlayerBalance += betAmount * YieldFactor(p2Cards);
-                    }
+                    UpdateBalanceByComparingScore(betAmount, p1Cards, p2Cards);
                 }
+            }
+        }
+
+        private void UpdateBalanceByComparingScore(int betAmount, Card[] p1Cards, Card[] p2Cards)
+        {
+            var p1Score = SumScore(p1Cards);
+            var p2Score = SumScore(p2Cards);
+
+            if (p1Score > p2Score)
+            {
+                PlayerBalance -= betAmount * YieldFactor(p1Cards);
+            }
+            else if (p1Score < p2Score)
+            {
+                PlayerBalance += betAmount * YieldFactor(p2Cards);
             }
         }
 
@@ -138,6 +147,11 @@ namespace CodeBasic
                 cards.Select(it => it.Number).Distinct().Count() == 1
                 || cards.Select(it => it.CardType).Distinct().Count() == 1
             );
+        }
+
+        private static bool IsDoubleOrTrippleRank(ScoreRank rank) {
+            return rank == ScoreRank.Double
+                || rank == ScoreRank.Tripple;
         }
 
         private static bool DrawIfSameRank(ScoreRank rank)
