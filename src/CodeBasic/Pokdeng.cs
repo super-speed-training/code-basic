@@ -8,7 +8,6 @@ namespace CodeBasic
     {
         public int PlayerBalance { get; set; }
 
-        // Club, Diamond, Heart, Spade (case sensitive)
         public void CheckGameResult(
             int betAmount,
             int p1CardNo1, int p1CardNo2, int p1CardNo3,
@@ -22,6 +21,11 @@ namespace CodeBasic
         public bool Playable(int playerBet)
         {
             return playerBet * 5 <= PlayerBalance && playerBet > 0 && PlayerBalance > 0;
+        }
+
+        public PokdengInfo.PlayerResult GetRewardType(int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
+        {
+            throw new NotImplementedException();
         }
     }
 }
