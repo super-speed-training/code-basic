@@ -32,30 +32,53 @@ namespace CodeBasic
                 dealerPoints = p1CardNo1 + p1CardNo2;
                 playerPoints = p2CardNo1 + p2CardNo2;
 
-                if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2 ||
-                 p1CardNo1 == p1CardNo2 || p2CardNo1 == p2CardNo2)
-
+                if (isPlayerTheWinner)
                 {
-                    if (isPlayerTheWinner)
+                    if (p2CardNo1 == p2CardNo2 || p2CardSymbol1 == p2CardSymbol2)
                     {
                         PlayerBalance += betAmount * 2;
                     }
                     else
                     {
-                        PlayerBalance -= betAmount * 2;
+                        PlayerBalance += betAmount;
                     }
                 }
                 else
                 {
-                    if (isPlayerTheWinner)
+                    if (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2)
                     {
-                        PlayerBalance += betAmount;
+                        PlayerBalance -= betAmount * 2;
                     }
                     else
                     {
                         PlayerBalance -= betAmount;
                     }
                 }
+
+                // if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2 ||
+                //  p1CardNo1 == p1CardNo2 || p2CardNo1 == p2CardNo2)
+
+                // {
+                //     if (isPlayerTheWinner)
+                //     {
+                //         PlayerBalance += betAmount * 2;
+                //     }
+                //     else
+                //     {
+                //         PlayerBalance -= betAmount * 2;
+                //     }
+                // }
+                // else
+                // {
+                //     if (isPlayerTheWinner)
+                //     {
+                //         PlayerBalance += betAmount;
+                //     }
+                //     else
+                //     {
+                //         PlayerBalance -= betAmount;
+                //     }
+                // }
             }
             else
             {
