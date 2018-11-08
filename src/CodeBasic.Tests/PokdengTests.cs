@@ -89,6 +89,10 @@ namespace CodeBasic.Tests
                 ScoreRank.Sequence,
             },
             new object[] {
+                new Card[] { new Card(3, CardType.Heart), new Card(4, CardType.Heart), new Card(2, CardType.Heart) },
+                ScoreRank.Sequence,
+            },
+            new object[] {
                 new Card[] { new Card(1, CardType.Club), new Card(12, CardType.Heart), new Card(13, CardType.Diamond) },
                 ScoreRank.Score,
             },
@@ -108,6 +112,10 @@ namespace CodeBasic.Tests
                 new Card[] { new Card(1, CardType.Heart), new Card(12, CardType.Heart), new Card(13, CardType.Heart) },
                 ScoreRank.Tripple,
             },
+            new object[] {
+                new Card[] { new Card(10, CardType.Heart), new Card(2, CardType.Heart), new Card(3, CardType.Diamond) },
+                ScoreRank.Score,
+            },
         };
 
         [Theory]
@@ -117,6 +125,60 @@ namespace CodeBasic.Tests
             3, 4, 0,
             "Heart", "Diamond", "",
             -3)]
+        [InlineData(1,
+            5, 4, 0,
+            "Heart", "Heart", "",
+            3, 4, 0,
+            "Heart", "Diamond", "",
+            -2)]
+        [InlineData(1,
+            1, 2, 3,
+            "Heart", "Heart", "Diamond",
+            4, 4, 0,
+            "Heart", "Diamond", "",
+            2)]
+        [InlineData(1,
+            4, 2, 3,
+            "Heart", "Heart", "Diamond",
+            5, 4, 0,
+            "Heart", "Heart", "",
+            2)]
+        [InlineData(1,
+            4, 2, 3,
+            "Heart", "Heart", "Diamond",
+            5, 4, 0,
+            "Heart", "Diamond", "",
+            1)]
+        [InlineData(1,
+            2, 2, 2,
+            "Heart", "Spade", "Diamond",
+            3, 4, 0,
+            "Heart", "Diamond", "",
+            -5)]
+        [InlineData(1,
+            11, 12, 13,
+            "Heart", "Heart", "Diamond",
+            3, 4, 0,
+            "Heart", "Diamond", "",
+            -3)]
+        [InlineData(1,
+            1, 2, 3,
+            "Heart", "Heart", "Diamond",
+            3, 4, 5,
+            "Heart", "Diamond", "Spade",
+            0)]
+        [InlineData(1,
+            5, 2, 3,
+            "Heart", "Heart", "Heart",
+            3, 4, 0,
+            "Diamond", "Diamond", "",
+            2)]
+        [InlineData(1,
+            10, 2, 3,
+            "Heart", "Heart", "Diamond",
+            3, 4, 2,
+            "Heart", "Heart", "Heart",
+            3)]
         public void CheckGameResultUpdateBalanceCorrectly(
             int betAmount,
             int p1CardNo1, int p1CardNo2, int p1CardNo3,
@@ -131,7 +193,7 @@ namespace CodeBasic.Tests
                 p1CardSymbol1, p1CardSymbol2, p1CardSymbol3,
                 p2CardNo1, p2CardNo2, p2CardNo3,
                 p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
-                
+
             sut.PlayerBalance.Should().Be(expectedBalance);
         }
     }

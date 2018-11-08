@@ -37,7 +37,7 @@ namespace CodeBasic
                 }
                 else // p1Rank < p2Rank
                 {
-                    PlayerBalance += betAmount * YieldFactor(p1Cards);
+                    PlayerBalance += betAmount * YieldFactor(p2Cards);
                 }
             }
             else if (true != DrawIfSameRank(p1Rank))
