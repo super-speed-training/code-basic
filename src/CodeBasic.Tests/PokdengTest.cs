@@ -10,14 +10,14 @@ namespace CodeBasic.Tests
         const string Heart = "Heart";
         const string Spade = "Spade";
 
-        [Theory(DisplayName = "ตรสจสอบว่าผู้เล่นสามารถเล่นได้หรือไม่จากจำรวนเงินที่ผู้เล่นเดิมพันกับจำนวนเงินที่ผู้เล่นมี")]
+        [Theory(DisplayName = "ผู้เล่นสามารถเล่นเกมได้หากเข้ามีเงินมากพอ")]
         [InlineData(100, 10, true)]
         [InlineData(500, 100, true)]
         [InlineData(0, 0, false)]
         [InlineData(0, 10, false)]
         [InlineData(10, 0, false)]
         [InlineData(50, 11, false)]
-        public void PlayableTest(int playerBalance, int playerBet, bool expected)
+        public void Player2CanPlayIfHeHasEnoughtBalance(int playerBalance, int playerBet, bool expected)
         {
             var player = new Pokdeng();
             player.PlayerBalance = playerBalance;
@@ -25,7 +25,7 @@ namespace CodeBasic.Tests
             Assert.Equal(expected, result);
         }
 
-        [Theory(DisplayName = "ดึงผลลัพธ์จากไพ่ของผู้เล่นกรณีปกติ")]
+        [Theory(DisplayName = "ผู้เล่นได้ผลลัพธ์ตามแบบปกติ")]
         [InlineData(PokdengInfo.PlayerResult.Normal, 7, 13, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Spade, "")]
         [InlineData(PokdengInfo.PlayerResult.Normal, 1, 4, 5, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Diamond)]
         [InlineData(PokdengInfo.PlayerResult.Normal, 10, 11, 5, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Diamond)]
@@ -43,14 +43,14 @@ namespace CodeBasic.Tests
         [InlineData(PokdengInfo.PlayerResult.Twobounce, 1, 2, 0, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, "")]
         [InlineData(PokdengInfo.PlayerResult.ThreeBounce, 2, 2, 8, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart)]
         [InlineData(PokdengInfo.PlayerResult.ThreeBounce, 1, 2, 5, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart)]
-        public void GetResultTypeTest(PokdengInfo.PlayerResult expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
+        public void PlayerGetResultByNormalCase(PokdengInfo.PlayerResult expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
         {
             var player = new Pokdeng();
             var result = player.GetRewardType(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
             Assert.Equal(expected, result);
         }
 
-        [Theory(DisplayName = "ดึงผลลัพธ์จากไพ่ของผู้เล่นกรณีมีหลายผลลัพธ์")]
+        [Theory(DisplayName = "ผู้เล่นได้ผลลัพธ์มากกว่าหนึ่งแบบ")]
         [InlineData(PokdengInfo.PlayerResult.Pok8Twobounce, 10, 8, 0, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, "")]
         [InlineData(PokdengInfo.PlayerResult.Pok8Twobounce, 5, 3, 0, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, "")]
         [InlineData(PokdengInfo.PlayerResult.Pok9Twobounce, 8, 1, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, "")]
@@ -59,7 +59,7 @@ namespace CodeBasic.Tests
         [InlineData(PokdengInfo.PlayerResult.SetThreeBounce, 4, 5, 6, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade)]
         [InlineData(PokdengInfo.PlayerResult.GhostThreeBounce, 11, 12, 13, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade)]
         [InlineData(PokdengInfo.PlayerResult.GhostThreeBounce, 12, 13, 11, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade)]
-        public void GetMultipleResultTypeTest(PokdengInfo.PlayerResult expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
+        public void PlayerGetMultipleResult(PokdengInfo.PlayerResult expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
         {
             var player = new Pokdeng();
             var result = player.GetRewardType(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
