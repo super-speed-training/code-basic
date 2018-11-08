@@ -60,7 +60,7 @@ namespace CodeBasic
 
         public bool CheckBalance(int betAmount)
         {
-            return PlayerBalance > betAmount * 5;
+            return PlayerBalance >= betAmount * 5;
         }
 
         public Card GetRandomCard(List<Card> deck)
