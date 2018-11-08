@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace CodeBasic
 {
@@ -38,7 +39,15 @@ namespace CodeBasic
 
         public ScoreRank GetRank(Card[] cards)
         {
-            throw new NotImplementedException();
+            // Check for Pok first
+            var sumScore = cards.Where(it => it.Number <= 10).Sum(it => it.Number) % 10;
+
+            if (sumScore >= 8)
+            {
+                return ScoreRank.Pok;
+            }
+
+            return ScoreRank.Score;
         }
     }
 }

@@ -13,5 +13,6 @@ namespace CodeBasic
         Double = 5,
         // สามเด้ง
         Tripple = 4,
+        Score = 0,
     }
 }
