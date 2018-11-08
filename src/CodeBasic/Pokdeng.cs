@@ -137,5 +137,38 @@ namespace CodeBasic
             else if (player1CardList.Sum() % 10 < player2CardList.Sum() % 10) return PokdengInfo.GameResult.Player2Win;
             else return PokdengInfo.GameResult.Draw;
         }
+
+        public int GetReward(int bet, PokdengInfo.PlayerResult result)
+        {
+            switch (result)
+            {
+                case PokdengInfo.PlayerResult.Normal:
+                    return bet;
+                case PokdengInfo.PlayerResult.Pok8:
+                    return bet;
+                case PokdengInfo.PlayerResult.Pok9:
+                    return bet;
+                case PokdengInfo.PlayerResult.Twobounce:
+                    return bet * 2;
+                case PokdengInfo.PlayerResult.ThreeBounce:
+                    return bet * 3;
+                case PokdengInfo.PlayerResult.Tong:
+                    return bet * 5;
+                case PokdengInfo.PlayerResult.Ghost:
+                    return bet * 3;
+                case PokdengInfo.PlayerResult.Set:
+                    return bet * 3;
+                case PokdengInfo.PlayerResult.Pok8Twobounce:
+                    return bet * 2;
+                case PokdengInfo.PlayerResult.Pok9Twobounce:
+                    return bet * 2;
+                case PokdengInfo.PlayerResult.GhostThreeBounce:
+                    return bet * 5;
+                case PokdengInfo.PlayerResult.SetThreeBounce:
+                    return bet * 5;
+                default:
+                    return bet;
+            }
+        }
     }
 }

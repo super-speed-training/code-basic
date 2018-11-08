@@ -168,6 +168,24 @@ namespace CodeBasic.Tests
             Assert.Equal(expected, result);
         }
 
-
+        [Theory(DisplayName = "คำนวณเงินที่ผู้เล่นได้หรือลดตามผลลัพธ์ได้ถูกต้อง")]
+        [InlineData(5, 5, PokdengInfo.PlayerResult.Normal)]
+        [InlineData(-60, -60, PokdengInfo.PlayerResult.Pok9)]
+        [InlineData(800, 800, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(300, 60, PokdengInfo.PlayerResult.Tong)]
+        [InlineData(24, 8, PokdengInfo.PlayerResult.Ghost)]
+        [InlineData(24, 8, PokdengInfo.PlayerResult.Set)]
+        [InlineData(16, 8, PokdengInfo.PlayerResult.Twobounce)]
+        [InlineData(24, 8, PokdengInfo.PlayerResult.ThreeBounce)]
+        [InlineData(16, 8, PokdengInfo.PlayerResult.Pok8Twobounce)]
+        [InlineData(16, 8, PokdengInfo.PlayerResult.Pok9Twobounce)]
+        [InlineData(30, 6, PokdengInfo.PlayerResult.GhostThreeBounce)]
+        [InlineData(30, 6, PokdengInfo.PlayerResult.SetThreeBounce)]
+        public void GetRewardCorrectly(int expected, int bet, PokdengInfo.PlayerResult presult)
+        {
+            var player = new Pokdeng();
+            var result = player.GetReward(bet, presult);
+            Assert.Equal(expected, result);
+        }
     }
 }
