@@ -4,5 +4,6 @@ namespace CodeBasic
 {
     public class Class1
     {
+      
     }
 }
