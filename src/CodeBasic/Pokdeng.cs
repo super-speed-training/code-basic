@@ -40,12 +40,9 @@ namespace CodeBasic
                     PlayerBalance += betAmount * YieldFactor(p1Cards);
                 }
             }
-            else
+            else if (true != DrawIfSameRank(p1Rank))
             {
-                if (true != DrawIfSameRank(p1Rank))
-                {
-                    UpdateBalanceByComparingScore(betAmount, p1Cards, p2Cards);
-                }
+                UpdateBalanceByComparingScore(betAmount, p1Cards, p2Cards);
             }
         }
 
@@ -149,7 +146,8 @@ namespace CodeBasic
             );
         }
 
-        private static bool IsDoubleOrTrippleRank(ScoreRank rank) {
+        private static bool IsDoubleOrTrippleRank(ScoreRank rank)
+        {
             return rank == ScoreRank.Double
                 || rank == ScoreRank.Tripple;
         }
