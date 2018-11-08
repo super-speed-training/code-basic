@@ -13,9 +13,9 @@ namespace CodeBasic.Tests
 
 
         [Theory(DisplayName = "แต้มผู้เล่นชนะเจ้ามือ ผู้เล่นได้รับเงินเพิ่มเท่ากับเงินที่ลงพนัน")]
-        [InlineData(100, 1, 1, Club, Club, 1, 2, Club, Club, 1000, 1100)]
-        [InlineData(100, 1, 1, Club, Club, 1, 3, Club, Club, 1000, 1100)]
-        [InlineData(100, 1, 1, Club, Club, 1, 4, Club, Club, 1000, 1100)]
+        [InlineData(100, 1, 1, Club, Diamond, 1, 2, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 1, 1, Club, Diamond, 1, 3, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 1, 1, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
         public void PlayerWinThenGainX1FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
@@ -25,9 +25,9 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "แต้มผู้เล่นแพ้เจ้ามือ ผู้เล่นเสียเงินเท่ากับเงินที่ลงพนัน")]
-        [InlineData(100, 1, 2, Club, Club, 1, 1, Club, Club, 1000, 900)]
-        [InlineData(100, 1, 3, Club, Club, 1, 1, Club, Club, 1000, 900)]
-        [InlineData(100, 1, 4, Club, Club, 1, 1, Club, Club, 1000, 900)]
+        [InlineData(100, 1, 2, Club, Diamond, 1, 1, Club, Diamond, 1000, 900)]
+        [InlineData(100, 1, 3, Club, Diamond, 1, 1, Club, Diamond, 1000, 900)]
+        [InlineData(100, 1, 4, Club, Diamond, 1, 1, Club, Diamond, 1000, 900)]
         public void PlayerLoseThenLoseX1FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
@@ -37,9 +37,9 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "แต้มผู้เล่นเสมอกับเจ้ามือ ผู้เล่นไม่เสียเงิน")]
-        [InlineData(100, 1, 2, Club, Club, 1, 2, Club, Club, 1000, 1000)]
-        [InlineData(100, 1, 3, Club, Club, 1, 3, Club, Club, 1000, 1000)]
-        [InlineData(100, 1, 4, Club, Club, 1, 4, Club, Club, 1000, 1000)]
+        [InlineData(100, 1, 2, Club, Diamond, 1, 2, Club, Diamond, 1000, 1000)]
+        [InlineData(100, 1, 3, Club, Diamond, 1, 3, Club, Diamond, 1000, 1000)]
+        [InlineData(100, 1, 4, Club, Diamond, 1, 4, Club, Diamond, 1000, 1000)]
         public void PlayerDrawThenDoNothing(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
