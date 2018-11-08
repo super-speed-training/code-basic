@@ -9,38 +9,38 @@ namespace CodeBasic
     {
         #region Result condition
 
-        private bool IsPok8(int p1CardNo1, int p1CardNo2, int p1CardNo3)
+        private bool IsPok8(int cardNo1, int cardNo2, int cardNo3)
         {
-            p1CardNo1 = p1CardNo1 >= 10 ? 0 : p1CardNo1;
-            p1CardNo2 = p1CardNo2 >= 10 ? 0 : p1CardNo2;
-            return p1CardNo1 + p1CardNo2 == 8 && p1CardNo3 == 0;
+            cardNo1 = cardNo1 >= 10 ? 0 : cardNo1;
+            cardNo2 = cardNo2 >= 10 ? 0 : cardNo2;
+            return cardNo1 + cardNo2 == 8 && cardNo3 == 0;
         }
 
-        private bool IsPog9(int p1CardNo1, int p1CardNo2, int p1CardNo3)
+        private bool IsPog9(int cardNo1, int cardNo2, int cardNo3)
         {
-            p1CardNo1 = p1CardNo1 >= 10 ? 0 : p1CardNo1;
-            p1CardNo2 = p1CardNo2 >= 10 ? 0 : p1CardNo2;
-            return p1CardNo1 + p1CardNo2 == 9 && p1CardNo3 == 0;
+            cardNo1 = cardNo1 >= 10 ? 0 : cardNo1;
+            cardNo2 = cardNo2 >= 10 ? 0 : cardNo2;
+            return cardNo1 + cardNo2 == 9 && cardNo3 == 0;
         }
 
-        private bool IsTong(int p1CardNo1, int p1CardNo2, int p1CardNo3) => p1CardNo1 == p1CardNo2 && p1CardNo2 == p1CardNo3;
-        private bool IsGhost(int p1CardNo1, int p1CardNo2, int p1CardNo3) => Enumerable.Range(11, 13).Contains(p1CardNo1) && Enumerable.Range(11, 13).Contains(p1CardNo2) && Enumerable.Range(11, 13).Contains(p1CardNo3);
+        private bool IsTong(int cardNo1, int cardNo2, int cardNo3) => cardNo1 == cardNo2 && cardNo2 == cardNo3;
+        private bool IsGhost(int cardNo1, int cardNo2, int cardNo3) => Enumerable.Range(11, 13).Contains(cardNo1) && Enumerable.Range(11, 13).Contains(cardNo2) && Enumerable.Range(11, 13).Contains(cardNo3);
 
-        private bool IsSet(int p1CardNo1, int p1CardNo2, int p1CardNo3)
+        private bool IsSet(int cardNo1, int cardNo2, int cardNo3)
         {
-            var cardList = new List<int> { p1CardNo1, p1CardNo2, p1CardNo3 };
+            var cardList = new List<int> { cardNo1, cardNo2, cardNo3 };
             cardList = cardList.OrderBy(it => it).ToList();
-            return cardList[2] - cardList[1] == 1 && cardList[1] - cardList[0] == 1 && p1CardNo3 != 0;
+            return cardList[2] - cardList[1] == 1 && cardList[1] - cardList[0] == 1 && cardNo3 != 0;
         }
 
-        private bool IsTwobounce(int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
+        private bool IsTwobounce(int cardNo1, int cardNo2, int cardNo3, string cardSymbol1, string cardSymbol2, string cardSymbol3)
         {
-            return (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2) && p1CardNo3 == 0 && p1CardSymbol3 == "";
+            return (cardNo1 == cardNo2 || cardSymbol1 == cardSymbol2) && cardNo3 == 0 && cardSymbol3 == "";
         }
 
-        private bool IsThreeBounce(string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
+        private bool IsThreeBounce(string cardSymbol1, string cardSymbol2, string cardSymbol3)
         {
-            return p1CardSymbol1 == p1CardSymbol2 && p1CardSymbol2 == p1CardSymbol3;
+            return cardSymbol1 == cardSymbol2 && cardSymbol2 == cardSymbol3;
         }
 
         #endregion Result condition
