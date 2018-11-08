@@ -21,7 +21,8 @@ namespace CodeBasic
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
-            if (Playable(betAmount))
+            var playable = Playable(betAmount, p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3, p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            if (playable)
             {
                 var playerBalance = PlayerBalance;
                 var IsPlayer1Pok = IsPokCheck(p1CardNo1, p1CardNo2, p1CardNo3);
@@ -36,13 +37,13 @@ namespace CodeBasic
                 var IsPlayer2Ghost = IsGhostCheck(p2CardNo1, p2CardNo2, p2CardNo3);
                 var IsPlayer1Straight = IsStraightCheck(p1CardNo1, p1CardNo2, p1CardNo3);
                 var IsPlayer2Straight = IsStraightCheck(p2CardNo1, p2CardNo2, p2CardNo3);
-                var Player1Point = CalculatePoint(p1CardNo1, p1CardNo2, p1CardNo3);
-                var Player2point = CalculatePoint(p2CardNo1, p2CardNo2, p2CardNo3);
+                var player1Point = CalculatePoint(p1CardNo1, p1CardNo2, p1CardNo3);
+                var player2Point = CalculatePoint(p2CardNo1, p2CardNo2, p2CardNo3);
 
                 //มีคนป็อกมั้ย
                 if (IsPlayer1Pok || IsPlayer2Pok)
                 {
-                    if (Player1Point > Player2point)
+                    if (player1Point > player2Point)
                     {
                         if (IsPlayer1TwoDeng)
                         {
@@ -54,7 +55,7 @@ namespace CodeBasic
                         }
 
                     }
-                    else if (Player1Point < Player2point)
+                    else if (player1Point < player2Point)
                     {
                         if (IsPlayer2TwoDeng)
                         {
@@ -138,7 +139,7 @@ namespace CodeBasic
                 }
                 else
                 {
-                    if (Player1Point > Player2point)
+                    if (player1Point > player2Point)
                     {
                         if (IsPlayer1ThreeDeng)
                         {
@@ -149,7 +150,7 @@ namespace CodeBasic
                             playerBalance -= betAmount;
                         }
                     }
-                    else if(Player1Point < Player2point)
+                    else if (player1Point < player2Point)
                     {
                         if (IsPlayer2ThreeDeng)
                         {
@@ -166,9 +167,12 @@ namespace CodeBasic
             }
         }
         //เช็คว่าเล่นได้ไหม
-        public bool Playable(int betAmount)
+        public bool Playable(int betAmount, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3, int p2CardNo1, int p2CardNo2, int p2CardNo3, string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
-            if (betAmount > 0)
+            var BetAmountEnough = ((betAmount > 0) && (betAmount * 5 <= PlayerBalance));
+            var IsRealCards = ((p1CardNo1 > 0 && p1CardNo1 <=13) && (p1CardNo2 > 0 && p1CardNo2 <= 13) && (p1CardNo3 >= 0 && p1CardNo3 <= 13)) && ((p2CardNo1 > 0 && p2CardNo1 <= 13)&& (p2CardNo2 > 0 && p2CardNo2 <= 13) && (p1CardNo3 >= 0 && p1CardNo3 <= 13));
+
+            if (BetAmountEnough && IsRealCards)
             {
                 if (betAmount * 5 <= PlayerBalance)
                 {

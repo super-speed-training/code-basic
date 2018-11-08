@@ -6,22 +6,6 @@ namespace CodeBasic.Tests
     public class PokdengTest
     {
         // Normal cases
-        // Alternative cases
-        // Exception cases
-
-        [Theory(DisplayName = "เช็คว่าเล่นได้หรือไม่")]
-        [InlineData(50, 10, true)]
-        [InlineData(200, 10, true)]
-        [InlineData(0, 10, false)]
-        [InlineData(200, 0, false)]
-        [InlineData(200, 60, false)]
-        public void PlayableTest(int playerBalance, int betAmount, bool expected)
-        {
-            var sut = new Pokdeng();
-            sut.PlayerBalance = playerBalance;
-            var result = sut.Playable(betAmount);
-            Assert.Equal(expected, result);
-        }
 
         [Theory(DisplayName = "เช็คว่าป็อกหรือไม่")]
         [InlineData(4, 4, 0, true)]
@@ -214,7 +198,24 @@ namespace CodeBasic.Tests
         }
 
         //Exeption Case
-        //ตัวเลขไม่ถูกต้อง < 1 และ > 13
-        //ไพ่ไม่มีอยู่จริง เช่น 4 heart & 4 heart
+        [Theory(DisplayName = "ตรวจสอบไพ่ว่าตัวเลขหรือสัญลักษณ์ถูกต้องหรือไม่")]
+        [InlineData(10, 14, 5, 9, Symbol.Heart, Symbol.Club, Symbol.Spade, 2, 9, 3, Symbol.Heart, Symbol.Club, Symbol.Heart, 200)]
+        [InlineData(10, 1, 5, -1, Symbol.Heart, Symbol.Club, Symbol.Spade, 2, 9, 3, Symbol.Heart, Symbol.Club, Symbol.Heart, 200)]
+        [InlineData(10, 1, 2, 3, Symbol.Heart, Symbol.Club, Symbol.Spade, 1, 2, 4, Symbol.Heart, Symbol.Club, Symbol.Spade, 200)]
+        public void WrongInputTest(
+        int betAmount,
+        int p1CardNo1, int p1CardNo2, int p1CardNo3,
+        string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
+        int p2CardNo1, int p2CardNo2, int p2CardNo3,
+        string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3,
+        int remainBalance)
+        {
+            var sut = new Pokdeng();
+            sut.PlayerBalance = 200;
+            sut.CheckGameResult(betAmount, p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3, p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            Assert.Equal(sut.PlayerBalance, remainBalance);
+        }
+        //เหลือไพ่ซ้ำ เช่น 4 Heart & 4 Heart
+
     }
 }
