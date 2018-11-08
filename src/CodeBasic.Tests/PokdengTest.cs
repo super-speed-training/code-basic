@@ -37,46 +37,15 @@ namespace CodeBasic.Tests
         }
 
         [Fact]
-        public void IsPoKTest()
+        public void GetRewardType()
         {
 
         }
 
         [Fact]
-        public void IsPokTwobounce()
-        {
-
-        }
-
-        [Fact]
-        public void IsTongTest()
-        {
-
-        }
-
-        [Fact]
-        public void IsGhostTest()
-        {
-
-        }
-
-        [Fact]
-        public void IsSet()
-        {
-
-        }
-
-        [Fact]
-        public void IsTwobounce()
-        {
-
-        }
-
-        [Fact]
-        public void IsThreeBounce()
+        public void GetRewardTest()
         {
 
         }
     }
-
 }
