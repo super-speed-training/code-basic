@@ -7,6 +7,8 @@ namespace CodeBasic
 {
     public class Pokdeng
     {
+        public int PlayerBalance { get; set; }
+        
         #region Result condition
 
         private bool IsPok8(int cardNo1, int cardNo2, int cardNo3)
@@ -45,8 +47,6 @@ namespace CodeBasic
 
         #endregion Result condition
 
-        public int PlayerBalance { get; set; }
-
         public void CheckGameResult(
             int betAmount,
             int p1CardNo1, int p1CardNo2, int p1CardNo3,
@@ -54,7 +54,23 @@ namespace CodeBasic
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
-            throw new NotImplementedException();
+            if (!Playable(betAmount)) return;
+
+            var winner = string.Empty;
+            var p1Result = GetRewardType(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
+            var p2Result = GetRewardType(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+
+            if (ConvertToUnbounceResult(p1Result) == PokdengInfo.PlayerResult.Normal && ConvertToUnbounceResult(p2Result) == PokdengInfo.PlayerResult.Normal)
+            {
+                winner = GetWinnerByNormalResult(p1CardNo1, p1CardNo2, p1CardNo3, p2CardNo1, p2CardNo2, p2CardNo3);
+            }
+            else
+            {
+                winner = GetWinnerBySpecialResult(ConvertToUnbounceResult(p1Result), ConvertToUnbounceResult(p2Result));
+            }
+
+            if (winner == PokdengInfo.GameResult.Player2Win) PlayerBalance += GetReward(betAmount, p2Result);
+            else if (winner == PokdengInfo.GameResult.Player1Win) PlayerBalance -= GetReward(betAmount, p1Result);
         }
 
         public bool Playable(int playerBet)
