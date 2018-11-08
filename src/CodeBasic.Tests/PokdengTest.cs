@@ -5,6 +5,105 @@ namespace CodeBasic.Tests
 {
     public class PokdengTest
     {
+        [Theory(DisplayName = "ผู้เล่นลงไพ่ชนะผู้เล่นต้องได้เงินเพิ่มอย่างถูกต้อง")]
+        [InlineData(110, 100, 10,
+            1, 1, 2, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            2, 3, 10, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(110, 100, 10,
+            2, 3, 4, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            1, 8, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "")]
+        [InlineData(110, 100, 10,
+            11, 12, 12, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            5, 3, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "")]
+        [InlineData(150, 100, 10,
+            11, 12, 12, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            3, 3, 3, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(130, 100, 10,
+            1, 2, 3, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            13, 12, 11, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(130, 100, 10,
+            2, 2, 3, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade,
+            7, 8, 9, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(120, 100, 10,
+            2, 2, 1, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade,
+            8, 8, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "")]
+        [InlineData(120, 100, 10,
+            9, 9, 0, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, "",
+            8, 1, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, "")]
+        [InlineData(150, 100, 10,
+            9, 1, 3, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade,
+            13, 11, 12, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club)]
+        [InlineData(150, 100, 10,
+            9, 1, 3, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade,
+            1, 2, 3, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club)]
+        public void Player2WinAGameHisBalanceMustBeIncreasCorrectly(int expected, int balance, int betAmount,
+            int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
+            int p2CardNo1, int p2CardNo2, int p2CardNo3, string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
+        {
+            var player = new Pokdeng();
+            player.PlayerBalance = balance;
+            player.CheckGameResult(betAmount, p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3,
+            p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            Assert.Equal(expected, player.PlayerBalance);
+        }
+
+        [Theory(DisplayName = "ผู้เล่นลงไพ่แพ้เงินผู้เล่นต้องลดลงอย่างถูกต้อง")]
+        [InlineData(90, 100, 10,
+            2, 3, 10, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            1, 1, 2, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(90, 100, 10,
+            1, 8, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "",
+            2, 3, 4, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(90, 100, 10,
+            5, 3, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "",
+            11, 12, 12, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(50, 100, 10,
+            3, 3, 3, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            11, 12, 12, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(70, 100, 10,
+            13, 12, 11, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            1, 2, 3, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(70, 100, 10,
+            7, 8, 9, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            2, 2, 3, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade)]
+        [InlineData(80, 100, 10,
+            8, 8, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "",
+            2, 2, 1, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade)]
+        [InlineData(80, 100, 10,
+            8, 1, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, "",
+            9, 9, 0, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, "")]
+        [InlineData(50, 100, 10,
+            13, 11, 12, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club,
+            9, 1, 3, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade)]
+        [InlineData(50, 100, 10,
+            1, 2, 3, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club,
+            9, 1, 3, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Spade)]
+        public void Player2LoseAGameHisBalanceMustBeDecreasCorrectly(int expected, int balance, int betAmount,
+            int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
+            int p2CardNo1, int p2CardNo2, int p2CardNo3, string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
+        {
+            var player = new Pokdeng();
+            player.PlayerBalance = balance;
+            player.CheckGameResult(betAmount, p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3,
+            p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            Assert.Equal(expected, player.PlayerBalance);
+        }
+
+        [Theory(DisplayName = "ผู้ทั้งสองคนเสมอกันเงินต้องไม่ลดหรือเพิ่ม")]
+        [InlineData(100, 100, 10,
+            1, 1, 2, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            1, 1, 2, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        public void ResultGameIsWitdrawPlayer2BalanceMustNotChange(int expected, int balance, int betAmount,
+            int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
+            int p2CardNo1, int p2CardNo2, int p2CardNo3, string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
+        {
+            var player = new Pokdeng();
+            player.PlayerBalance = balance;
+            player.CheckGameResult(betAmount, p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3,
+            p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            Assert.Equal(expected, player.PlayerBalance);
+        }
+
         [Theory(DisplayName = "ผู้เล่นสามารถเล่นเกมได้หากเข้ามีเงินมากพอ")]
         [InlineData(100, 10, true)]
         [InlineData(500, 100, true)]
@@ -170,7 +269,7 @@ namespace CodeBasic.Tests
 
         [Theory(DisplayName = "คำนวณเงินที่ผู้เล่นได้หรือลดตามผลลัพธ์ได้ถูกต้อง")]
         [InlineData(5, 5, PokdengInfo.PlayerResult.Normal)]
-        [InlineData(-60, -60, PokdengInfo.PlayerResult.Pok9)]
+        [InlineData(60, 60, PokdengInfo.PlayerResult.Pok9)]
         [InlineData(800, 800, PokdengInfo.PlayerResult.Pok8)]
         [InlineData(300, 60, PokdengInfo.PlayerResult.Tong)]
         [InlineData(24, 8, PokdengInfo.PlayerResult.Ghost)]
