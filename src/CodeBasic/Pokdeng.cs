@@ -111,9 +111,6 @@ namespace CodeBasic
 
         public string GetWinnerBySpecialResult(PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
         {
-            p1Result = (int)p1Result >= 10 ? p1Result - 10 : p1Result;
-            p2Result = (int)p2Result >= 10 ? p2Result - 10 : p2Result;
-
             if (p1Result < p2Result)
             {
                 return PokdengInfo.GameResult.Player1Win;
