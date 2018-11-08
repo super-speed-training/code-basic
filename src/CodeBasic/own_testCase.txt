@@ -1,0 +1,48 @@
+        /*static void Main() {
+                //Last Test Case;
+            Pokdeng pd = new Pokdeng();
+            pd.PlayerBalance = 800;
+            pd.CheckGameResult(50, 2, 1, 0, "HEARTS", "DIAMONS", "SPADES",
+                            50, 1, 8, 0, "CLUBS", "CLUBS", "SPADES");
+            Console.WriteLine(pd.PlayerBalance);
+
+            Console.WriteLine("Should return current balance.");
+            Console.WriteLine("Test 1: " +_Balance);
+            CheckGameResult(50, 2, 1, 0, "HEARTS", "DIAMONS", "SPADES",
+                            50, 1, 2, 0, "CLUBS", "HEARTS", "SPADES");
+            Console.WriteLine(" After: "+_Balance);
+
+            Console.WriteLine("Should Minute currect balance(800 - (50*3)).");
+            Console.WriteLine("Test 2: " +_Balance);
+            CheckGameResult(50, 1, 2, 3, "HEARTS", "DIAMONS", "SPADES",
+                            50, 1, 2, 0, "CLUBS", "HEARTS", "SPADES");
+            Console.WriteLine(" After: "+_Balance);
+
+            _Balance = 800;
+            Console.WriteLine("Should return current balance.");
+            Console.WriteLine("Test 3: " +_Balance);
+            CheckGameResult(50, 8, 1, 0, "HEARTS", "HEARTS", "SPADES",
+                            50, 1, 2, 0, "CLUBS", "HEARTS", "SPADES");
+            Console.WriteLine(" After: "+_Balance);
+
+            _Balance = 800;
+            Console.WriteLine("Should return balance(800 - (50*5)).");
+            Console.WriteLine("Test 4: " +_Balance);
+            CheckGameResult(50, 11, 12, 13, "HEARTS", "DIAMONS", "SPADES",
+                            50, 1, 2, 0, "CLUBS", "HEARTS", "SPADES");
+            Console.WriteLine(" After: "+_Balance);
+
+            _Balance = 800;
+            Console.WriteLine("Should return 700.");
+            Console.WriteLine("Test 5: " +_Balance);
+            CheckGameResult(50, 2, 2, 0, "HEARTS", "HEARTS", "SPADES",
+                            50, 1, 2, 0, "CLUBS", "HEARTS", "SPADES");
+            Console.WriteLine(" After: "+_Balance);
+
+            _Balance = 800;
+            Console.WriteLine("Should return 950.");
+            Console.WriteLine("Test 6: " +_Balance);
+            CheckGameResult(50, 2, 1, 0, "HEARTS", "DIAMONS", "SPADES",
+                            50, 1, 6, 0, "CLUBS", "CLUBS", "CLUBS");
+            Console.WriteLine(" After: "+_Balance);
+        }*/
