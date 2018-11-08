@@ -65,6 +65,34 @@ namespace CodeBasic.Tests
                 new Card[] { new Card(9, CardType.Club), new Card(11, CardType.Heart) },
                 ScoreRank.Pok,
             },
+            new object[] {
+                new Card[] { new Card(3, CardType.Club), new Card(3, CardType.Heart), new Card(3, CardType.Diamond) },
+                ScoreRank.Three,
+            },
+            new object[] {
+                new Card[] { new Card(2, CardType.Club), new Card(2, CardType.Heart), new Card(2, CardType.Diamond) },
+                ScoreRank.Three,
+            },
+            new object[] {
+                new Card[] { new Card(11, CardType.Club), new Card(12, CardType.Heart), new Card(13, CardType.Diamond) },
+                ScoreRank.Ghost,
+            },
+            new object[] {
+                new Card[] { new Card(1, CardType.Club), new Card(2, CardType.Heart), new Card(3, CardType.Diamond) },
+                ScoreRank.Sequence,
+            },
+            new object[] {
+                new Card[] { new Card(4, CardType.Club), new Card(5, CardType.Heart), new Card(6, CardType.Diamond) },
+                ScoreRank.Sequence,
+            },
+            new object[] {
+                new Card[] { new Card(9, CardType.Club), new Card(10, CardType.Heart), new Card(11, CardType.Diamond) },
+                ScoreRank.Sequence,
+            },
+            new object[] {
+                new Card[] { new Card(1, CardType.Club), new Card(12, CardType.Heart), new Card(13, CardType.Diamond) },
+                ScoreRank.Score,
+            },
         };
     }
 }

@@ -41,10 +41,42 @@ namespace CodeBasic
         {
             // Check for Pok first
             var sumScore = cards.Where(it => it.Number <= 10).Sum(it => it.Number) % 10;
+            var cardCount = cards.Length;
 
-            if (sumScore >= 8)
+            if (sumScore >= 8 && cardCount == 2)
             {
                 return ScoreRank.Pok;
+            }
+            else if (cardCount == 3)
+            {
+                if (cards.Select(it => it.Number).Distinct().Count() == 1)
+                {
+                    return ScoreRank.Three;
+                }
+                else if (cards.All(it => it.Number > 10))
+                {
+                    return ScoreRank.Ghost;
+                }
+                else {
+                    var orderedCardNos = cards.Select(it => it.Number).OrderBy(it => it);
+                    var minNo = orderedCardNos.First();
+                    var allMatched = true;
+
+                    foreach (var cardNo in orderedCardNos)
+                    {
+                        if (cardNo != minNo)
+                        {
+                            allMatched = false;
+                            break;
+                        }
+                        ++minNo;
+                    }
+
+                    if (allMatched)
+                    {
+                        return ScoreRank.Sequence;
+                    }
+                }
             }
 
             return ScoreRank.Score;
