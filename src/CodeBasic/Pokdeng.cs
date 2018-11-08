@@ -83,7 +83,7 @@ namespace CodeBasic
             }
             else if (p1Hand.Hand < p2Hand.Hand)
             {
-                returnAmount = betAmount * p1Hand.BetReturnRate;
+                returnAmount = betAmount * p2Hand.BetReturnRate;
             }
 
             return returnAmount;
@@ -155,9 +155,9 @@ namespace CodeBasic
 
         private int PointCalculator(int CardNo1, int CardNo2, int CardNo3)
         {
-            if (CardNo1 > 10) CardNo1 = 10;
-            if (CardNo2 > 10) CardNo2 = 10;
-            if (CardNo3 > 10) CardNo3 = 10;
+            CardNo1 = CardNo1 > 10 ? 10 : CardNo1;
+            CardNo2 = CardNo2 > 10 ? 10 : CardNo2;
+            CardNo3 = CardNo3 > 10 ? 10 : CardNo3;
 
             return (CardNo1 + CardNo2 + CardNo3) % 10;
         }

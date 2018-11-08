@@ -44,7 +44,7 @@ namespace CodeBasic.Tests
         }
 
         [Theory]
-        [InlineData(4,4,0, "Club", "Diamond", "", HandType.ป๊อก, 8, 2)]
+        [InlineData(4, 4, 0, "Club", "Diamond", "", HandType.ป๊อก, 8, 2)]
         [InlineData(4, 5, 0, "Club", "Diamond", "", HandType.ป๊อก, 9, 1)]
         [InlineData(4, 3, 0, "Club", "Diamond", "", HandType.ไม่มี, 7, 1)]
         [InlineData(4, 3, 0, "Club", "Club", "", HandType.ไม่มี, 7, 2)]
@@ -73,10 +73,11 @@ namespace CodeBasic.Tests
         }
 
         [Theory]
-        [InlineData( HandType.ป๊อก, 8, 2, HandType.ไม่มี, 7, 1, 5, -10)]
+        [InlineData(HandType.ป๊อก, 8, 2, HandType.ไม่มี, 7, 1, 5, -10)]
         [InlineData(HandType.ป๊อก, 8, 2, HandType.ตอง, 9, 5, 5, -10)]
         [InlineData(HandType.ไม่มี, 3, 3, HandType.ผี, 0, 3, 5, 15)]
-        public void WinnerCalculatorShouldWork( HandType p1HandType, int p1Point, int p1BetRate, HandType p2HandType, int p2Point, int p2BetRate, int betAmount, int expectedReturnAmount)
+        [InlineData(HandType.ไม่มี, 3, 3, HandType.ตอง, 9, 5, 5, 25)]
+        public void WinnerCalculatorShouldWork(HandType p1HandType, int p1Point, int p1BetRate, HandType p2HandType, int p2Point, int p2BetRate, int betAmount, int expectedReturnAmount)
         {
             var p1Hand = new HandResult { Point = p1Point, Hand = p1HandType, BetReturnRate = p1BetRate };
             var p2Hand = new HandResult { Point = p2Point, Hand = p2HandType, BetReturnRate = p2BetRate };
