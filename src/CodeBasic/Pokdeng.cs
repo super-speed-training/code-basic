@@ -28,13 +28,13 @@ namespace CodeBasic
                 return new Card[] {
                     new Card(cardNo1, (CardType)Enum.Parse(typeof(CardType), cardSymbol1)),
                     new Card(cardNo2, (CardType)Enum.Parse(typeof(CardType), cardSymbol2)),
-                };            
+                };
             }
             return new Card[] {
                 new Card(cardNo1, (CardType)Enum.Parse(typeof(CardType), cardSymbol1)),
                 new Card(cardNo2, (CardType)Enum.Parse(typeof(CardType), cardSymbol2)),
                 new Card(cardNo3, (CardType)Enum.Parse(typeof(CardType), cardSymbol3)),
-            };            
+            };
         }
 
         public ScoreRank GetRank(Card[] cards)
@@ -57,39 +57,47 @@ namespace CodeBasic
                 {
                     return ScoreRank.Ghost;
                 }
-                else {
-                    var orderedCardNos = cards.Select(it => it.Number).OrderBy(it => it);
-                    var minNo = orderedCardNos.First();
-                    var allMatched = true;
-
-                    foreach (var cardNo in orderedCardNos)
-                    {
-                        if (cardNo != minNo)
-                        {
-                            allMatched = false;
-                            break;
-                        }
-                        ++minNo;
-                    }
-
-                    if (allMatched)
-                    {
-                        return ScoreRank.Sequence;
-                    }
+                else if (IsSequenceCards(cards))
+                {
+                    return ScoreRank.Sequence;
                 }
-
-                if (cards.Select(it => it.CardType).Distinct().Count() == 1)
+                else if (cards.Select(it => it.CardType).Distinct().Count() == 1)
                 {
                     return ScoreRank.Tripple;
                 }
             }
-            else if (cards.Select(it => it.Number).Distinct().Count() == 1
-                || cards.Select(it => it.CardType).Distinct().Count() == 1)
+            else if (IsDoubleCards(cards))
             {
                 return ScoreRank.Double;
             }
 
             return ScoreRank.Score;
+        }
+
+        private static bool IsSequenceCards(Card[] cards)
+        {
+            var orderedCardNos = cards.Select(it => it.Number).OrderBy(it => it);
+            var minNo = orderedCardNos.First();
+            var allMatched = true;
+
+            foreach (var cardNo in orderedCardNos)
+            {
+                if (cardNo != minNo)
+                {
+                    allMatched = false;
+                    break;
+                }
+                ++minNo;
+            }
+
+            return allMatched;
+        }
+
+        private static bool IsDoubleCards(Card[] cards) {
+            return cards.Length == 2 && (
+                cards.Select(it => it.Number).Distinct().Count() == 1
+                || cards.Select(it => it.CardType).Distinct().Count() == 1
+            );
         }
     }
 }
