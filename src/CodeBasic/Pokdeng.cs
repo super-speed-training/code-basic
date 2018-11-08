@@ -27,7 +27,7 @@ namespace CodeBasic
 
             if (p1Rank != p2Rank)
             {
-                if (IsDoubleOrTrippleRank(p1Rank) && IsDoubleOrTrippleRank(p2Rank))
+                if (IsWinByCompareScore(p1Rank) && IsWinByCompareScore(p2Rank))
                 {
                     UpdateBalanceByComparingScore(betAmount, p1Cards, p2Cards);
                 }
@@ -146,10 +146,11 @@ namespace CodeBasic
             );
         }
 
-        private static bool IsDoubleOrTrippleRank(ScoreRank rank)
+        private static bool IsWinByCompareScore(ScoreRank rank)
         {
             return rank == ScoreRank.Double
-                || rank == ScoreRank.Tripple;
+                || rank == ScoreRank.Tripple
+                || rank == ScoreRank.Score;
         }
 
         private static bool DrawIfSameRank(ScoreRank rank)

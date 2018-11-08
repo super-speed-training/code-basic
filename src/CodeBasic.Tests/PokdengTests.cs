@@ -179,6 +179,12 @@ namespace CodeBasic.Tests
             3, 4, 2,
             "Heart", "Heart", "Heart",
             3)]
+        [InlineData(1,
+            10, 2, 3,
+            "Heart", "Heart", "Diamond",
+            3, 4, 1,
+            "Heart", "Diamond", "Heart",
+            1)]
         public void CheckGameResultUpdateBalanceCorrectly(
             int betAmount,
             int p1CardNo1, int p1CardNo2, int p1CardNo3,
