@@ -7,17 +7,18 @@ namespace CodeBasic
         public enum PlayerResult
         {
             Pok9,
-            Pok9Twobounce = 0,
             Pok8,
-            Pok8Twobounce = 1,
             Tong,
             Ghost,
-            GhostThreeBounce = 3,
             Set,
-            SetThreeBounce = 5,
             Normal,
-            Twobounce = 8,
-            ThreeBounce = 8
+            Twobounce,
+            ThreeBounce,
+
+            Pok9Twobounce = 10,
+            Pok8Twobounce = 11,
+            GhostThreeBounce = 13,
+            SetThreeBounce = 14,
         }
 
         public class Symbol

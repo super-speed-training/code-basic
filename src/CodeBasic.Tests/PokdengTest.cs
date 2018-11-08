@@ -40,7 +40,7 @@ namespace CodeBasic.Tests
         [InlineData(PokdengInfo.PlayerResult.Set, 9, 10, 8, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Diamond, PokdengInfo.Symbol.Spade)]
         [InlineData(PokdengInfo.PlayerResult.Twobounce, 2, 2, 0, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Diamond, "")]
         [InlineData(PokdengInfo.PlayerResult.Twobounce, 1, 2, 0, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, "")]
-        [InlineData(PokdengInfo.PlayerResult.ThreeBounce, 2, 2, 2, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(PokdengInfo.PlayerResult.ThreeBounce, 2, 2, 8, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart)]
         [InlineData(PokdengInfo.PlayerResult.ThreeBounce, 1, 2, 5, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart)]
         public void GetResultTypeTest(PokdengInfo.PlayerResult expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
         {
