@@ -117,8 +117,8 @@ namespace CodeBasic.Tests
 
         [InlineData(200, 4, 4, Heart, Club, 2, 2, Club, Heart, 1000, 600)]
         [InlineData(300, 4, 4, Heart, Club, 3, 3, Club, Heart, 1000, 400)]
-        [InlineData(300, 4, 5, Heart, Club, 4, 4, Club, Heart, 1000, 400)]
-        public void PlayerLosePok8ThenLoseX1FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
+        [InlineData(300, 4, 5, Heart, Club, 4, 4, Club, Heart, 1000, 700)]
+        public void PlayerLosePokThenLoseX1FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
             sut.PlayerBalance = balance;
