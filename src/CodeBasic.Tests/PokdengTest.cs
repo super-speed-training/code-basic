@@ -21,10 +21,19 @@ namespace CodeBasic.Tests
 
         }
 
-        [Fact]
-        public void PlayableTest()
+        [Theory]
+        [InlineData(100, 10, true)]
+        [InlineData(500, 100, true)]
+        [InlineData(0, 0, false)]
+        [InlineData(0, 10, false)]
+        [InlineData(10, 0, false)]
+        [InlineData(50, 11, false)]
+        public void PlayableTest(int playerBalance, int playerBet, bool expected)
         {
-
+            var player = new Pokdeng();
+            player.PlayerBalance = playerBalance;
+            var result = player.Playable(playerBet);
+            Assert.Equal(expected, result);
         }
 
         [Fact]
