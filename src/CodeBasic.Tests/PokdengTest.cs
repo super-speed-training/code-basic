@@ -120,7 +120,7 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "เกมสามารถเริ่มได้หากใส่การ์ดถูกต้อง")]
-        [InlineData(true, 
+        [InlineData(true,
             2, 3, 10, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
             1, 1, 2, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
         [InlineData(true,
@@ -129,17 +129,25 @@ namespace CodeBasic.Tests
         [InlineData(true,
             1, 8, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "",
             2, 3, 4, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
-        public void GameCanStartIfCardSetIsCorrect(bool expected,int p1CardNo1, int p1CardNo2, int p1CardNo3,
+        [InlineData(false,
+            1, 8, 9, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "",
+            2, 3, 4, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(false,
+            1, 0, 2, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Heart,
+            2, 3, 4, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(false,
+            2, 3, 10, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            1, 1, 2, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "")]
+        public void GameCanStartIfCardSetIsCorrect(bool expected, int p1CardNo1, int p1CardNo2, int p1CardNo3,
             string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
             var player = new Pokdeng();
-            var result = player.PlayableByCard(p1CardNo1, p1CardNo2, p1CardNo3,p1CardSymbol1, p1CardSymbol2, p1CardSymbol3,
-                                               p2CardNo1, p2CardNo2, p2CardNo3,p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            var result = player.PlayableByCard(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3,
+                                               p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
             Assert.Equal(expected, result);
         }
-
 
         [Theory(DisplayName = "ผู้เล่นได้ผลลัพธ์ตามแบบปกติ")]
         [InlineData(PokdengInfo.PlayerResult.Normal, 7, 13, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Spade, "")]
