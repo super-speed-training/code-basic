@@ -121,5 +121,10 @@ namespace CodeBasic
             }
             else return PokdengInfo.GameResult.Draw;
         }
+
+        public PokdengInfo.PlayerResult ConvertToUnbounceResult(PokdengInfo.PlayerResult result)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

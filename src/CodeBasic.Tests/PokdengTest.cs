@@ -132,5 +132,19 @@ namespace CodeBasic.Tests
             var result = player.GetWinnerBySpecialResult(p1Result, p2Result);
             Assert.Equal(expected, result);
         }
+
+        [Theory(DisplayName = "ผู้เล่นที่ได้ไพ่เด้งต้องเปลี่ยนให้เป็นแบบธรรมดาก่อนที่จะเทียบผลลัพธ์กัน")]
+        [InlineData(PokdengInfo.PlayerResult.Normal, PokdengInfo.PlayerResult.Twobounce)]
+        [InlineData(PokdengInfo.PlayerResult.Normal, PokdengInfo.PlayerResult.ThreeBounce)]
+        [InlineData(PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Pok9Twobounce)]
+        [InlineData(PokdengInfo.PlayerResult.Pok8, PokdengInfo.PlayerResult.Pok8Twobounce)]
+        [InlineData(PokdengInfo.PlayerResult.Set, PokdengInfo.PlayerResult.SetThreeBounce)]
+        [InlineData(PokdengInfo.PlayerResult.Ghost, PokdengInfo.PlayerResult.GhostThreeBounce)]
+        public void PlayerThatHasbounceHisResultMustBeUnbounceResultBeforeCompare(PokdengInfo.PlayerResult expected, PokdengInfo.PlayerResult pResult)
+        {
+            var player = new Pokdeng();
+            var result = player.ConvertToUnbounceResult(pResult);
+            Assert.Equal(expected, result);
+        }
     }
 }
