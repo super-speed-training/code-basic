@@ -77,6 +77,9 @@ namespace CodeBasic.Tests
         [InlineData(HandType.ป๊อก, 8, 2, HandType.ตอง, 9, 5, 5, -10)]
         [InlineData(HandType.ไม่มี, 3, 3, HandType.ผี, 0, 3, 5, 15)]
         [InlineData(HandType.ไม่มี, 3, 3, HandType.ตอง, 9, 5, 5, 25)]
+        [InlineData(HandType.ไม่มี, 7, 2, HandType.ไม่มี, 7, 3, 5, 0)]
+        [InlineData(HandType.ตอง, 9, 5, HandType.ตอง, 6, 5, 5, 0)]
+        [InlineData(HandType.ป๊อก, 8, 2, HandType.ป๊อก, 9, 2, 5, 10)]
         public void WinnerCalculatorShouldWork(HandType p1HandType, int p1Point, int p1BetRate, HandType p2HandType, int p2Point, int p2BetRate, int betAmount, int expectedReturnAmount)
         {
             var p1Hand = new HandResult { Point = p1Point, Hand = p1HandType, BetReturnRate = p1BetRate };

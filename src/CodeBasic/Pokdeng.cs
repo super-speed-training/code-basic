@@ -48,13 +48,13 @@ namespace CodeBasic
             if (p2CardNo3 != 0)
                 haveCheat &= CheckCard(p2CardNo3, p2CardSymbol3, deck);
 
-            if (haveCheat)
-                throw new NotImplementedException();
+            if (!haveCheat)
+            {
+                var p1Hand = CalculateCardInHand(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
+                var p2Hand = CalculateCardInHand(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
 
-            var p1Hand = CalculateCardInHand(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
-            var p2Hand = CalculateCardInHand(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
-
-            betAmount += WinnerCalculator(p1Hand, p2Hand, betAmount);
+                PlayerBalance += WinnerCalculator(p1Hand, p2Hand, betAmount);
+            }
         }
 
         public Card GetRandomCard(List<Card> deck)
@@ -78,10 +78,14 @@ namespace CodeBasic
         public int WinnerCalculator(HandResult p1Hand, HandResult p2Hand, int betAmount)
         {
             var returnAmount = 0;
-            if (p1Hand.Hand > p2Hand.Hand) {
+            var SameHandType = p1Hand.Hand == p2Hand.Hand && (p1Hand.Hand == HandType.ป๊อก || p1Hand.Hand == HandType.ไม่มี);
+            var p1Win = p1Hand.Hand > p2Hand.Hand || (SameHandType && p1Hand.Point > p2Hand.Point);
+            var p2Win = p1Hand.Hand < p2Hand.Hand || (SameHandType && p1Hand.Point < p2Hand.Point);
+            if (p1Win)
+            {
                 returnAmount = betAmount * p1Hand.BetReturnRate * -1;
             }
-            else if (p1Hand.Hand < p2Hand.Hand)
+            else if (p2Win)
             {
                 returnAmount = betAmount * p2Hand.BetReturnRate;
             }
@@ -113,7 +117,7 @@ namespace CodeBasic
                     Result.Hand = HandType.ป๊อก;
                     if (CardNo1 == CardNo2 || CardSymbol1 == CardSymbol2) Result.BetReturnRate = 2;
                 }
-                else if(CardSymbol1 == CardSymbol2 || CardNo1 == CardNo2) Result.BetReturnRate = 2;
+                else if (CardSymbol1 == CardSymbol2 || CardNo1 == CardNo2) Result.BetReturnRate = 2;
             }
             else if (CardNo1 == CardNo2 && CardNo2 == CardNo3)
             {
@@ -144,7 +148,7 @@ namespace CodeBasic
                 }
                 else
                 {
-                    if((CardSymbol1 == CardSymbol2 && CardSymbol2 == CardSymbol3))
+                    if ((CardSymbol1 == CardSymbol2 && CardSymbol2 == CardSymbol3))
                         Result.BetReturnRate = 3;
                 }
             }
