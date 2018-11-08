@@ -115,9 +115,31 @@ namespace CodeBasic.Tests
         {
             var player = new Pokdeng();
             player.PlayerBalance = playerBalance;
-            var result = player.Playable(playerBet);
+            var result = player.PlayableByBalance(playerBet);
             Assert.Equal(expected, result);
         }
+
+        [Theory(DisplayName = "เกมสามารถเริ่มได้หากใส่การ์ดถูกต้อง")]
+        [InlineData(true, 
+            2, 3, 10, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade,
+            1, 1, 2, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        [InlineData(true,
+            1, 2, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, "",
+            9, 1, 0, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade, "")]
+        [InlineData(true,
+            1, 8, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, "",
+            2, 3, 4, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade)]
+        public void GameCanStartIfCardSetIsCorrect(bool expected,int p1CardNo1, int p1CardNo2, int p1CardNo3,
+            string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
+            int p2CardNo1, int p2CardNo2, int p2CardNo3,
+            string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
+        {
+            var player = new Pokdeng();
+            var result = player.PlayableByCard(p1CardNo1, p1CardNo2, p1CardNo3,p1CardSymbol1, p1CardSymbol2, p1CardSymbol3,
+                                               p2CardNo1, p2CardNo2, p2CardNo3,p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            Assert.Equal(expected, result);
+        }
+
 
         [Theory(DisplayName = "ผู้เล่นได้ผลลัพธ์ตามแบบปกติ")]
         [InlineData(PokdengInfo.PlayerResult.Normal, 7, 13, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Spade, "")]
