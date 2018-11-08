@@ -3,7 +3,7 @@ using Xunit;
 
 namespace CodeBasic.Tests
 {
-    public class UnitTest1
+    public class PokdengTests
     {
         // Normal cases
         // Alternative cases
