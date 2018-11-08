@@ -92,9 +92,13 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "แต้มผู้เล่นป็อก8ชนะเจ้ามือ ผู้เล่นได้เงินเท่ากับเงินที่ลงพนัน")]
-        [InlineData(100, 1, 2, Heart, Club, 1, 7, Club, Heart, 1000, 1200)]
-        [InlineData(200, 2, 1, Heart, Club, 2, 6, Club, Heart, 1000, 1400)]
-        [InlineData(300, 4, 1, Heart, Club, 3, 5, Club, Heart, 1000, 1600)]
+        [InlineData(100, 1, 2, Heart, Club, 1, 7, Club, Heart, 1000, 1100)]
+        [InlineData(200, 2, 1, Heart, Club, 2, 6, Club, Heart, 1000, 1200)]
+        [InlineData(300, 4, 1, Heart, Club, 3, 5, Club, Heart, 1000, 1300)]
+
+        [InlineData(100, 1, 2, Heart, Club, 1, 7, Club, Club, 1000, 1200)]
+        [InlineData(200, 2, 1, Heart, Club, 2, 6, Club, Club, 1000, 1400)]
+        [InlineData(300, 4, 1, Heart, Club, 3, 5, Club, Club, 1000, 1600)]
         public void PlayerWinPok8ThenGainX1FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };

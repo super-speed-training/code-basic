@@ -17,6 +17,7 @@ namespace CodeBasic
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
 
         {
+
             var dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
             var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
             var isGameDraw = dealerPoints == playerPoints;
@@ -24,30 +25,69 @@ namespace CodeBasic
 
             if (isGameDraw) return;
 
-            if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2 ||
-             p1CardNo1 == p1CardNo2 || p2CardNo1 == p2CardNo2)
-
+            if (dealerPoints >= 8 && dealerPoints <= 9 || playerPoints >= 8 && playerPoints <= 9)
             {
-                if (isPlayerTheWinner)
+                p2CardNo3 = 0;
+                p1CardNo3 = 0;
+                dealerPoints = p1CardNo1 + p1CardNo2;
+                playerPoints = p2CardNo1 + p2CardNo2;
+
+                if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2 ||
+                 p1CardNo1 == p1CardNo2 || p2CardNo1 == p2CardNo2)
+
                 {
-                    PlayerBalance += betAmount * 2;
+                    if (isPlayerTheWinner)
+                    {
+                        PlayerBalance += betAmount * 2;
+                    }
+                    else
+                    {
+                        PlayerBalance -= betAmount * 2;
+                    }
                 }
                 else
                 {
-                    PlayerBalance -= betAmount * 2;
+                    if (isPlayerTheWinner)
+                    {
+                        PlayerBalance += betAmount;
+                    }
+                    else
+                    {
+                        PlayerBalance -= betAmount;
+                    }
                 }
             }
             else
             {
-                if (isPlayerTheWinner)
+                if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2 ||
+                 p1CardNo1 == p1CardNo2 || p2CardNo1 == p2CardNo2)
+
                 {
-                    PlayerBalance += betAmount;
+                    if (isPlayerTheWinner)
+                    {
+                        PlayerBalance += betAmount * 2;
+                    }
+                    else
+                    {
+                        PlayerBalance -= betAmount * 2;
+                    }
                 }
                 else
                 {
-                    PlayerBalance -= betAmount;
+                    if (isPlayerTheWinner)
+                    {
+                        PlayerBalance += betAmount;
+                    }
+                    else
+                    {
+                        PlayerBalance -= betAmount;
+                    }
+
                 }
+
+
             }
+
         }
     }
 }
