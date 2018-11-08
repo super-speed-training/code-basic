@@ -39,6 +39,7 @@ namespace CodeBasic
             var deck = GetNewDeck();
 
             var haveCheat = false;
+            haveCheat |= !CheckBalance(betAmount);
             haveCheat |= CheckCard(p1CardNo1, p1CardSymbol1, deck);
             haveCheat |= CheckCard(p1CardNo2, p1CardSymbol2, deck);
             if (p1CardNo3 != 0)
@@ -55,6 +56,11 @@ namespace CodeBasic
 
                 PlayerBalance += WinnerCalculator(p1Hand, p2Hand, betAmount);
             }
+        }
+
+        public bool CheckBalance(int betAmount)
+        {
+            return PlayerBalance > betAmount * 5;
         }
 
         public Card GetRandomCard(List<Card> deck)
