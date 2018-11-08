@@ -134,6 +134,9 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "ผู้เล่นที่ได้ไพ่เด้งต้องเปลี่ยนให้เป็นแบบธรรมดาก่อนที่จะเทียบผลลัพธ์กัน")]
+        [InlineData(PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Pok9)]
+        [InlineData(PokdengInfo.PlayerResult.Ghost, PokdengInfo.PlayerResult.Ghost)]
+        [InlineData(PokdengInfo.PlayerResult.Normal, PokdengInfo.PlayerResult.Normal)]
         [InlineData(PokdengInfo.PlayerResult.Normal, PokdengInfo.PlayerResult.Twobounce)]
         [InlineData(PokdengInfo.PlayerResult.Normal, PokdengInfo.PlayerResult.ThreeBounce)]
         [InlineData(PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Pok9Twobounce)]

@@ -124,7 +124,9 @@ namespace CodeBasic
 
         public PokdengInfo.PlayerResult ConvertToUnbounceResult(PokdengInfo.PlayerResult result)
         {
-            throw new NotImplementedException();
+            if ((int)result >= 20) return PokdengInfo.PlayerResult.Normal;
+            else if ((int)result >= 10) return result - 10;
+            else return result;
         }
     }
 }
