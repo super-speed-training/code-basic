@@ -109,6 +109,13 @@ namespace CodeBasic
             return result;
         }
 
+        public PokdengInfo.PlayerResult ConvertToUnbounceResult(PokdengInfo.PlayerResult result)
+        {
+            if ((int)result >= 20) return PokdengInfo.PlayerResult.Normal;
+            else if ((int)result >= 10) return result - 10;
+            else return result;
+        }
+
         public string GetWinnerBySpecialResult(PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
         {
             if (p1Result < p2Result)
@@ -122,11 +129,13 @@ namespace CodeBasic
             else return PokdengInfo.GameResult.Draw;
         }
 
-        public PokdengInfo.PlayerResult ConvertToUnbounceResult(PokdengInfo.PlayerResult result)
+        public string GetWinnerByNormalResult(int p1CardNo1, int p1CardNo2, int p1CardNo3, int p2CardNo1, int p2CardNo2, int p2CardNo3)
         {
-            if ((int)result >= 20) return PokdengInfo.PlayerResult.Normal;
-            else if ((int)result >= 10) return result - 10;
-            else return result;
+            var player1CardList = new List<int> { p1CardNo1, p1CardNo2, p1CardNo3 }.Select(it => it >= 10 ? 0 : it);
+            var player2CardList = new List<int> { p2CardNo1, p2CardNo2, p2CardNo3 }.Select(it => it >= 10 ? 0 : it);
+            if (player1CardList.Sum() > player2CardList.Sum()) return PokdengInfo.GameResult.Player1Win;
+            else if (player1CardList.Sum() < player2CardList.Sum()) return PokdengInfo.GameResult.Player2Win;
+            else return PokdengInfo.GameResult.Draw;
         }
     }
 }

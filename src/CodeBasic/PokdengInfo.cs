@@ -35,6 +35,7 @@ namespace CodeBasic
             public const string Player1Win = "Player1Win";
             public const string Player2Win = "Player2Win";
             public const string Draw = "Draw";
+            public const string Error = "System Error";
         }
     }
 }

@@ -5,11 +5,6 @@ namespace CodeBasic.Tests
 {
     public class PokdengTest
     {
-        const string Club = "Club";
-        const string Diamond = "Diamond";
-        const string Heart = "Heart";
-        const string Spade = "Spade";
-
         [Theory(DisplayName = "ผู้เล่นสามารถเล่นเกมได้หากเข้ามีเงินมากพอ")]
         [InlineData(100, 10, true)]
         [InlineData(500, 100, true)]
@@ -148,6 +143,25 @@ namespace CodeBasic.Tests
             var player = new Pokdeng();
             var result = player.ConvertToUnbounceResult(pResult);
             Assert.Equal(expected, result);
+        }
+
+        [Theory(DisplayName = "ผู้เล่นที่ได้แต้มมากกว่าจะชนะ")]
+        [InlineData(PokdengInfo.GameResult.Player1Win, 10, 9, 5, 1, 11, 1)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, 7, 11, 13, 1, 3, 10)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, 10, 11, 12, 1, 10, 10)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, 1, 11, 1, 1, 10, 2)]
+        public void PlayerThatHasGreaterPointMustBeWin(string expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, int p2CardNo1, int p2CardNo2, int p2CardNo3)
+        {
+            var player = new Pokdeng();
+        }
+
+        [Theory(DisplayName = "ผู้เล่นได้แต้มเท่ากันจะเสมอ")]
+        [InlineData(PokdengInfo.GameResult.Draw, 10, 4, 1, 1, 2, 2)]
+        [InlineData(PokdengInfo.GameResult.Draw, 1, 11, 13, 10, 8, 3)]
+        [InlineData(PokdengInfo.GameResult.Draw, 10, 8, 2, 10, 10, 10)]
+        public void PlayersThatHasSamePointResultMustBeDraws(string expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, int p2CardNo1, int p2CardNo2, int p2CardNo3)
+        {
+            var player = new Pokdeng();
         }
     }
 }
