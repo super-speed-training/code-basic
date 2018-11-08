@@ -39,14 +39,14 @@ namespace CodeBasic
             var deck = GetNewDeck();
 
             var haveCheat = false;
-            haveCheat &= CheckCard(p1CardNo1, p1CardSymbol1, deck);
-            haveCheat &= CheckCard(p1CardNo2, p1CardSymbol2, deck);
+            haveCheat |= CheckCard(p1CardNo1, p1CardSymbol1, deck);
+            haveCheat |= CheckCard(p1CardNo2, p1CardSymbol2, deck);
             if (p1CardNo3 != 0)
-                haveCheat &= CheckCard(p1CardNo3, p1CardSymbol3, deck);
-            haveCheat &= CheckCard(p2CardNo1, p2CardSymbol1, deck);
-            haveCheat &= CheckCard(p2CardNo2, p2CardSymbol2, deck);
+                haveCheat |= CheckCard(p1CardNo3, p1CardSymbol3, deck);
+            haveCheat |= CheckCard(p2CardNo1, p2CardSymbol1, deck);
+            haveCheat |= CheckCard(p2CardNo2, p2CardSymbol2, deck);
             if (p2CardNo3 != 0)
-                haveCheat &= CheckCard(p2CardNo3, p2CardSymbol3, deck);
+                haveCheat |= CheckCard(p2CardNo3, p2CardSymbol3, deck);
 
             if (!haveCheat)
             {
@@ -109,15 +109,19 @@ namespace CodeBasic
 
         public HandResult CalculateCardInHand(int CardNo1, int CardNo2, int CardNo3, string CardSymbol1, string CardSymbol2, string CardSymbol3)
         {
-            var Result = new HandResult() { Hand = HandType.ไม่มี, BetReturnRate = 1 };
+            var Result = new HandResult() {
+                Hand = HandType.ไม่มี,
+                BetReturnRate = 1,
+                Point = PointCalculator(CardNo1, CardNo2, CardNo3)
+            };
+
             if (CardNo3 == 0)
             {
-                if (PointCalculator(CardNo1, CardNo2, CardNo3) > 7)
-                {
+                if (Result.Point > 7)
                     Result.Hand = HandType.ป๊อก;
-                    if (CardNo1 == CardNo2 || CardSymbol1 == CardSymbol2) Result.BetReturnRate = 2;
-                }
-                else if (CardSymbol1 == CardSymbol2 || CardNo1 == CardNo2) Result.BetReturnRate = 2;
+
+                if (CardNo1 == CardNo2 || CardSymbol1 == CardSymbol2)
+                    Result.BetReturnRate = 2;
             }
             else if (CardNo1 == CardNo2 && CardNo2 == CardNo3)
             {
@@ -131,16 +135,7 @@ namespace CodeBasic
             }
             else
             {
-                if (CardNo1 > CardNo2)
-                {
-                    SwitchCardInHand(ref CardNo1, ref CardNo2, ref CardSymbol1, ref CardSymbol2);
-                }
-                if (CardNo2 > CardNo3)
-                {
-                    SwitchCardInHand(ref CardNo2, ref CardNo3, ref CardSymbol2, ref CardSymbol3);
-                    if (CardNo1 > CardNo2)
-                        SwitchCardInHand(ref CardNo1, ref CardNo2, ref CardSymbol1, ref CardSymbol2);
-                }
+                ReOrderCardInHand(ref CardNo1, ref CardNo2, ref CardNo3, ref CardSymbol1, ref CardSymbol2, ref CardSymbol3);
                 if (CardNo1 + 1 == CardNo2 && CardNo2 + 1 == CardNo3)
                 {
                     Result.Hand = HandType.เรียง;
@@ -148,13 +143,25 @@ namespace CodeBasic
                 }
                 else
                 {
-                    if ((CardSymbol1 == CardSymbol2 && CardSymbol2 == CardSymbol3))
+                    if (CardSymbol1 == CardSymbol2 && CardSymbol2 == CardSymbol3)
                         Result.BetReturnRate = 3;
                 }
             }
 
-            Result.Point = PointCalculator(CardNo1, CardNo2, CardNo3);
             return Result;
+        }
+
+        private void ReOrderCardInHand(ref int CardNo1, ref int CardNo2, ref int CardNo3, ref string CardSymbol1, ref string CardSymbol2, ref string CardSymbol3)
+        {
+            if (CardNo1 > CardNo2)
+                SwitchCardInHand(ref CardNo1, ref CardNo2, ref CardSymbol1, ref CardSymbol2);
+
+            if (CardNo2 > CardNo3)
+            {
+                SwitchCardInHand(ref CardNo2, ref CardNo3, ref CardSymbol2, ref CardSymbol3);
+                if (CardNo1 > CardNo2)
+                    SwitchCardInHand(ref CardNo1, ref CardNo2, ref CardSymbol1, ref CardSymbol2);
+            }
         }
 
         private int PointCalculator(int CardNo1, int CardNo2, int CardNo3)

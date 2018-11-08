@@ -88,5 +88,19 @@ namespace CodeBasic.Tests
             var ReturnAmount = pokdeng.WinnerCalculator(p1Hand, p2Hand, betAmount);
             Assert.Equal(expectedReturnAmount, ReturnAmount);
         }
+
+        [Theory]
+        [InlineData(140, 125, 5, 4, 3, 0, "Club", "Diamond", "", 4, 5, 3, "Club", "Diamond", "Heart")]
+        [InlineData(115, 125, 5, 4, 4, 0, "Club", "Diamond", "", 4, 5, 3, "Club", "Diamond", "Heart")]
+        [InlineData(125, 125, 5, 4, 4, 0, "Club", "Diamond", "", 4, 4, 0, "Club", "Diamond", "")]
+        [InlineData(125, 125, 5, 0, 4, 0, "Club", "Diamond", "", 4, 4, 0, "Club", "Diamond", "")]
+        [InlineData(125, 125, 5, 99, 4, 0, "Club", "Diamond", "", 4, 4, 0, "Club", "Diamond", "")]
+        public void CheckGameResultShouldWork(int expected, int playerBalance, int betAmount, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3, int p2CardNo1, int p2CardNo2, int p2CardNo3, string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
+        {
+            var pokdeng = new Pokdeng();
+            pokdeng.PlayerBalance = playerBalance;
+            pokdeng.CheckGameResult(betAmount, p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3, p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            Assert.Equal(expected, pokdeng.PlayerBalance);
+        }
     }
 }
