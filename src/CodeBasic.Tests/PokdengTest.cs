@@ -81,5 +81,7 @@ namespace CodeBasic.Tests
             var result = player.GetWinnerBySpecialResult(p1Result, p2Result);
             Assert.Equal(expected, result);
         }
+
+
     }
 }
