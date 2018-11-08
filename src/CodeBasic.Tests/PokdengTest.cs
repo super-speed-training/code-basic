@@ -82,6 +82,76 @@ namespace CodeBasic.Tests
             Assert.Equal(expected, result);
         }
 
+        [Theory(DisplayName = "ผู้เล่นได้ป๊อกเก้าจะชนะคนที่ได้ไพ่แบบต่ำกว่า")]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Tong)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Ghost)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.GhostThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Set)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.SetThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Twobounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.ThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Normal)]
+        public void PlayersGetPog9HeMustBeWinThePlayerThatHeGetLowerResult(string expected, PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
+        {
+            var player = new Pokdeng();
+            var result = player.GetWinnerBySpecialResult(p1Result, p2Result);
+            Assert.Equal(expected, result);
+        }
 
+        [Theory(DisplayName = "ผู้เล่นได้ป๊อกแปดจะชนะคนที่ได้ไพ่แบบต่ำกว่า")]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.Tong, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.Ghost, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.GhostThreeBounce, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.Set, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.SetThreeBounce, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.Twobounce, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.ThreeBounce, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.Normal, PokdengInfo.PlayerResult.Pok8)]
+        public void PlayersGetPog8HeMustBeWinThePlayerThatHeGetLowerResult(string expected, PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
+        {
+            var player = new Pokdeng();
+            var result = player.GetWinnerBySpecialResult(p1Result, p2Result);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory(DisplayName = "ผู้เล่นได้ตองจะชนะคนที่ได้ไพ่แบบต่ำกว่า")]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Tong, PokdengInfo.PlayerResult.Ghost)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Tong, PokdengInfo.PlayerResult.GhostThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Tong, PokdengInfo.PlayerResult.Set)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Tong, PokdengInfo.PlayerResult.SetThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Tong, PokdengInfo.PlayerResult.Twobounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Tong, PokdengInfo.PlayerResult.ThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Tong, PokdengInfo.PlayerResult.Normal)]
+        public void PlayersGetTongHeMustBeWinThePlayerThatHeGetLowerResult(string expected, PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
+        {
+            var player = new Pokdeng();
+            var result = player.GetWinnerBySpecialResult(p1Result, p2Result);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory(DisplayName = "ผู้เล่นได้ผีจะชนะคนที่ได้ไพ่แบบต่ำกว่า")]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.Set, PokdengInfo.PlayerResult.Ghost)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.SetThreeBounce, PokdengInfo.PlayerResult.Ghost)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.Twobounce, PokdengInfo.PlayerResult.GhostThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.ThreeBounce, PokdengInfo.PlayerResult.GhostThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player2Win, PokdengInfo.PlayerResult.Normal, PokdengInfo.PlayerResult.Ghost)]
+        public void PlayersGhostHeMustBeWinThePlayerThatHeGetLowerResult(string expected, PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
+        {
+            var player = new Pokdeng();
+            var result = player.GetWinnerBySpecialResult(p1Result, p2Result);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory(DisplayName = "ผู้เล่นได้เรียงจะชนะคนที่ได้ไพ่แบบต่ำกว่า")]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Set, PokdengInfo.PlayerResult.Twobounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.SetThreeBounce, PokdengInfo.PlayerResult.ThreeBounce)]
+        [InlineData(PokdengInfo.GameResult.Player1Win, PokdengInfo.PlayerResult.Set, PokdengInfo.PlayerResult.Normal)]
+        public void PlayersSetHeMustBeWinThePlayerThatHeGetLowerResult(string expected, PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
+        {
+            var player = new Pokdeng();
+            var result = player.GetWinnerBySpecialResult(p1Result, p2Result);
+            Assert.Equal(expected, result);
+        }
     }
 }

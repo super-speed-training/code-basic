@@ -6,19 +6,20 @@ namespace CodeBasic
     {
         public enum PlayerResult
         {
-            Pok9,
-            Pok8,
-            Tong,
-            Ghost,
-            Set,
-            Normal,
-            Twobounce,
-            ThreeBounce,
+            Pok9 = 0,
+            Pok8 = 1,
+            Tong = 2,
+            Ghost = 3,
+            Set = 4,
+            Normal = 5,
 
             Pok9Twobounce = 10,
             Pok8Twobounce = 11,
             GhostThreeBounce = 13,
             SetThreeBounce = 14,
+
+            Twobounce = 20,
+            ThreeBounce = 21
         }
 
         public class Symbol
