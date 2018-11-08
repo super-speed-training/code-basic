@@ -93,6 +93,22 @@ namespace CodeBasic.Tests
                 new Card[] { new Card(1, CardType.Club), new Card(12, CardType.Heart), new Card(13, CardType.Diamond) },
                 ScoreRank.Score,
             },
+            new object[] {
+                new Card[] { new Card(3, CardType.Club), new Card(3, CardType.Heart) },
+                ScoreRank.Double,
+            },
+            new object[] {
+                new Card[] { new Card(2, CardType.Club), new Card(3, CardType.Club) },
+                ScoreRank.Double,
+            },
+            new object[] {
+                new Card[] { new Card(1, CardType.Club), new Card(1, CardType.Heart), new Card(1, CardType.Diamond) },
+                ScoreRank.Three,
+            },
+            new object[] {
+                new Card[] { new Card(1, CardType.Heart), new Card(12, CardType.Heart), new Card(13, CardType.Heart) },
+                ScoreRank.Tripple,
+            },
         };
     }
 }

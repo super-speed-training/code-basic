@@ -77,6 +77,16 @@ namespace CodeBasic
                         return ScoreRank.Sequence;
                     }
                 }
+
+                if (cards.Select(it => it.CardType).Distinct().Count() == 1)
+                {
+                    return ScoreRank.Tripple;
+                }
+            }
+            else if (cards.Select(it => it.Number).Distinct().Count() == 1
+                || cards.Select(it => it.CardType).Distinct().Count() == 1)
+            {
+                return ScoreRank.Double;
             }
 
             return ScoreRank.Score;
