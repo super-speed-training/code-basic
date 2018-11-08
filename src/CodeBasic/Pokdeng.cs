@@ -133,8 +133,8 @@ namespace CodeBasic
         {
             var player1CardList = new List<int> { p1CardNo1, p1CardNo2, p1CardNo3 }.Select(it => it >= 10 ? 0 : it);
             var player2CardList = new List<int> { p2CardNo1, p2CardNo2, p2CardNo3 }.Select(it => it >= 10 ? 0 : it);
-            if (player1CardList.Sum() > player2CardList.Sum()) return PokdengInfo.GameResult.Player1Win;
-            else if (player1CardList.Sum() < player2CardList.Sum()) return PokdengInfo.GameResult.Player2Win;
+            if (player1CardList.Sum() % 10 > player2CardList.Sum() % 10) return PokdengInfo.GameResult.Player1Win;
+            else if (player1CardList.Sum() % 10 < player2CardList.Sum() % 10) return PokdengInfo.GameResult.Player2Win;
             else return PokdengInfo.GameResult.Draw;
         }
     }

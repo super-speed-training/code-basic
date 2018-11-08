@@ -153,6 +153,8 @@ namespace CodeBasic.Tests
         public void PlayerThatHasGreaterPointMustBeWin(string expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, int p2CardNo1, int p2CardNo2, int p2CardNo3)
         {
             var player = new Pokdeng();
+            var result = player.GetWinnerByNormalResult(p1CardNo1, p1CardNo2, p1CardNo3, p2CardNo1, p2CardNo2, p2CardNo3);
+            Assert.Equal(expected, result);
         }
 
         [Theory(DisplayName = "ผู้เล่นได้แต้มเท่ากันจะเสมอ")]
@@ -162,6 +164,10 @@ namespace CodeBasic.Tests
         public void PlayersThatHasSamePointResultMustBeDraws(string expected, int p1CardNo1, int p1CardNo2, int p1CardNo3, int p2CardNo1, int p2CardNo2, int p2CardNo3)
         {
             var player = new Pokdeng();
+            var result = player.GetWinnerByNormalResult(p1CardNo1, p1CardNo2, p1CardNo3, p2CardNo1, p2CardNo2, p2CardNo3);
+            Assert.Equal(expected, result);
         }
+
+
     }
 }
