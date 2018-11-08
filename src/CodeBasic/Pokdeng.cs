@@ -15,17 +15,17 @@ namespace CodeBasic
             string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
+
         {
+            var dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
+            var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
+            var isGameDraw = dealerPoints == playerPoints;
+            var isPlayerTheWinner = playerPoints > dealerPoints;
+
+
             if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2)
             {
-                var dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
-                var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
-
-                var isGameDraw = dealerPoints == playerPoints;
                 if (isGameDraw) return;
-
-                var isPlayerTheWinner = playerPoints > dealerPoints;
-
 
                 if (isPlayerTheWinner)
                 {
@@ -38,15 +38,7 @@ namespace CodeBasic
             }
             else
             {
-
-                var dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
-                var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
-
-                var isGameDraw = dealerPoints == playerPoints;
                 if (isGameDraw) return;
-
-                var isPlayerTheWinner = playerPoints > dealerPoints;
-
 
                 if (isPlayerTheWinner)
                 {
