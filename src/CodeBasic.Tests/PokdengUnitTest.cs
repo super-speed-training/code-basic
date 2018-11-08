@@ -6,7 +6,7 @@ using static CodeBasic.Pokdeng;
 
 namespace CodeBasic.Tests
 {
-    public class UnitTest1
+    public class PokdengUnitTest
     {
         // Normal cases
         // Alternative cases
@@ -90,11 +90,16 @@ namespace CodeBasic.Tests
         }
 
         [Theory]
-        [InlineData(140, 125, 5, 4, 3, 0, "Club", "Diamond", "", 4, 5, 3, "Club", "Diamond", "Heart")]
-        [InlineData(115, 125, 5, 4, 4, 0, "Club", "Diamond", "", 4, 5, 3, "Club", "Diamond", "Heart")]
+        [InlineData(140, 125, 5, 4, 3, 0, "Diamond", "Diamond", "", 4, 5, 3, "Club", "Club", "Heart")]
+        [InlineData(115, 125, 5, 4, 4, 0, "Heart", "Diamond", "", 4, 5, 3, "Club", "Diamond", "Heart")]
         [InlineData(125, 125, 5, 4, 4, 0, "Club", "Diamond", "", 4, 4, 0, "Club", "Diamond", "")]
         [InlineData(125, 125, 5, 0, 4, 0, "Club", "Diamond", "", 4, 4, 0, "Club", "Diamond", "")]
         [InlineData(125, 125, 5, 99, 4, 0, "Club", "Diamond", "", 4, 4, 0, "Club", "Diamond", "")]
+        [InlineData(100, 125, 5, 13, 13, 13, "Club", "Diamond", "Heart", 3, 4, 0, "Club", "Diamond", "")]
+        [InlineData(135, 125, 5, 13, 13, 13, "Club", "Diamond", "Heart", 4, 4, 0, "Club", "Diamond", "")]
+        [InlineData(100, 125, 5, 13, 13, 13, "Club", "Diamond", "Heart", 12, 11, 10, "Club", "Diamond", "Diamond")]
+        [InlineData(110, 125, 5, 6, 7, 8, "Club", "Diamond", "Heart", 1, 1, 2, "Club", "Diamond", "Diamond")]
+        [InlineData(140, 125, 5, 1, 1, 2, "Club", "Diamond", "Diamond", 6, 7, 8, "Club", "Diamond", "Heart")]
         public void CheckGameResultShouldWork(int expected, int playerBalance, int betAmount, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3, int p2CardNo1, int p2CardNo2, int p2CardNo3, string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
             var pokdeng = new Pokdeng();
