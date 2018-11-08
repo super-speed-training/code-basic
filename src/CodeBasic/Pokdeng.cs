@@ -6,9 +6,9 @@ namespace CodeBasic
 {
     public class Pokdeng
     {
-<<<<<<< HEAD
+
         public int PlayerBalance { get; set; }
-=======
+
         static private int _Balance;
 
         public Pokdeng(int p1 = 0) => _Balance = p1;
@@ -72,16 +72,16 @@ namespace CodeBasic
             }
             return Sum;
         }
->>>>>>> mos
+
 
         // Club, Diamond, Heart, Spade (case sensitive)
         public void CheckGameResult(
-<<<<<<< HEAD
+
             int betAmount,
-            int p1CardNo1, int p1CardNo2, int p1CardNo3, 
-=======
+            int p1CardNo1, int p1CardNo2, int p1CardNo3,
+
             int p1BetAmount, int p1CardNo1, int p1CardNo2, int p1CardNo3,
->>>>>>> mos
+
             string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
