@@ -22,7 +22,6 @@ namespace CodeBasic
             var isGameDraw = dealerPoints == playerPoints;
             var isPlayerTheWinner = playerPoints > dealerPoints;
 
-
             if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2)
             {
                 if (isGameDraw) return;
