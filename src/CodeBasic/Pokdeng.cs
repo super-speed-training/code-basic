@@ -17,7 +17,42 @@ namespace CodeBasic
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
-            throw new NotImplementedException();
+            var p1Cards = CreateCards(p1CardNo1, p1CardNo2, p1CardNo3,
+                p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
+            var p2Cards = CreateCards(p2CardNo1, p2CardNo2, p2CardNo3,
+                p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+
+            var p1Rank = GetRank(p1Cards);
+            var p2Rank = GetRank(p2Cards);
+
+            if (p1Rank != p2Rank)
+            {
+                if (p1Rank > p2Rank)
+                {
+                    PlayerBalance -= betAmount * YieldFactor(p1Cards);
+                }
+                else
+                {
+                    PlayerBalance += betAmount * YieldFactor(p1Cards);
+                }
+            }
+            else
+            {
+                if (true != DrawIfSameRank(p1Rank))
+                {
+                    var p1Score = SumScore(p1Cards);
+                    var p2Score = SumScore(p2Cards);
+
+                    if (p1Score > p2Score)
+                    {
+                        PlayerBalance -= betAmount * YieldFactor(p1Cards);
+                    }
+                    else if (p1Score < p2Score)
+                    {
+                        PlayerBalance += betAmount * YieldFactor(p2Cards);
+                    }
+                }
+            }
         }
 
         public Card[] CreateCards(int cardNo1, int cardNo2, int cardNo3,
@@ -37,10 +72,9 @@ namespace CodeBasic
             };
         }
 
-        public ScoreRank GetRank(Card[] cards)
+        public static ScoreRank GetRank(Card[] cards)
         {
-            // Check for Pok first
-            var sumScore = cards.Where(it => it.Number <= 10).Sum(it => it.Number) % 10;
+            int sumScore = SumScore(cards);
             var cardCount = cards.Length;
 
             if (sumScore >= 8 && cardCount == 2)
@@ -74,6 +108,11 @@ namespace CodeBasic
             return ScoreRank.Score;
         }
 
+        private static int SumScore(Card[] cards)
+        {
+            return cards.Where(it => it.Number <= 10).Sum(it => it.Number) % 10;
+        }
+
         private static bool IsSequenceCards(Card[] cards)
         {
             var orderedCardNos = cards.Select(it => it.Number).OrderBy(it => it);
@@ -93,11 +132,41 @@ namespace CodeBasic
             return allMatched;
         }
 
-        private static bool IsDoubleCards(Card[] cards) {
+        private static bool IsDoubleCards(Card[] cards)
+        {
             return cards.Length == 2 && (
                 cards.Select(it => it.Number).Distinct().Count() == 1
                 || cards.Select(it => it.CardType).Distinct().Count() == 1
             );
+        }
+
+        private static bool DrawIfSameRank(ScoreRank rank)
+        {
+            return rank == ScoreRank.Three
+                || rank == ScoreRank.Ghost
+                || rank == ScoreRank.Sequence;
+        }
+
+        private static int YieldFactor(Card[] cards)
+        {
+            ScoreRank rank = GetRank(cards);
+
+            switch (rank)
+            {
+                case ScoreRank.Pok:
+                    return (cards[0].Number == cards[1].Number || cards[0].CardType == cards[1].CardType)
+                        ? 2 : 1;
+                case ScoreRank.Three:
+                    return 5;
+                case ScoreRank.Ghost:
+                case ScoreRank.Sequence:
+                case ScoreRank.Tripple:
+                    return 3;
+                case ScoreRank.Double:
+                    return 2;
+                default:
+                    return 1;
+            }
         }
     }
 }

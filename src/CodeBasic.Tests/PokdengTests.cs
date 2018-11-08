@@ -42,8 +42,7 @@ namespace CodeBasic.Tests
         [MemberData(nameof(GetRankCases))]
         public void GetRankWorksCorrectly(Card[] cards, ScoreRank expected)
         {
-            var sut = new Pokdeng();
-            var result = sut.GetRank(cards);
+            var result = Pokdeng.GetRank(cards);
             result.Should().Be(expected);
         }
 
