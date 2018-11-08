@@ -68,10 +68,9 @@ namespace CodeBasic
 
         public bool CheckCard(int CardNo, string CardSymbol, List<Card> deck)
         {
-            var card = new Card { Number = CardNo, Symbol = CardSymbol };
-            var haveCheat = !deck.Any(it => it.Number == card.Number && it.Symbol == card.Symbol);
+            var haveCheat = !deck.Any(it => it.Number == CardNo && it.Symbol == CardSymbol);
             if (!haveCheat)
-                deck.Remove(card);
+                deck.RemoveAll(it => it.Number == CardNo && it.Symbol == CardSymbol);
             return haveCheat;
         }
 
@@ -109,7 +108,8 @@ namespace CodeBasic
 
         public HandResult CalculateCardInHand(int CardNo1, int CardNo2, int CardNo3, string CardSymbol1, string CardSymbol2, string CardSymbol3)
         {
-            var Result = new HandResult() {
+            var Result = new HandResult()
+            {
                 Hand = HandType.ไม่มี,
                 BetReturnRate = 1,
                 Point = PointCalculator(CardNo1, CardNo2, CardNo3)
