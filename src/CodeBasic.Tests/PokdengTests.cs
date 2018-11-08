@@ -25,6 +25,16 @@ namespace CodeBasic.Tests
                 "Club", "Heart", "Spade",
                 new Card[] { new Card(1, CardType.Club), new Card(2, CardType.Heart), new Card(3, CardType.Spade) },
             },
+            new object [] {
+                7, 4, 12,
+                "Diamond", "Spade", "Heart",
+                new Card[] { new Card(7, CardType.Diamond), new Card(4, CardType.Spade), new Card(12, CardType.Heart) },
+            },
+            new object [] {
+                7, 4, 0,
+                "Diamond", "Spade", "",
+                new Card[] { new Card(7, CardType.Diamond), new Card(4, CardType.Spade) },
+            },
         };
     }
 }

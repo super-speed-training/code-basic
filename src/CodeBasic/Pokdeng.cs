@@ -22,6 +22,13 @@ namespace CodeBasic
         public Card[] CreateCards(int cardNo1, int cardNo2, int cardNo3,
                 string cardSymbol1, string cardSymbol2, string cardSymbol3)
         {
+            if (cardNo3 == 0)
+            {
+                return new Card[] {
+                    new Card(cardNo1, (CardType)Enum.Parse(typeof(CardType), cardSymbol1)),
+                    new Card(cardNo2, (CardType)Enum.Parse(typeof(CardType), cardSymbol2)),
+                };            
+            }
             return new Card[] {
                 new Card(cardNo1, (CardType)Enum.Parse(typeof(CardType), cardSymbol1)),
                 new Card(cardNo2, (CardType)Enum.Parse(typeof(CardType), cardSymbol2)),
