@@ -8,7 +8,7 @@ namespace CodeBasic
     public class Pokdeng
     {
         public int PlayerBalance { get; set; }
-        
+
         #region Result condition
 
         private bool IsPok8(int cardNo1, int cardNo2, int cardNo3)
@@ -56,6 +56,9 @@ namespace CodeBasic
         {
             if (!PlayableByBalance(betAmount)) return;
 
+            if (!PlayableByCard(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3,
+                                p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3)) return;
+
             var winner = string.Empty;
             var p1Result = GetRewardType(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
             var p2Result = GetRewardType(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
@@ -83,7 +86,44 @@ namespace CodeBasic
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
-            throw new NotImplementedException();
+            var SymbolList = new List<string> { PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Diamond, PokdengInfo.Symbol.Heart, PokdengInfo.Symbol.Spade };
+
+            var p1SymbolList = new List<string> { p1CardSymbol1, p1CardSymbol2, p1CardSymbol3 };
+            var p2SymbolList = new List<string> { p2CardSymbol1, p2CardSymbol2, p2CardSymbol3 };
+
+            var NoSymbol = string.IsNullOrEmpty(p1SymbolList[0]) || string.IsNullOrEmpty(p1SymbolList[1]) ||
+                            string.IsNullOrEmpty(p2SymbolList[0]) || string.IsNullOrEmpty(p2SymbolList[1]);
+            if (NoSymbol) return false;
+
+            var IsCorrectSymbol = SymbolList.Any(it => p1SymbolList.Contains(it)) && SymbolList.Any(it => p2SymbolList.Contains(it));
+
+            if (!IsCorrectSymbol) return false;
+
+            var p1CardNoList = new List<int> { p1CardNo1, p1CardNo2, p1CardNo3 };
+            var p2CardNoList = new List<int> { p2CardNo1, p2CardNo2, p2CardNo3 };
+
+            var HasCorrectCardNO = (p1CardNoList[0] >= 1 && p1CardNoList[0] <= 13) || (p1CardNoList[1] >= 1 && p1CardNoList[1] <= 13) ||
+                            (p2CardNoList[0] >= 1 && p2CardNoList[0] <= 13) || (p2CardNoList[1] >= 1 && p2CardNoList[1] <= 13);
+
+            if (!HasCorrectCardNO) return false;
+
+            var cardInList = new object[] { }.ToList();
+            var allCardNo = p1CardNoList.Concat(p2CardNoList).ToList();
+            var allCardSymbol = p1SymbolList.Concat(p2SymbolList).ToList();
+
+            for (int i = 0; i < 6; i++)
+            {
+                var card = new { CardNo = allCardNo[i], Symbol = allCardSymbol[i] };
+                if (allCardNo[i] != 0 && !string.IsNullOrEmpty(allCardSymbol[i]))
+                {
+                    if (!cardInList.Contains(card)) cardInList.Add(card);
+                    else return false;
+                }
+                else if (allCardNo[i] != 0 && string.IsNullOrEmpty(allCardSymbol[i])) return false;
+                else if(allCardNo[i] == 0 && !string.IsNullOrEmpty(allCardSymbol[i])) return false;
+            }
+
+            return true;
         }
 
         public PokdengInfo.PlayerResult GetRewardType(int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3)
