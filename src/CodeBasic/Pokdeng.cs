@@ -22,7 +22,11 @@ namespace CodeBasic
         public Card[] CreateCards(int cardNo1, int cardNo2, int cardNo3,
                 string cardSymbol1, string cardSymbol2, string cardSymbol3)
         {
-            throw new NotImplementedException();
+            return new Card[] {
+                new Card(cardNo1, (CardType)Enum.Parse(typeof(CardType), cardSymbol1)),
+                new Card(cardNo2, (CardType)Enum.Parse(typeof(CardType), cardSymbol2)),
+                new Card(cardNo3, (CardType)Enum.Parse(typeof(CardType), cardSymbol3)),
+            };            
         }
 
         public ScoreRank GetRank(Card[] cards)
