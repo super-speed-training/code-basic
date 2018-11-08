@@ -26,6 +26,7 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "ดึงผลลัพธ์จากไพ่ของผู้เล่นกรณีปกติ")]
+        [InlineData(PokdengInfo.PlayerResult.Normal, 7, 13, 0, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Spade, "")]
         [InlineData(PokdengInfo.PlayerResult.Normal, 1, 4, 5, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Spade, PokdengInfo.Symbol.Diamond)]
         [InlineData(PokdengInfo.PlayerResult.Normal, 10, 11, 5, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Club, PokdengInfo.Symbol.Diamond)]
         [InlineData(PokdengInfo.PlayerResult.Pok9, 9, 11, 0, PokdengInfo.Symbol.Diamond, PokdengInfo.Symbol.Club, "")]
@@ -62,6 +63,22 @@ namespace CodeBasic.Tests
         {
             var player = new Pokdeng();
             var result = player.GetRewardType(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory(DisplayName = "ผู้เล่นได้ผลลัพธ์แบบพิเศษการแข่งขันจะเสมอ")]
+        [InlineData(PokdengInfo.GameResult.Draw, PokdengInfo.PlayerResult.Pok8, PokdengInfo.PlayerResult.Pok8)]
+        [InlineData(PokdengInfo.GameResult.Draw, PokdengInfo.PlayerResult.Pok8Twobounce, PokdengInfo.PlayerResult.Pok8Twobounce)]
+        [InlineData(PokdengInfo.GameResult.Draw, PokdengInfo.PlayerResult.Pok8, PokdengInfo.PlayerResult.Pok8Twobounce)]
+        [InlineData(PokdengInfo.GameResult.Draw, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Pok9)]
+        [InlineData(PokdengInfo.GameResult.Draw, PokdengInfo.PlayerResult.Pok9Twobounce, PokdengInfo.PlayerResult.Pok9Twobounce)]
+        [InlineData(PokdengInfo.GameResult.Draw, PokdengInfo.PlayerResult.Pok9, PokdengInfo.PlayerResult.Pok9Twobounce)]
+        [InlineData(PokdengInfo.GameResult.Draw, PokdengInfo.PlayerResult.Ghost, PokdengInfo.PlayerResult.Ghost)]
+        [InlineData(PokdengInfo.GameResult.Draw, PokdengInfo.PlayerResult.SetThreeBounce, PokdengInfo.PlayerResult.Set)]
+        public void PlayersGetSameResultGameResultMustBeDraw(string expected, PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
+        {
+            var player = new Pokdeng();
+            var result = player.GetWinnerBySpecialResult(p1Result, p2Result);
             Assert.Equal(expected, result);
         }
     }

@@ -28,5 +28,12 @@ namespace CodeBasic
             public const string Heart = "Heart";
             public const string Spade = "Spade";
         }
+
+        public class GameResult
+        {
+            public const string Player1Win = "Player1Win";
+            public const string Player2Win = "Player2Win";
+            public const string Draw = "Draw";
+        }
     }
 }

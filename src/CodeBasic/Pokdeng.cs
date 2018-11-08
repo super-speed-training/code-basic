@@ -108,5 +108,11 @@ namespace CodeBasic
 
             return result;
         }
+
+        public string GetWinnerBySpecialResult(PokdengInfo.PlayerResult p1Result, PokdengInfo.PlayerResult p2Result)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
