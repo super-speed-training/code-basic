@@ -55,16 +55,19 @@ namespace CodeBasic
                 playerPoints = playerPoints % 10;
             }
 
-            var isGameDraw = dealerPoints == playerPoints;
             var isPlayerTheWinner = playerPoints > dealerPoints;
+            var isGameDraw = dealerPoints == playerPoints;
 
-            if (isGameDraw) return;
+            if (isGameDraw && !(dealerPoints >= 8 && dealerPoints <= 9)) return;
+          
 
-            if (dealerPoints >= 8 && dealerPoints <= 9 || playerPoints >= 8 && playerPoints <= 9)
+            if (dealerPoints >= 8 && dealerPoints <= 9)
             {
-                p2CardNo3 = 0;
-                p1CardNo3 = 0;
 
+                p2CardNo3 = 0;
+                p1CardSymbol3 = null;
+                dealerPoints = dealerPoints;
+                playerPoints = playerPoints;
 
                 if (isPlayerTheWinner)
                 {
