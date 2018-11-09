@@ -18,15 +18,37 @@ namespace CodeBasic
 
         {
 
+            if (p1CardNo1 > 9)
+            {
+                p1CardNo1 = 0;
+            }
+            if (p1CardNo2 > 9)
+            {
+                p1CardNo2 = 0;
+            }
+            if (p1CardNo3 > 9)
+            {
+                p1CardNo3 = 0;
+            }
+            if (p2CardNo1 > 9)
+            {
+                p2CardNo1 = 0;
+            }
+            if (p2CardNo2 > 9)
+            {
+                p2CardNo2 = 0;
+            }
+            if (p2CardNo3 > 9)
+            {
+                p2CardNo3 = 0;
+            }
+
             var dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
             var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
             var isGameDraw = dealerPoints == playerPoints;
             var isPlayerTheWinner = playerPoints > dealerPoints;
+
             if (isGameDraw) return;
-
-            if( ){
-
-            }
 
             if (dealerPoints >= 8 && dealerPoints <= 9 || playerPoints >= 8 && playerPoints <= 9)
             {
@@ -34,7 +56,7 @@ namespace CodeBasic
                 p1CardNo3 = 0;
                 dealerPoints = p1CardNo1 + p1CardNo2;
                 playerPoints = p2CardNo1 + p2CardNo2;
-
+                // && (p2CardNo1 != 0 && p2CardNo2 != 0)
                 if (isPlayerTheWinner)
                 {
                     if (p2CardNo1 == p2CardNo2 || p2CardSymbol1 == p2CardSymbol2)
@@ -46,6 +68,7 @@ namespace CodeBasic
                         PlayerBalance += betAmount;
                     }
                 }
+                // && (p1CardNo1 != 0 && p1CardNo2 != 0)
                 else
                 {
                     if (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2)
@@ -57,58 +80,31 @@ namespace CodeBasic
                         PlayerBalance -= betAmount;
                     }
                 }
-
-                // if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2 ||
-                //  p1CardNo1 == p1CardNo2 || p2CardNo1 == p2CardNo2)
-
-                // {
-                //     if (isPlayerTheWinner)
-                //     {
-                //         PlayerBalance += betAmount * 2;
-                //     }
-                //     else
-                //     {
-                //         PlayerBalance -= betAmount * 2;
-                //     }
-                // }
-                // else
-                // {
-                //     if (isPlayerTheWinner)
-                //     {
-                //         PlayerBalance += betAmount;
-                //     }
-                //     else
-                //     {
-                //         PlayerBalance -= betAmount;
-                //     }
-                // }
             }
             else
             {
-                if (p1CardSymbol1 == p1CardSymbol2 || p2CardSymbol1 == p2CardSymbol2 ||
-                 p1CardNo1 == p1CardNo2 || p2CardNo1 == p2CardNo2)
-
+                if (isPlayerTheWinner)
                 {
-                    if (isPlayerTheWinner)
+                    if (p2CardNo1 == p2CardNo2 || p2CardSymbol1 == p2CardSymbol2)
                     {
                         PlayerBalance += betAmount * 2;
                     }
                     else
                     {
-                        PlayerBalance -= betAmount * 2;
+                        PlayerBalance += betAmount;
                     }
                 }
+                // && (p1CardNo1 != 0 && p1CardNo2 != 0)
                 else
                 {
-                    if (isPlayerTheWinner)
+                    if (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2)
                     {
-                        PlayerBalance += betAmount;
+                        PlayerBalance -= betAmount * 2;
                     }
                     else
                     {
                         PlayerBalance -= betAmount;
                     }
-
                 }
 
 

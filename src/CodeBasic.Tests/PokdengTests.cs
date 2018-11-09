@@ -18,7 +18,14 @@ namespace CodeBasic.Tests
 
         [InlineData(100, 11, 1, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
         [InlineData(100, 12, 1, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
-        [InlineData(100, 11, 13, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 12, 1, Club, Diamond, 11, 4, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 12, 1, Club, Diamond, 10, 4, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 12, 13, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 12, 13, Club, Diamond, 13, 4, Club, Diamond, 1000, 1100)]
+
+        [InlineData(100, 12, 5, Club, Diamond, 13, 9, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 12, 8, Club, Diamond, 13, 9, Club, Diamond, 1000, 1100)]
+
         public void PlayerWinThenGainX1FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
@@ -63,6 +70,10 @@ namespace CodeBasic.Tests
         [InlineData(100, 1, 2, Club, Heart, 1, 4, Club, Club, 1000, 1200)]
         [InlineData(200, 1, 3, Club, Heart, 1, 5, Club, Club, 1000, 1400)]
         [InlineData(300, 1, 4, Club, Heart, 1, 6, Club, Club, 1000, 1600)]
+
+        [InlineData(100, 12, 5, Club, Diamond, 13, 9, Diamond, Diamond, 1000, 1200)]
+        [InlineData(100, 12, 8, Club, Diamond, 13, 9, Diamond, Diamond, 1000, 1200)]
+
         public void PlayerWinSameSymbolThenGainX2FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
