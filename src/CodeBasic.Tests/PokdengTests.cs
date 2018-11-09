@@ -86,6 +86,8 @@ namespace CodeBasic.Tests
         [InlineData(100, 1, 5, Heart, Heart, 1, 1, Club, Club, 1000, 800)]
         [InlineData(200, 1, 6, Heart, Heart, 1, 3, Club, Club, 1000, 600)]
         [InlineData(300, 1, 4, Heart, Heart, 1, 2, Club, Club, 1000, 400)]
+
+        [InlineData(100, 12, 8, Diamond, Diamond, 13, 5, Club, Diamond, 1000, 800)]
         public void PlayerLoseSameSymbolThenLoseX2FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
