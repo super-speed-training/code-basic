@@ -15,6 +15,10 @@ namespace CodeBasic.Tests
         [InlineData(100, 1, 2, Club, Diamond, 5, 2, Club, Diamond, 1000, 1100)]
         [InlineData(100, 1, 3, Club, Diamond, 2, 3, Club, Diamond, 1000, 1100)]
         [InlineData(100, 2, 1, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
+
+        [InlineData(100, 11, 1, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 12, 1, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
+        [InlineData(100, 11, 13, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
         public void PlayerWinThenGainX1FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
@@ -125,6 +129,8 @@ namespace CodeBasic.Tests
             sut.CheckGameResult(bet, p1cn1, p1cn2, 0, p1cs1, p1cs2, string.Empty, p2cn1, p2cn2, 0, p2cs1, p2cs2, string.Empty);
             Assert.Equal(expectedBalance, sut.PlayerBalance);
         }
+
+
 
 
         /*

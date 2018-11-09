@@ -22,8 +22,11 @@ namespace CodeBasic
             var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
             var isGameDraw = dealerPoints == playerPoints;
             var isPlayerTheWinner = playerPoints > dealerPoints;
-
             if (isGameDraw) return;
+
+            if( ){
+
+            }
 
             if (dealerPoints >= 8 && dealerPoints <= 9 || playerPoints >= 8 && playerPoints <= 9)
             {
