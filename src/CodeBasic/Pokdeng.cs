@@ -45,6 +45,16 @@ namespace CodeBasic
 
             var dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
             var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
+
+            if (dealerPoints > 9)
+            {
+                dealerPoints = dealerPoints % 10;
+            }
+            if (playerPoints > 9)
+            {
+                playerPoints = playerPoints % 10;
+            }
+
             var isGameDraw = dealerPoints == playerPoints;
             var isPlayerTheWinner = playerPoints > dealerPoints;
 
@@ -54,8 +64,7 @@ namespace CodeBasic
             {
                 p2CardNo3 = 0;
                 p1CardNo3 = 0;
-                dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
-                playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
+
 
                 if (isPlayerTheWinner)
                 {
