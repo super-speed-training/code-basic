@@ -54,9 +54,9 @@ namespace CodeBasic
             {
                 p2CardNo3 = 0;
                 p1CardNo3 = 0;
-                dealerPoints = p1CardNo1 + p1CardNo2;
-                playerPoints = p2CardNo1 + p2CardNo2;
-                // && (p2CardNo1 != 0 && p2CardNo2 != 0)
+                dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
+                playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
+
                 if (isPlayerTheWinner)
                 {
                     if (p2CardNo1 == p2CardNo2 || p2CardSymbol1 == p2CardSymbol2)
@@ -68,7 +68,6 @@ namespace CodeBasic
                         PlayerBalance += betAmount;
                     }
                 }
-                // && (p1CardNo1 != 0 && p1CardNo2 != 0)
                 else
                 {
                     if (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2)
@@ -94,7 +93,7 @@ namespace CodeBasic
                         PlayerBalance += betAmount;
                     }
                 }
-                // && (p1CardNo1 != 0 && p1CardNo2 != 0)
+
                 else
                 {
                     if (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2)
@@ -106,10 +105,7 @@ namespace CodeBasic
                         PlayerBalance -= betAmount;
                     }
                 }
-
-
             }
-
         }
     }
 }

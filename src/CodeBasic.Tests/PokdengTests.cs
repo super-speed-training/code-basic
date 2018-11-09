@@ -22,7 +22,6 @@ namespace CodeBasic.Tests
         [InlineData(100, 12, 1, Club, Diamond, 10, 4, Club, Diamond, 1000, 1100)]
         [InlineData(100, 12, 13, Club, Diamond, 1, 4, Club, Diamond, 1000, 1100)]
         [InlineData(100, 12, 13, Club, Diamond, 13, 4, Club, Diamond, 1000, 1100)]
-
         [InlineData(100, 12, 5, Club, Diamond, 13, 9, Club, Diamond, 1000, 1100)]
         [InlineData(100, 12, 8, Club, Diamond, 13, 9, Club, Diamond, 1000, 1100)]
 
@@ -143,6 +142,18 @@ namespace CodeBasic.Tests
             Assert.Equal(expectedBalance, sut.PlayerBalance);
         }
 
+        [Theory(DisplayName = "แต้มผู้เล่นชนะเจ้ามือ ผู้เล่นได้รับเงินเพิ่มเท่ากับเงินที่ลงพนัน")]
+        [InlineData(100, 1, 2, 1, Club, Diamond, Heart, 4, 2, 1, Club, Diamond, Heart, 1000, 1100)]
+        [InlineData(100, 1, 3, 2, Club, Diamond, Heart, 2, 3, 1, Club, Diamond, Heart, 1000, 1100)]
+        [InlineData(100, 2, 1, 1, Club, Diamond, Heart, 1, 4, 1, Club, Diamond, Heart, 1000, 1100)]
+
+        public void X3CardPlayerWinThenGainX1FromBet(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
+        {
+            var sut = new Pokdeng { PlayerBalance = balance };
+            sut.PlayerBalance = balance;
+            sut.CheckGameResult(bet, p1cn1, p1cn2, p1cn3, p1cs1, p1cs2, p1cs3, p2cn1, p2cn2, p2cn3, p2cs1, p2cs2, p2cs3);
+            Assert.Equal(expectedBalance, sut.PlayerBalance);
+        }
 
 
 
