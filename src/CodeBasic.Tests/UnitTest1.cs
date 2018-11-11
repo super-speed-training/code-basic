@@ -5,33 +5,19 @@ namespace CodeBasic.Tests
 {
     public class UnitTest1
     {
-        // Normal cases
+        // Normal Case
+        //ผู้เล่นชนะ เจ้ามือ ผู้เล่นได้เงินเท่าที่ลงเงิน
+        //ผู้เล่นแพ้เจ้ามือ ชนะ ผู้เล่นเสียเงินที่ลงไป
+        //ผู้เล่นและเจ้ามือ เสมอกัน ทั้งสองฝ่ายไม่เสียอะไร
         // Alternative cases
         // Exception cases
-
-        [Fact(DisplayName = "ไพ่ในมือมี 2 ใบ และผลรวมคือ 8 หรือ 9 (ไพ่ป๊อกจะชนะไพ่ 3 ใบเสมอ)")]
-        public void Test1()
+        [Fact(DisplayName = "ผู้เล่นชนะ เจ้ามือ ผู้เล่นได้เงินเท่าที่ลงเงิน")]
+        public void CheckGameResultIsPlayerWin()
         {
             var sut = new Pokdeng();
-            var result = sut.Check(4,5);
-            Assert.Equal(9,result);
-        }
-
-
-        [Fact(DisplayName = "ไพ่ในมือมี 3 ใบและเป็น เลขเดียวกัน ถ้าชนะจะได้เงิน 5 เท่า")]
-        public void Same3CardwithWinGet5()
-        {
-            var sut = new Pokdeng();
-            var result = sut.Check3card(3,3,3);
-            Assert.True(result);
+            sut.PlayerBalance = 500;
+            sut.CheckGameResult(100,5,2,0, "Club", "Club","",7,2,0, "Club", "Club","");
+            Assert.Equal(600,sut.PlayerBalance);
         }
     }
 }
-
-//ป๊อก - ไพ่ในมือมี 2 ใบ และผลรวมคือ 8 หรือ 9 (ไพ่ป๊อกจะชนะไพ่ 3 ใบเสมอ)
-//ตอง - ไพ่ในมือมี 3 ใบและเป็น เลขเดียวกัน ถ้าชนะจะได้เงิน 5 เท่า
-//ผี - ไพ่ในมือมี 3 ใบและเป็นไพ่ในกลุ่ม J, Q, K ถ้าชนะจะได้เงิน 3 เท่า
-//เรียง - ไพ่ในมือมี 3 ใบและเป็น เลขเรียงกัน ถ้าชนะจะได้เงิน 3 เท่า(Q, K, A ไม่ถือว่าเรียง)
-//สองเด้ง - ไพ่ในมือมี 2 ใบและเป็น ดอกเดียวกัน หรือ ตัวเลขเดียวกัน ถ้าชนะจะได้เงิน 2 เท่า
-//สามเด้ง - ไพ่ในมือมี 3 ใบและเป็น ดอกเดียวกัน ถ้าชนะจะได้เงิน 3 เท่า
-//สองเด้ง กับ สามเด้ง ความสำคัญเท่ากัน แต้มที่เยอะกว่าเป็นฝ่ายชนะ
