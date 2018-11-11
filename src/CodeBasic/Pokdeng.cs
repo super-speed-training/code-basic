@@ -15,14 +15,25 @@
             var hostPoint = p1CardNo1 + p1CardNo2 + p1CardNo3;
             var playerPoint = p2CardNo1 + p2CardNo2 + p2CardNo3;
             var isPlayerWin = playerPoint > hostPoint;
+
+            var isSameNumber = p2CardNo1 == p2CardNo2;
+            var isSameSymbol = p2CardSymbol1 == p2CardSymbol2;
+            var isPlayerTwoDeng = isSameNumber || isSameSymbol;
+
             var isDraw = playerPoint == hostPoint;
-            if (isDraw)
+            if (isDraw) return;
+
+            if (isPlayerWin)
             {
-            }
-            else if (isPlayerWin)
-            {
-                PlayerBalance += betAmount;
-            }
+                if (isPlayerTwoDeng)
+                {
+                    PlayerBalance += betAmount * 2;
+                }
+                else
+                {
+                    PlayerBalance += betAmount;              
+                }
+            }       
             else
             {
                 PlayerBalance -= betAmount;
