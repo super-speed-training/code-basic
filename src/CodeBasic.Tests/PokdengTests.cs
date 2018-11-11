@@ -198,6 +198,7 @@ namespace CodeBasic.Tests
 
         [Theory(DisplayName = "แต้มสามเด้ง ผู้เล่นได้รับหรือเสียหรือเสมอเงินเพิ่ม3เท่าของเงินที่ลงพนัน")]
         [InlineData(100, 2, 3, 1, Club, Diamond, Club, 11, 12, 7, Club, Club, Club, 1000, 1300)]
+        [InlineData(100, 11, 13, 5, Diamond, Diamond, Diamond, 13, 12, 1, Club, Club, Club, 1000, 700)]
         public void X3CardX3MoneyX3FromBet(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };

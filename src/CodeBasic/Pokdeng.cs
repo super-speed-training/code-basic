@@ -64,7 +64,7 @@ namespace CodeBasic
 
                 p1CardSymbol3 = null;
                 p2CardSymbol3 = null;
-                dealerPoints = dealerPointsPok ;
+                dealerPoints = dealerPointsPok;
                 playerPoints = playerPoints - p2CardNo3;
 
                 var isPlayerTheWinner = playerPoints > dealerPoints;
@@ -102,13 +102,17 @@ namespace CodeBasic
                 if (isGameDraw) return;
                 if (isPlayerTheWinner)
                 {
-                    if (p2CardNo1 == p2CardNo2 && (p2CardNo2 != p2CardNo3) || p2CardSymbol1 == p2CardSymbol2)
+                    if (p2CardNo1 == p2CardNo2 && (p2CardNo2 != p2CardNo3) && (p2CardNo1  != 0 ) && (p2CardNo2  != 0 ) || p2CardSymbol1 == p2CardSymbol2 && (p2CardSymbol2 != p2CardSymbol3))
                     {
                         PlayerBalance += betAmount * 2;
                     }
                     else if ((p2CardNo1 == p2CardNo2) && (p2CardNo2 == p2CardNo3))
                     {
                         PlayerBalance += betAmount * 5;
+                    }
+                    else if ((p2CardSymbol1 == p2CardSymbol2) && (p2CardSymbol2 == p2CardSymbol3))
+                    {
+                        PlayerBalance += betAmount * 3;
                     }
                     else
                     {
@@ -117,13 +121,17 @@ namespace CodeBasic
                 }
                 else
                 {
-                    if (p1CardNo1 == p1CardNo2 && (p1CardNo2 != p1CardNo3) || p1CardSymbol1 == p1CardSymbol2)
+                    if (p1CardNo1 == p1CardNo2 && (p1CardNo2 != p1CardNo3 && (p1CardNo1  != 0 ) && (p1CardNo2  != 0 )) || p1CardSymbol1 == p1CardSymbol2 && (p1CardSymbol2 != p1CardSymbol3))
                     {
                         PlayerBalance -= betAmount * 2;
                     }
                     else if ((p1CardNo1 == p1CardNo2) && (p1CardNo2 == p1CardNo3))
                     {
                         PlayerBalance -= betAmount * 5;
+                    }
+                    else if ((p1CardSymbol1 == p1CardSymbol2) && (p1CardSymbol2 == p1CardSymbol3))
+                    {
+                        PlayerBalance -= betAmount * 3;
                     }
                     else
                     {
