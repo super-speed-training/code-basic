@@ -112,7 +112,7 @@ namespace CodeBasic
                 }
                 else
                 {
-                    if (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2)
+                    if (p1CardNo1 == p1CardNo2  && (p1CardNo2 != p1CardNo3) || p1CardSymbol1 == p1CardSymbol2)
                     {
                         PlayerBalance -= betAmount * 2;
                     }
