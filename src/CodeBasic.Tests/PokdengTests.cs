@@ -171,6 +171,16 @@ namespace CodeBasic.Tests
         }
 
 
+        [InlineData(100, 4, 4, 0, Club, Diamond, null, 5, 3, 0, Club, Diamond, null, 1000, 1000)]
+
+        public void X3CardPlayerWinTongThenGainX5FromBet(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
+        {
+            var sut = new Pokdeng { PlayerBalance = balance };
+            sut.PlayerBalance = balance;
+            sut.CheckGameResult(bet, p1cn1, p1cn2, p1cn3, p1cs1, p1cs2, p1cs3, p2cn1, p2cn2, p2cn3, p2cs1, p2cs2, p2cs3);
+            Assert.Equal(expectedBalance, sut.PlayerBalance);
+        }
+
 
         /*
          * Normal cases
