@@ -7,8 +7,6 @@ namespace CodeBasic
     public class Pokdeng
     {
         public int PlayerBalance { get; set; }
-
-
         // Club, Diamond, Heart, Spade (case sensitive)
         public void CheckGameResult(
             int betAmount,
@@ -47,7 +45,6 @@ namespace CodeBasic
             var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
             var dealerPointsPok = p1CardNo1 + p1CardNo2;
 
-
             if (dealerPoints > 9)
             {
                 dealerPoints = dealerPoints % 10;
@@ -56,12 +53,8 @@ namespace CodeBasic
             {
                 playerPoints = playerPoints % 10;
             }
-
-
-
             if (dealerPointsPok >= 8 && dealerPointsPok <= 9)
             {
-
                 p1CardSymbol3 = null;
                 p2CardSymbol3 = null;
                 dealerPoints = dealerPointsPok;
@@ -71,7 +64,6 @@ namespace CodeBasic
                 var isGameDraw = dealerPoints == playerPoints;
 
                 if (isGameDraw) return;
-
                 if (isPlayerTheWinner)
                 {
                     if (p2CardNo1 == p2CardNo2 || p2CardSymbol1 == p2CardSymbol2)
@@ -99,10 +91,11 @@ namespace CodeBasic
             {
                 var isPlayerTheWinner = playerPoints > dealerPoints;
                 var isGameDraw = dealerPoints == playerPoints;
+
                 if (isGameDraw) return;
                 if (isPlayerTheWinner)
                 {
-                    if (p2CardNo1 == p2CardNo2 && (p2CardNo2 != p2CardNo3) && (p2CardNo1  != 0 ) && (p2CardNo2  != 0 ) || p2CardSymbol1 == p2CardSymbol2 && (p2CardSymbol2 != p2CardSymbol3))
+                    if (p2CardNo1 == p2CardNo2 && (p2CardNo2 != p2CardNo3) && (p2CardNo1 != 0) && (p2CardNo2 != 0) || p2CardSymbol1 == p2CardSymbol2 && (p2CardSymbol2 != p2CardSymbol3))
                     {
                         PlayerBalance += betAmount * 2;
                     }
@@ -121,7 +114,7 @@ namespace CodeBasic
                 }
                 else
                 {
-                    if (p1CardNo1 == p1CardNo2 && (p1CardNo2 != p1CardNo3 && (p1CardNo1  != 0 ) && (p1CardNo2  != 0 )) || p1CardSymbol1 == p1CardSymbol2 && (p1CardSymbol2 != p1CardSymbol3))
+                    if (p1CardNo1 == p1CardNo2 && (p1CardNo2 != p1CardNo3 && (p1CardNo1 != 0) && (p1CardNo2 != 0)) || p1CardSymbol1 == p1CardSymbol2 && (p1CardSymbol2 != p1CardSymbol3))
                     {
                         PlayerBalance -= betAmount * 2;
                     }
@@ -139,10 +132,6 @@ namespace CodeBasic
                     }
                 }
             }
-
-
-
         }
     }
-
 }
