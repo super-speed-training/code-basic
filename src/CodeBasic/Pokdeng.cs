@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace CodeBasic
 {
@@ -59,18 +60,38 @@ namespace CodeBasic
 
         public ScoreRank GetRank(Card[] Card)
         {
-            if (Card.Length == 2 && Card[0].Point + Card[1].Point >= 8)
+            if (Card.Length == 2)
             {
-                return ScoreRank.Pok;
+                if (Card[0].Point + Card[1].Point >= 8)
+                {
+                    return ScoreRank.Pok;
+                }
+                if(Card[0].Point == Card[1].Point || Card[0].CardType == Card[1].CardType){
+                    return ScoreRank.Double;
+                }
+                return ScoreRank.Score;
             }
-            if (Card.Length == 3 && Card[0].Point == Card[1].Point && Card[1].Point == Card[2].Point)
+            else
             {
-                return ScoreRank.Three;
+                if (Card[0].Point == Card[1].Point && Card[1].Point == Card[2].Point)
+                {
+                    return ScoreRank.Three;
+                }
+                if (Card[0].Point > 10 && Card[1].Point > 10 && Card[2].Point > 10)
+                {
+                    return ScoreRank.Ghost;
+                }
+
+                Card = Card.OrderBy(it =>it.Point).ToArray();
+                if (Card[0].Point == Card[1].Point - 1 && Card[1].Point == Card[2].Point - 1)
+                {
+                    return ScoreRank.Sequence;
+                }
+                if(Card[0].CardType == Card[1].CardType && Card[1].CardType == Card[2].CardType){
+                    return ScoreRank.Tripple;
+                }
+                return ScoreRank.Score;
             }
-            if (Card.Length == 3 && Card[0].Point > 10 && Card[1].Point > 10 && Card[2].Point > 10){
-                return ScoreRank.Ghost;
-            }
-            return new ScoreRank();
         }
     }
 }

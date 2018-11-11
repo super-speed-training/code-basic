@@ -81,42 +81,42 @@ namespace CodeBasic.Tests
                 new Card[] { new Card(1, CardType.Club), new Card(2, CardType.Heart), new Card(3, CardType.Diamond) },
                 ScoreRank.Sequence,
             },
-            // new object[] {
-            //     new Card[] { new Card(4, CardType.Club), new Card(5, CardType.Heart), new Card(6, CardType.Diamond) },
-            //     ScoreRank.Sequence,
-            // },
-            // new object[] {
-            //     new Card[] { new Card(9, CardType.Club), new Card(10, CardType.Heart), new Card(11, CardType.Diamond) },
-            //     ScoreRank.Sequence,
-            // },
-            // new object[] {
-            //     new Card[] { new Card(3, CardType.Heart), new Card(4, CardType.Heart), new Card(2, CardType.Heart) },
-            //     ScoreRank.Sequence,
-            // },
-            // new object[] {
-            //     new Card[] { new Card(1, CardType.Club), new Card(12, CardType.Heart), new Card(13, CardType.Diamond) },
-            //     ScoreRank.Score,
-            // },
-            // new object[] {
-            //     new Card[] { new Card(3, CardType.Club), new Card(3, CardType.Heart) },
-            //     ScoreRank.Double,
-            // },
-            // new object[] {
-            //     new Card[] { new Card(2, CardType.Club), new Card(3, CardType.Club) },
-            //     ScoreRank.Double,
-            // },
-            // new object[] {
-            //     new Card[] { new Card(1, CardType.Club), new Card(1, CardType.Heart), new Card(1, CardType.Diamond) },
-            //     ScoreRank.Three,
-            // },
-            // new object[] {
-            //     new Card[] { new Card(1, CardType.Heart), new Card(12, CardType.Heart), new Card(13, CardType.Heart) },
-            //     ScoreRank.Tripple,
-            // },
-            // new object[] {
-            //     new Card[] { new Card(10, CardType.Heart), new Card(2, CardType.Heart), new Card(3, CardType.Diamond) },
-            //     ScoreRank.Score,
-            // },
+            new object[] {
+                new Card[] { new Card(4, CardType.Club), new Card(5, CardType.Heart), new Card(6, CardType.Diamond) },
+                ScoreRank.Sequence,
+            },
+            new object[] {
+                new Card[] { new Card(9, CardType.Club), new Card(10, CardType.Heart), new Card(11, CardType.Diamond) },
+                ScoreRank.Sequence,
+            },
+            new object[] {
+                new Card[] { new Card(3, CardType.Heart), new Card(4, CardType.Heart), new Card(2, CardType.Heart) },
+                ScoreRank.Sequence,
+            },
+            new object[] {
+                new Card[] { new Card(1, CardType.Club), new Card(12, CardType.Heart), new Card(13, CardType.Diamond) },
+                ScoreRank.Score,
+            },
+            new object[] {
+                new Card[] { new Card(3, CardType.Club), new Card(3, CardType.Heart) },
+                ScoreRank.Double,
+            },
+            new object[] {
+                new Card[] { new Card(2, CardType.Club), new Card(3, CardType.Club) },
+                ScoreRank.Double,
+            },
+            new object[] {
+                new Card[] { new Card(1, CardType.Club), new Card(1, CardType.Heart), new Card(1, CardType.Diamond) },
+                ScoreRank.Three,
+            },
+            new object[] {
+                new Card[] { new Card(1, CardType.Heart), new Card(12, CardType.Heart), new Card(13, CardType.Heart) },
+                ScoreRank.Tripple,
+            },
+            new object[] {
+                new Card[] { new Card(10, CardType.Heart), new Card(2, CardType.Heart), new Card(3, CardType.Diamond) },
+                ScoreRank.Score,
+            },
         };
 
         // [Theory]
