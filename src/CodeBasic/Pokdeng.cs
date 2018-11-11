@@ -45,7 +45,7 @@ namespace CodeBasic
 
             var dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
             var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
-
+            var dealerPointsPok = p1CardNo1 + p1CardNo2;
 
 
             if (dealerPoints > 9)
@@ -57,15 +57,19 @@ namespace CodeBasic
                 playerPoints = playerPoints % 10;
             }
 
-            var isPlayerTheWinner = playerPoints > dealerPoints;
 
-            if (dealerPoints >= 8 && dealerPoints <= 9)
+
+            if (dealerPointsPok >= 8 && dealerPointsPok <= 9)
             {
 
                 p1CardSymbol3 = null;
-                dealerPoints = dealerPoints - p1CardNo3;
+                p2CardSymbol3 = null;
+                dealerPoints = dealerPointsPok ;
                 playerPoints = playerPoints - p2CardNo3;
+
+                var isPlayerTheWinner = playerPoints > dealerPoints;
                 var isGameDraw = dealerPoints == playerPoints;
+
                 if (isGameDraw) return;
 
                 if (isPlayerTheWinner)
@@ -93,11 +97,12 @@ namespace CodeBasic
             }
             else
             {
+                var isPlayerTheWinner = playerPoints > dealerPoints;
                 var isGameDraw = dealerPoints == playerPoints;
                 if (isGameDraw) return;
                 if (isPlayerTheWinner)
                 {
-                    if (p2CardNo1 == p2CardNo2  && (p2CardNo2 != p2CardNo3) || p2CardSymbol1 == p2CardSymbol2)
+                    if (p2CardNo1 == p2CardNo2 && (p2CardNo2 != p2CardNo3) || p2CardSymbol1 == p2CardSymbol2)
                     {
                         PlayerBalance += betAmount * 2;
                     }
@@ -112,7 +117,7 @@ namespace CodeBasic
                 }
                 else
                 {
-                    if (p1CardNo1 == p1CardNo2  && (p1CardNo2 != p1CardNo3) || p1CardSymbol1 == p1CardSymbol2)
+                    if (p1CardNo1 == p1CardNo2 && (p1CardNo2 != p1CardNo3) || p1CardSymbol1 == p1CardSymbol2)
                     {
                         PlayerBalance -= betAmount * 2;
                     }
