@@ -9,7 +9,6 @@ namespace CodeBasic
     {
         public int PlayerBalance { get; set; }
 
-        // Club, Diamond, Heart, Spade (case sensitive)
         public void CheckGameResult(
             int betAmount,
             int p1CardNo1,
@@ -46,15 +45,15 @@ namespace CodeBasic
             switch (PlayerCard.Length)
             {
                 case 2:
-                    PlayerScore = PlayerCard[0].Point + PlayerCard[1].Point;
+                    PlayerScore = (PlayerCard[0].Point + PlayerCard[1].Point) % 10;
                     break;
                 default:
-                    PlayerScore = PlayerCard[0].Point + PlayerCard[1].Point + PlayerCard[2].Point;
+                    PlayerScore = (PlayerCard[0].Point + PlayerCard[1].Point + PlayerCard[2].Point) % 10;
                     break;
             }
 
             // Bank Pok
-            if (BankerRank == ScoreRank.Pok && (PlayerCard.Length > 2 || PlayerRank == ScoreRank.Score))
+            if (BankerRank == ScoreRank.Pok && PlayerRank != ScoreRank.Pok)
             {
                 if (BankerCard[0].CardType == BankerCard[1].CardType || BankerCard[0].Point == BankerCard[1].Point)
                 {
@@ -68,7 +67,7 @@ namespace CodeBasic
             }
 
             // Player Pok
-            else if (PlayerRank == ScoreRank.Pok && (BankerCard.Length > 2 || BankerRank == ScoreRank.Score))
+            else if (PlayerRank == ScoreRank.Pok && BankerRank != ScoreRank.Pok)
             {
                 if (PlayerCard[0].CardType == PlayerCard[1].CardType || PlayerCard[0].Point == PlayerCard[1].Point)
                 {
