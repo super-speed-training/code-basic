@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace CodeBasic
 {
@@ -93,7 +94,10 @@ namespace CodeBasic
 
         public bool IsSortCheck(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol)
         {
-            if (cardNo1 > 10 && cardNo2 > 10 && cardNo3 > 10)
+            int[] cardSort = { cardNo1, cardNo2, cardNo3 };
+            cardSort = cardSort.OrderBy(x => x).ToArray();
+            // 1 2 3 
+            if (cardSort[0]  == cardSort[1]-1 && cardSort[1] == cardSort[2] - 1)
             {
                 return true;
             }

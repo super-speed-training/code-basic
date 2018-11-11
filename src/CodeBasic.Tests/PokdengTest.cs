@@ -70,6 +70,21 @@ namespace CodeBasic.Tests
             Assert.Equal(expected, result);
         }
 
+
+        [Theory(DisplayName = "Sort")]
+        [InlineData(1, 2, 3, Symbol.Club, Symbol.Club, Symbol.Club, true)]
+        [InlineData(4, 5, 6, Symbol.Club, Symbol.Heart, Symbol.Heart, true)]
+        [InlineData(2, 4, 6, Symbol.Heart, Symbol.Heart, Symbol.Heart, false)]
+        [InlineData(8, 9, 10, Symbol.Heart, Symbol.Heart, Symbol.Heart, true)]
+        [InlineData(4, 5, 4, Symbol.Heart, Symbol.Heart, Symbol.Heart, false)]
+        public void CheckSort(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol, bool expected)
+        {
+            var sut = new Pokdeng();
+            var result = sut.IsSortCheck(cardNo1, cardNo2, cardNo3, cardNo1Symbol, cardNo2Symbol, cardNo3Symbol);
+            Assert.Equal(expected, result);
+        }
+
+
         [Theory(DisplayName = "Tong")]
         [InlineData(10, 10, 10, Symbol.Club, Symbol.Club, Symbol.Club, true)]
         [InlineData(11, 11, 12, Symbol.Club, Symbol.Heart, Symbol.Heart, false)]
