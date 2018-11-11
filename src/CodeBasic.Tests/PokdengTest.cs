@@ -13,7 +13,7 @@ namespace CodeBasic.Tests
         [InlineData(11, 4, 3, 7)]
         [InlineData(1, 5, 11, 6)]
         [InlineData(11, 12, 1, 1)]
-        public void CheckCalculatePointTest(int cardNo1, int cardNo2, int cardNo3, int expected)
+        public void CheckPoint(int cardNo1, int cardNo2, int cardNo3, int expected)
         {
             var sut = new Pokdeng();
             var result = sut.SumCard(cardNo1, cardNo2, cardNo3);
@@ -26,7 +26,7 @@ namespace CodeBasic.Tests
         [InlineData(8, 1, 0, true)]
         [InlineData(3, 7, 5, false)]
         [InlineData(3, 3, 3, false)]
-        public void CheckPokgTest(int cardNo1, int cardNo2, int cardNo3, bool expected)
+        public void CheckPokg(int cardNo1, int cardNo2, int cardNo3, bool expected)
         {
             var sut = new Pokdeng();
             var result = sut.IsPokCheck(cardNo1, cardNo2, cardNo3);
@@ -39,7 +39,7 @@ namespace CodeBasic.Tests
         [InlineData(10, 9, Symbol.Heart, Symbol.Heart, true)]
         [InlineData(1, 3, Symbol.Spade, Symbol.Spade, true)]
         [InlineData(5, 4, Symbol.Heart, Symbol.Heart, true)]
-        public void CheckTwoDengTest(int cardNo1, int cardNo2, string cardNo1Symbol, string cardNo2Symbol, bool expected)
+        public void CheckTwoDeng(int cardNo1, int cardNo2, string cardNo1Symbol, string cardNo2Symbol, bool expected)
         {
             var sut = new Pokdeng();
             var result = sut.IsTwoDengCheck(cardNo1, cardNo2, cardNo1Symbol, cardNo2Symbol);
@@ -50,12 +50,24 @@ namespace CodeBasic.Tests
         [InlineData(4, 1, 2, Symbol.Club, Symbol.Club, Symbol.Club, true)]
         [InlineData(3, 1, 3, Symbol.Club, Symbol.Heart, Symbol.Heart, false)]
         [InlineData(10, 2, 10, Symbol.Heart, Symbol.Heart, Symbol.Heart, true)]
-        public void CheckThreeDengTest(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol, bool expected)
+        public void CheckThreeDeng(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol, bool expected)
         {
             var sut = new Pokdeng();
             var result = sut.IsThreeDengCheck(cardNo1, cardNo2,cardNo3, cardNo1Symbol, cardNo2Symbol,cardNo3Symbol);
             Assert.Equal(expected, result);
         }
 
+        [Theory(DisplayName = "Ghost")]
+        [InlineData(10, 10, 10, Symbol.Club, Symbol.Club, Symbol.Club, false)]
+        [InlineData(11, 11, 12, Symbol.Club, Symbol.Heart, Symbol.Heart, true)]
+        [InlineData(11, 12, 13, Symbol.Heart, Symbol.Heart, Symbol.Heart, true)]
+        [InlineData(8, 12, 13, Symbol.Heart, Symbol.Heart, Symbol.Heart, false)]
+        [InlineData(10, 10, 13, Symbol.Heart, Symbol.Heart, Symbol.Heart, false)]
+        public void CheckGhostTest(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol, bool expected)
+        {
+            var sut = new Pokdeng();
+            var result = sut.IsGhostCheck(cardNo1, cardNo2, cardNo3, cardNo1Symbol, cardNo2Symbol, cardNo3Symbol);
+            Assert.Equal(expected, result);
+        }
     }
 }

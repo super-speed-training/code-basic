@@ -30,7 +30,7 @@ namespace CodeBasic
             {
                 cardNo1 = 0;
             }
-           if (cardNo2 >= 10)
+            if (cardNo2 >= 10)
             {
                 cardNo2 = 0;
 
@@ -76,6 +76,15 @@ namespace CodeBasic
         public bool IsThreeDengCheck(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol)
         {
             if (cardNo1Symbol == cardNo2Symbol && cardNo2Symbol == cardNo3Symbol)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsGhostCheck(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol)
+        {
+            if (cardNo1 > 10 && cardNo2 > 10 && cardNo3 > 10)
             {
                 return true;
             }
