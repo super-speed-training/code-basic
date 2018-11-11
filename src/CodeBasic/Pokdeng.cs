@@ -23,6 +23,10 @@ namespace CodeBasic
             {
                 PlayerBalance += betAmount;
             }
+            else if (HostPoint > PlayerPoint)
+            {
+                PlayerBalance -= betAmount;
+            }
         }
     }
 }

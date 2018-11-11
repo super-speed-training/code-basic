@@ -19,5 +19,13 @@ namespace CodeBasic.Tests
             sut.CheckGameResult(100,5,2,0, "Club", "Club","",7,2,0, "Club", "Club","");
             Assert.Equal(600,sut.PlayerBalance);
         }
+        [Fact(DisplayName = "ผู้เล่นแพ้เจ้ามือ ชนะ ผู้เล่นเสียเงินที่ลงไป")]
+        public void CheckGameResultIsHostrWin()
+        {
+            var sut = new Pokdeng();
+            sut.PlayerBalance = 500;
+            sut.CheckGameResult(100, 7, 2, 0, "Club", "Club", "", 5, 2, 0, "Club", "Club", "");
+            Assert.Equal(400, sut.PlayerBalance);
+        }
     }
 }
