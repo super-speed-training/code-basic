@@ -44,9 +44,9 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "ผู้เล่นชนะด้วยป๊อก 9")]
-        [InlineData(100, 8, 1, Club, Club, 1, 1, Club, Club, 1000, 1100)]
-        [InlineData(100, 7, 2, Club, Club, 1, 3, Club, Club, 1000, 1100)]
-        [InlineData(100, 5, 4, Club, Club, 2, 3, Club, Club, 1000, 1100)]
+        [InlineData(100, 1, 1, Club, Club, 8, 1, Club, Club, 1000, 1100)]
+        [InlineData(100, 3, 2, Club, Club, 7, 2, Club, Club, 1000, 1100)]
+        [InlineData(100, 1, 4, Club, Club, 5, 4, Club, Club, 1000, 1100)]
         public void PlayerWinWithPok9(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
