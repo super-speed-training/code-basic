@@ -195,6 +195,17 @@ namespace CodeBasic.Tests
         }
 
 
+
+        [Theory(DisplayName = "แต้มสามเด้ง ผู้เล่นได้รับหรือเสียหรือเสมอเงินเพิ่ม3เท่าของเงินที่ลงพนัน")]
+        [InlineData(100, 2, 3, 1, Club, Diamond, Club, 11, 12, 7, Club, Club, Club, 1000, 1300)]
+        public void X3CardX3MoneyX3FromBet(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
+        {
+            var sut = new Pokdeng { PlayerBalance = balance };
+            sut.PlayerBalance = balance;
+            sut.CheckGameResult(bet, p1cn1, p1cn2, p1cn3, p1cs1, p1cs2, p1cs3, p2cn1, p2cn2, p2cn3, p2cs1, p2cs2, p2cs3);
+            Assert.Equal(expectedBalance, sut.PlayerBalance);
+        }
+
         [Theory(DisplayName = "เคสinput ข้อมูล3ตัวแด่เจ้ามือPokคำนวณตัดใบ3ออก")]
         [InlineData(100, 4, 5, 1, Club, Diamond, Club, 3, 3, 3, Club, Diamond, Heart, 1000, 900)]
         public void UnnormalCases(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
