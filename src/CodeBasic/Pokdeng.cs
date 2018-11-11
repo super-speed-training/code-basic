@@ -35,6 +35,12 @@ namespace CodeBasic
                 var isP2ThreeDeng = IsThreeDengCheck(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
                 var p1Point = SumCard(p1CardNo1, p1CardNo2, p1CardNo3);
                 var p2Point = SumCard(p2CardNo1, p2CardNo2, p2CardNo3);
+                var p1Ghost = IsGhostCheck(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
+                var p2Ghost = IsGhostCheck(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+                var p1Sort = IsSortCheck(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
+                var p2Sort = IsSortCheck(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+                var p1Tong = IsTongCheck(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
+                var p2Tong = IsTongCheck(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
 
                 if (isP1Pok || isP2Pok)
                 {
@@ -65,9 +71,17 @@ namespace CodeBasic
                 }
                 else
                 {
-                    if (p1Point > p2Point)
+                    if (p1Tong)
                     {
-                        if (isP1ThreeDeng)
+                        playerBalance -= betAmount * 5;
+                    }
+                    else if (p2Tong)
+                    {
+                        playerBalance += betAmount * 5;
+                    }
+                    else if (p1Point > p2Point)
+                    {
+                        if (isP1ThreeDeng || p1Ghost || p1Sort)
                         {
                             playerBalance -= betAmount * 3;
                         }
@@ -78,7 +92,7 @@ namespace CodeBasic
                     }
                     else if (p1Point < p2Point)
                     {
-                        if (isP2ThreeDeng)
+                        if (isP2ThreeDeng || p2Ghost || p2Sort)
                         {
                             playerBalance += betAmount * 3;
                         }
@@ -87,9 +101,7 @@ namespace CodeBasic
                             playerBalance += betAmount;
                         }
                     }
-
                 }
-
                 PlayerBalance = playerBalance;
             }
 
@@ -127,7 +139,7 @@ namespace CodeBasic
             }
             return (cardNo1 + cardNo2 + cardNo3) % 10;
         }
-        //เช็คป็อก
+
         public bool IsPokCheck(int cardNo1, int cardNo2, int cardNo3)
         {
             var Card1 = cardNo1;

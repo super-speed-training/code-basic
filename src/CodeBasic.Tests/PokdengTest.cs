@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Xunit;
+using FluentAssertions;
 using static CodeBasic.Pokdeng;
 
 namespace CodeBasic.Tests
@@ -11,8 +13,11 @@ namespace CodeBasic.Tests
         [InlineData(10, 11, 9, 0, Symbol.Heart, Symbol.Heart, "", 11, 8, 0, Symbol.Heart, Symbol.Heart, "", 180)]
         [InlineData(10, 1, 9, 0, Symbol.Heart, Symbol.Heart, "", 11, 8, 0, Symbol.Heart, Symbol.Heart, "", 220)]
         [InlineData(10, 1, 9, 5, Symbol.Heart, Symbol.Heart, Symbol.Diamond, 11, 6, 1, Symbol.Heart, Symbol.Heart, Symbol.Spade, 210)]
-        [InlineData(10, 1, 9, 5, Symbol.Heart, Symbol.Heart, Symbol.Diamond, 11, 6, 1, Symbol.Heart, Symbol.Heart, Symbol.Heart, 230)]
+        [InlineData(10, 1, 9, 5, Symbol.Heart, Symbol.Spade, Symbol.Diamond, 11, 6, 1, Symbol.Heart, Symbol.Heart, Symbol.Heart, 230)]
         [InlineData(10, 1, 9, 5, Symbol.Heart, Symbol.Heart, Symbol.Heart, 11, 6, 4, Symbol.Heart, Symbol.Heart, Symbol.Heart, 170)]
+        [InlineData(10, 4, 5, 6, Symbol.Heart, Symbol.Heart, Symbol.Club, 11, 6, 4, Symbol.Heart, Symbol.Heart, Symbol.Heart, 170)]
+        [InlineData(10, 4, 4, 4, Symbol.Heart, Symbol.Heart, Symbol.Club, 11, 6, 4, Symbol.Heart, Symbol.Heart, Symbol.Heart, 150)]
+        [InlineData(10, 4, 4, 4, Symbol.Heart, Symbol.Heart, Symbol.Club, 11, 8, 0, Symbol.Heart, Symbol.Heart, "", 220)]
         public void Result(int betAmount,
             int p1CardNo1, int p1CardNo2, int p1CardNo3,
             string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
