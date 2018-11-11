@@ -63,10 +63,23 @@ namespace CodeBasic.Tests
         [InlineData(11, 12, 13, Symbol.Heart, Symbol.Heart, Symbol.Heart, true)]
         [InlineData(8, 12, 13, Symbol.Heart, Symbol.Heart, Symbol.Heart, false)]
         [InlineData(10, 10, 13, Symbol.Heart, Symbol.Heart, Symbol.Heart, false)]
-        public void CheckGhostTest(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol, bool expected)
+        public void CheckGhost(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol, bool expected)
         {
             var sut = new Pokdeng();
             var result = sut.IsGhostCheck(cardNo1, cardNo2, cardNo3, cardNo1Symbol, cardNo2Symbol, cardNo3Symbol);
+            Assert.Equal(expected, result);
+        }
+
+        [Theory(DisplayName = "Tong")]
+        [InlineData(10, 10, 10, Symbol.Club, Symbol.Club, Symbol.Club, true)]
+        [InlineData(11, 11, 12, Symbol.Club, Symbol.Heart, Symbol.Heart, false)]
+        [InlineData(11, 12, 13, Symbol.Heart, Symbol.Heart, Symbol.Heart, false)]
+        [InlineData(8, 12, 13, Symbol.Heart, Symbol.Heart, Symbol.Heart, false)]
+        [InlineData(5, 5, 5, Symbol.Heart, Symbol.Heart, Symbol.Heart, true)]
+        public void CheckTong(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol, bool expected)
+        {
+            var sut = new Pokdeng();
+            var result = sut.IsTongCheck(cardNo1, cardNo2, cardNo3, cardNo1Symbol, cardNo2Symbol, cardNo3Symbol);
             Assert.Equal(expected, result);
         }
     }

@@ -90,5 +90,23 @@ namespace CodeBasic
             }
             return false;
         }
+
+        public bool IsSortCheck(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol)
+        {
+            if (cardNo1 > 10 && cardNo2 > 10 && cardNo3 > 10)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsTongCheck(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol)
+        {
+            if (cardNo1 == cardNo2 && cardNo2 == cardNo3)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
