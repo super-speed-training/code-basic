@@ -15,7 +15,11 @@
             var hostPoint = p1CardNo1 + p1CardNo2 + p1CardNo3;
             var playerPoint = p2CardNo1 + p2CardNo2 + p2CardNo3;
             var isPlayerWin = playerPoint > hostPoint;
-            if (isPlayerWin)
+            var isDraw = playerPoint == hostPoint;
+            if (isDraw)
+            {
+            }
+            else if (isPlayerWin)
             {
                 PlayerBalance += betAmount;
             }
