@@ -19,9 +19,12 @@ namespace CodeBasic
             var DealerPoint = p1CardNo1 + p1CardNo2 + p1CardNo3;
             var PlayerPoint = p2CardNo1 + p2CardNo2 + p2CardNo3;
 
+            var DealerPoint2Card = p1CardNo1 + p1CardNo2;
+            var PlayerPoint2Card = p2CardNo1 + p2CardNo2;
+
             var DealerSame2Symbol = p1CardSymbol1 == p1CardSymbol2;
             var PlayerSame2Symbol = p2CardSymbol1 == p2CardSymbol2;
-            
+
             var DealerSame3Symbol = p1CardSymbol1 == p1CardSymbol2 && p1CardSymbol2 == p1CardSymbol3;
             var PlayerSame3Symbol = p2CardSymbol1 == p2CardSymbol2 && p1CardSymbol2 == p1CardSymbol3;
 
@@ -33,11 +36,32 @@ namespace CodeBasic
 
             //ผู้เล่น'ชนะ'เจ้ามือ
             var isplayerwin = PlayerPoint > DealerPoint;
+            var isplayerwin2card = PlayerPoint2Card > DealerPoint2Card;
 
             //ผู้เล่น'แพ้'เจ้ามือ
             var isplayerlose = DealerPoint > PlayerPoint;
 
+            // ฝ่ายใดฝ่ายหนึ่ง 'ป๊อก' จะไม่เกิดไพ่ใบที่3 ขึ้น
+
             if (isgamedraw) return;
+            else if (PlayerPoint2Card >= 8 && PlayerSame2Symbol || PlayerSame2Card) //ป๊อกเด้ง
+            {
+                PlayerBalance += (betAmount * 2);
+            }
+
+            else if (PlayerPoint2Card >= 8) //ป๊อก
+            {
+                PlayerBalance += betAmount;
+            }
+            else if (DealerPoint2Card >= 8 && DealerSame2Symbol || DealerSame2Card ) //ป๊อกเด้ง
+            {
+                PlayerBalance -= (betAmount * 2);
+            }
+
+            else if (DealerPoint2Card >= 8) //ป๊อก)
+            {
+                PlayerBalance -= betAmount;
+            }
             else if (isplayerwin && PlayerSame3Symbol)
             {
                 PlayerBalance += (betAmount * 3);
@@ -54,6 +78,10 @@ namespace CodeBasic
             {
                 PlayerBalance += betAmount;
             }
+            else if (isplayerlose && DealerSame3Symbol)
+            {
+                PlayerBalance -= (betAmount * 3);
+            }
             else if (isplayerlose && DealerSame2Symbol)
             {
                 PlayerBalance -= (betAmount * 2);
@@ -67,7 +95,7 @@ namespace CodeBasic
                 PlayerBalance -= betAmount;
             }
 
-            //  ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม'มากกว่า'เจ้ามือ && เป็นดอกเดียวกัน -ได้เงินเดิมพันเพิ่ม 3เท่า
+
 
         }
     }
