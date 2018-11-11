@@ -46,6 +46,8 @@ namespace CodeBasic
             var dealerPoints = p1CardNo1 + p1CardNo2 + p1CardNo3;
             var playerPoints = p2CardNo1 + p2CardNo2 + p2CardNo3;
 
+
+
             if (dealerPoints > 9)
             {
                 dealerPoints = dealerPoints % 10;
@@ -95,9 +97,13 @@ namespace CodeBasic
                 if (isGameDraw) return;
                 if (isPlayerTheWinner)
                 {
-                    if (p2CardNo1 == p2CardNo2 || p2CardSymbol1 == p2CardSymbol2)
+                    if (p2CardNo1 == p2CardNo2  && (p2CardNo2 != p2CardNo3) || p2CardSymbol1 == p2CardSymbol2)
                     {
                         PlayerBalance += betAmount * 2;
+                    }
+                    else if ((p2CardNo1 == p2CardNo2) && (p2CardNo2 == p2CardNo3))
+                    {
+                        PlayerBalance += betAmount * 5;
                     }
                     else
                     {
@@ -109,6 +115,10 @@ namespace CodeBasic
                     if (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2)
                     {
                         PlayerBalance -= betAmount * 2;
+                    }
+                    else if ((p1CardNo1 == p1CardNo2) && (p1CardNo2 == p1CardNo3))
+                    {
+                        PlayerBalance -= betAmount * 5;
                     }
                     else
                     {

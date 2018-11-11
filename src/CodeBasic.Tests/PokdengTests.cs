@@ -183,7 +183,7 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "แต้มผู้เล่นตองชนะเจ้ามือ ผู้เล่นได้รับเงินเพิ่ม5เท่าของเงินที่ลงพนัน")]
-        [InlineData(100, 4, 3, 0, Club, Diamond, null, 2, 2, 2, Club, Diamond, Heart, 1000, 1500)]
+        [InlineData(100, 4, 3, 0, Club, Diamond, null, 3, 3, 3, Club, Diamond, Heart, 1000, 1500)]
 
         public void X3CardPlayerWinTongThenGainX5FromBet(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
         {
