@@ -134,6 +134,7 @@ namespace CodeBasic.Tests
         [InlineData(200, 4, 4, Heart, Club, 2, 2, Club, Heart, 1000, 600)]
         [InlineData(300, 4, 4, Heart, Club, 3, 3, Club, Heart, 1000, 400)]
         [InlineData(300, 4, 5, Heart, Club, 4, 4, Club, Heart, 1000, 700)]
+        [InlineData(100, 4, 5, 0, Club, Diamond, null, 3, 4, 2, Club, Diamond, Heart, 1000, 900)]
         public void PlayerLosePokThenLoseX1FromBet(int bet, int p1cn1, int p1cn2, string p1cs1, string p1cs2, int p2cn1, int p2cn2, string p2cs1, string p2cs2, int balance, int expectedBalance)
         {
             var sut = new Pokdeng { PlayerBalance = balance };
@@ -157,10 +158,9 @@ namespace CodeBasic.Tests
         [InlineData(100, 4, 2, 4, Club, Diamond, Heart, 3, 4, 4, Club, Diamond, Heart, 1000, 1100)]
         [InlineData(100, 4, 4, 2, Club, Diamond, Heart, 5, 4, 3, Club, Diamond, Heart, 1000, 1100)]
 
-        [InlineData(100, 4, 5, 0, Club, Diamond, null, 3, 4, 2, Club, Diamond, Heart, 1000, 900)]
+
 
         [InlineData(100, 4, 4, 0, Club, Diamond, null, 5, 3, 0, Club, Diamond, null, 1000, 1000)]
-        // [InlineData(100, 4, 2, 4, Club, Diamond, Heart, 4, 4, 2, Club, Diamond, Heart, 1000, 1100)]
 
         public void X3CardPlayerWinThenGainX1FromBet(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
         {

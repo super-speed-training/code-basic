@@ -8,6 +8,7 @@ namespace CodeBasic
     {
         public int PlayerBalance { get; set; }
 
+
         // Club, Diamond, Heart, Spade (case sensitive)
         public void CheckGameResult(
             int betAmount,
@@ -17,7 +18,6 @@ namespace CodeBasic
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
 
         {
-
             if (p1CardNo1 > 9)
             {
                 p1CardNo1 = 0;
@@ -56,18 +56,15 @@ namespace CodeBasic
             }
 
             var isPlayerTheWinner = playerPoints > dealerPoints;
-            var isGameDraw = dealerPoints == playerPoints;
-
-            if (isGameDraw && !(dealerPoints >= 8 && dealerPoints <= 9)) return;
-          
 
             if (dealerPoints >= 8 && dealerPoints <= 9)
             {
 
-                p2CardNo3 = 0;
                 p1CardSymbol3 = null;
-                dealerPoints = dealerPoints;
-                playerPoints = playerPoints;
+                dealerPoints = dealerPoints - p1CardNo3;
+                playerPoints = playerPoints - p2CardNo3;
+                var isGameDraw = dealerPoints == playerPoints;
+                if (isGameDraw) return;
 
                 if (isPlayerTheWinner)
                 {
@@ -94,6 +91,8 @@ namespace CodeBasic
             }
             else
             {
+                var isGameDraw = dealerPoints == playerPoints;
+                if (isGameDraw) return;
                 if (isPlayerTheWinner)
                 {
                     if (p2CardNo1 == p2CardNo2 || p2CardSymbol1 == p2CardSymbol2)
@@ -105,7 +104,6 @@ namespace CodeBasic
                         PlayerBalance += betAmount;
                     }
                 }
-
                 else
                 {
                     if (p1CardNo1 == p1CardNo2 || p1CardSymbol1 == p1CardSymbol2)
@@ -118,6 +116,10 @@ namespace CodeBasic
                     }
                 }
             }
+
+
+
         }
     }
+
 }
