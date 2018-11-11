@@ -8,13 +8,7 @@ namespace CodeBasic
     public class Poker
     {
         public int PlayerBalance { get; set; }
-        // public List<string> cardSymbol = new List<string>(new string[] { "Club", "Diamond", "Heart", "Spade" });
         public int sumScoreP1, sumScoreP2;
-        // public class Card {
-        //     public string symbol;
-        //     public int cardNo;
-        // }
-
         // Club, Diamond, Heart, Spade (case sensitive)
         public void CheckGameResult(
             int betAmount,
@@ -62,11 +56,33 @@ namespace CodeBasic
             {
                 if (sumScoreP1 > sumScoreP2)
                 {
-                    PlayerBalance -= betAmount;
+                    if (IsCheck2Deng(cardP1No, cardP1Symbol))
+                    {
+                        PlayerBalance -= betAmount * 2;
+                    }
+                    else if (IsCheck3Deng(cardP1No, cardP1Symbol))
+                    {
+                        PlayerBalance -= betAmount * 3;
+                    }
+                    else
+                    {
+                        PlayerBalance -= betAmount;
+                    }
                 }
                 else if (sumScoreP1 < sumScoreP2)
                 {
-                    PlayerBalance += betAmount;
+                    if (IsCheck2Deng(cardP2No, cardP2Symbol))
+                    {
+                        PlayerBalance += betAmount * 2;
+                    }
+                    else if (IsCheck3Deng(cardP2No, cardP2Symbol))
+                    {
+                        PlayerBalance += betAmount * 3;
+                    }
+                    else
+                    {
+                        PlayerBalance += betAmount;
+                    }
                 }
                 else
                 {
@@ -75,20 +91,64 @@ namespace CodeBasic
             }
             else if (IsPokdeng(cardP1No))
             {
-                PlayerBalance -= betAmount;
+                if (IsCheck2Deng(cardP1No, cardP1Symbol))
+                {
+                    PlayerBalance -= betAmount * 2;
+                }
+                else if (IsCheck3Deng(cardP1No, cardP1Symbol))
+                {
+                    PlayerBalance -= betAmount * 3;
+                }
+                else
+                {
+                    PlayerBalance -= betAmount;
+                }
             }
             else if (IsPokdeng(cardP2No))
             {
-                PlayerBalance += betAmount;
+                if (IsCheck2Deng(cardP2No, cardP2Symbol))
+                {
+                    PlayerBalance += betAmount * 2;
+                }
+                else if (IsCheck3Deng(cardP2No, cardP2Symbol))
+                {
+                    PlayerBalance += betAmount * 3;
+                }
+                else
+                {
+                    PlayerBalance += betAmount;
+                }
             }
             // แต้มมากกว่า win
             else if (sumScoreP1 > sumScoreP2)
             {
-                PlayerBalance -= betAmount;
+                if (IsCheck2Deng(cardP1No, cardP1Symbol))
+                {
+                    PlayerBalance -= betAmount * 2;
+                }
+                else if (IsCheck3Deng(cardP1No, cardP1Symbol))
+                {
+                    PlayerBalance -= betAmount * 3;
+                }
+                else
+                {
+                    PlayerBalance -= betAmount;
+                }
             }
             else if (sumScoreP1 < sumScoreP2)
             {
-                PlayerBalance += betAmount;
+                if (IsCheck2Deng(cardP2No, cardP2Symbol))
+                {
+                    PlayerBalance += betAmount * 2;
+                }
+                else if (IsCheck3Deng(cardP2No, cardP2Symbol))
+                {
+                    PlayerBalance += betAmount * 3;
+                }
+                else
+                {
+                    PlayerBalance += betAmount;
+                }
             }
             else
             {
@@ -98,7 +158,17 @@ namespace CodeBasic
             return PlayerBalance;
         }
 
+        public bool IsCheck2Deng(List<int> cardNo, List<string> cardSymbol)
+        {
 
+            return (cardNo[0] == cardNo[1] || cardSymbol[0] == cardSymbol[1]) && cardNo[2] == 0 && cardSymbol[2] == "";
+        }
+
+        public bool IsCheck3Deng(List<int> cardNo, List<string> cardSymbol)
+        {
+
+            return cardSymbol[0] == cardSymbol[1] && cardSymbol[1] == cardSymbol[2];
+        }
 
         public bool playAble(int playerBalance, int betAmount)
         {
@@ -110,7 +180,6 @@ namespace CodeBasic
             return (cardPlayerNo[0] + cardPlayerNo[1] == 8 || cardPlayerNo[0] + cardPlayerNo[1] == 9) && cardPlayerNo[2] == 0;
 
         }
-
         public int IsScore(int sumScore)
         {
             if (sumScore >= 10)
@@ -120,9 +189,5 @@ namespace CodeBasic
             }
             return sumScore;
         }
-        // public string IsCheckCardSymbol(string card) {
-
-        //     if(card == "")
-        // }
     }
 }
