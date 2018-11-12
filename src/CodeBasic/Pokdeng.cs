@@ -37,7 +37,7 @@
                 }
                 else
                 {
-                    PlayerBalance += betAmount;              
+                    PlayerBalance += betAmount;
                 }
             }
 
