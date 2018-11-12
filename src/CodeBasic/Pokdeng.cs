@@ -60,6 +60,12 @@ namespace CodeBasic
            {
 
            }
+            else if((SumthreeP1 % 10 < SumthreeP2 % 10) && SumThreeSymbolP2 || (SumthreeP2 % 10 > SumthreeP1 % 10) && SumThreeCardP2)
+           {
+              PlayerBalance += betAmount*3;
+
+           }
+
            
             else if((SumTwoP2 % 10 > SumTwoP1 % 10) && SumTwoSymbolP2 || (SumTwoP2 % 10 > SumTwoP1 % 10) && SumTwoCardP2)
            {
