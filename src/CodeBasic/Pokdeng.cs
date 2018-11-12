@@ -55,9 +55,9 @@ namespace CodeBasic
             && SumthreeP1 < SumthreeP2;
 
             // ถ้าเจ้ามือมีไพ่สองใบ และ ลูกขามีใบสามใบ
-            if (SumTwoP1 == SumTwoP2)
+            if (SumTwoP1 == SumTwoP2 || SumthreeP1 == SumthreeP2 )
            {
-               
+
            }
             
         }

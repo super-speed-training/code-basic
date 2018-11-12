@@ -35,15 +35,15 @@ namespace CodeBasic.Tests
             Assert.Equal(expectedBalance, sut.PlayerBalance);
         }
 
-//         [Theory(DisplayName = "ผู้เล่นเสมอเจ้ามือ ไพ่สามใบ ผู้เล่นได้แต้ม'เท่ากับ'เจ้ามือ -ไม่เสียเงินเดิมพัน")]
-//         [InlineData(200, 3, 4, 1, diamond, club, diamond, 3, 2, 3, spade, spade, diamond, 1000, 1000)]
-//         public void PlayerDraw3CardThenDoNothing(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
-//         {
-//             var sut = new Pokdeng();
-//             sut.PlayerBalance = balance;
-//             sut.CheckGameResult(bet, p1card1, p1card2, p1card3, p1sym1, p1sym2, p1sym3, p2card1, p2card2, p2card3, p2sym1, p2sym2, p2sym3);
-//             Assert.Equal(expectedBalance, sut.PlayerBalance);
-//         }
+        [Theory(DisplayName = "ผู้เล่นเสมอเจ้ามือ ไพ่สามใบ ผู้เล่นได้แต้ม'เท่ากับ'เจ้ามือ -ไม่เสียเงินเดิมพัน")]
+        [InlineData(200, 3, 4, 1, diamond, club, diamond, 3, 2, 3, spade, spade, diamond, 1000, 1000)]
+        public void PlayerDraw3CardThenDoNothing(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
+        {
+            var sut = new Pokdeng();
+            sut.PlayerBalance = balance;
+            sut.CheckGameResult(bet, p1card1, p1card2, p1card3, p1sym1, p1sym2, p1sym3, p2card1, p2card2, p2card3, p2sym1, p2sym2, p2sym3);
+            Assert.Equal(expectedBalance, sut.PlayerBalance);
+        }
 
 //         [Theory(DisplayName = "ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม'มากกว่า'เจ้ามือ -ได้เงินเท่ากับที่เดิมพัน")]
 //         [InlineData(100, 2, 3, club, spade, 5, 2, spade, diamond, 1000, 1100)]
