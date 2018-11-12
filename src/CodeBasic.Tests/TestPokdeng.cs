@@ -95,7 +95,7 @@ namespace CodeBasic.Tests
             Assert.Equal(expectedBalance, sut.PlayerBalance);
         }
 
-        [Theory(DisplayName = "ผู้เล่นชนะด้วยไพ่เด้ง 3 ใบ")]
+        [Theory(DisplayName = "ผู้เล่นชนะด้วยไพ่เด้ง 3 ใบ สามเด้ง")]
         [InlineData(100, 1, 1, 1, Club, Diamond, Club, 2, 2, 1, Club, Club, Club, 1000, 1300)]
         public void PlayerWin3Card(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
         {
@@ -105,7 +105,7 @@ namespace CodeBasic.Tests
             Assert.Equal(expectedBalance, sut.PlayerBalance);
         }
 
-        [Theory(DisplayName = "เจ้ามือแพ้ด้วยไพ่เด้ง 3 ใบ")]
+        [Theory(DisplayName = "เจ้ามือแพ้ด้วยไพ่เด้ง 3 ใบ สามเด้ง")]
         [InlineData(100, 1, 1, 1, Club, Diamond, Club, 2, 2, 1, Club, Club, Club, 1000, 1300)]
         public void PlayerLose3Card(int bet, int p1cn1, int p1cn2, int p1cn3, string p1cs1, string p1cs2, string p1cs3, int p2cn1, int p2cn2, int p2cn3, string p2cs1, string p2cs2, string p2cs3, int balance, int expectedBalance)
         {
