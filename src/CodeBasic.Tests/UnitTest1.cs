@@ -143,33 +143,32 @@ namespace CodeBasic.Tests
         }
 
 
-//         [Theory(DisplayName = "(ไพ่ป๊อกเด้ง)ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม >=8 && เป็นดอกเดียวกัน เจ้ามือได้ <8 -ได้เงินเดิมพันเพิ่ม 2เท่า")]
-//         [InlineData(200, 3, 5, 0, diamond, diamond, diamond, 4, 5, 0, spade, spade, spade, 1000, 1400)]
-//         //ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้มเท่ากับ 8 && เป็นเลขเดียวกัน(4,4),(9,9) โดยเจ้ามือได้ <8 -ได้เงินเดิมพันเพิ่ม 2เท่า
-//         [InlineData(200, 3, 2, 0, diamond, diamond, diamond, 4, 4, 0, spade, club, spade, 1000, 1400)]
-//         public void PlayerWin_Pokdeng(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
-//         {
-//             var sut = new Pokdeng();
-//             sut.PlayerBalance = balance;
-//             sut.CheckGameResult(bet, p1card1, p1card2, p1card3, p1sym1, p1sym2, p1sym3, p2card1, p2card2, p2card3, p2sym1, p2sym2, p2sym3);
-//             Assert.Equal(expectedBalance, sut.PlayerBalance);
-//         }
+        [Theory(DisplayName = "(ไพ่ป๊อกเด้ง)ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม >=8 && เป็นดอกเดียวกัน เจ้ามือได้ <8 -ได้เงินเดิมพันเพิ่ม 2เท่า")]
+        [InlineData(200, 3, 5, 0, diamond, diamond, diamond, 4, 5, 0, spade, spade, spade, 1000, 1400)]
+        //ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้มเท่ากับ 8 && เป็นเลขเดียวกัน(4,4),(9,9) โดยเจ้ามือได้ <8 -ได้เงินเดิมพันเพิ่ม 2เท่า
+        [InlineData(200, 3, 2, 0, diamond, diamond, diamond, 4, 4, 0, spade, club, spade, 1000, 1400)]
+        public void PlayerWin_Pokdeng(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
+        {
+            var sut = new Pokdeng();
+            sut.PlayerBalance = balance;
+            sut.CheckGameResult(bet, p1card1, p1card2, p1card3, p1sym1, p1sym2, p1sym3, p2card1, p2card2, p2card3, p2sym1, p2sym2, p2sym3);
+            Assert.Equal(expectedBalance, sut.PlayerBalance);
+        }
 
-//         [Theory(DisplayName = "(ไพ่ป๊อกเด้ง) ผู้เล่นแพ้เจ้ามือ เจ้ามือได้แต้ม >=8 ในไพ่'สองใบแรก'ก่อน && ผู้เล่น <8 -เสียเงินเท่ากับที่เดิมพัน")]
-//         [InlineData(200, 3, 5, 0, diamond, diamond, diamond, 4, 2, 1, spade, spade, spade, 1000, 600)]
-//         //ผู้เล่นแพ้เจ้ามือ ผู้เล่นได้แต้ม <8 เจ้ามือได้แต้ม 8 && เป็นเลขเดียวกัน(4,4),(9,9) -เสียเงินเดิมพันเพิ่ม 2เท่า
-//         [InlineData(200, 4, 4, 0, diamond, club, diamond, 4, 2, 0, spade, spade, spade, 1000, 600)]
-//         [InlineData(200, 9, 9, 0, diamond, club, diamond, 4, 4, 0, spade, club, spade, 1000, 1000)] //เสมอ
-//         public void Playerlose_Pokdeng(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
-//         {
-//             var sut = new Pokdeng();
-//             sut.PlayerBalance = balance;
-//             sut.CheckGameResult(bet, p1card1, p1card2, p1card3, p1sym1, p1sym2, p1sym3, p2card1, p2card2, p2card3, p2sym1, p2sym2, p2sym3);
-//             Assert.Equal(expectedBalance, sut.PlayerBalance);
-//         }
+        [Theory(DisplayName = "(ไพ่ป๊อกเด้ง) ผู้เล่นแพ้เจ้ามือ เจ้ามือได้แต้ม >=8 ในไพ่'สองใบแรก'ก่อน && ผู้เล่น <8 -เสียเงินเท่ากับที่เดิมพัน")]
+        [InlineData(200, 3, 5, 0, diamond, diamond, diamond, 4, 2, 1, spade, spade, spade, 1000, 600)]
+        //ผู้เล่นแพ้เจ้ามือ ผู้เล่นได้แต้ม <8 เจ้ามือได้แต้ม 8 && เป็นเลขเดียวกัน(4,4),(9,9) -เสียเงินเดิมพันเพิ่ม 2เท่า
+        [InlineData(200, 4, 4, 0, diamond, club, diamond, 4, 2, 0, spade, spade, spade, 1000, 600)]
+        [InlineData(200, 9, 9, 0, diamond, club, diamond, 4, 4, 0, spade, club, spade, 1000, 1000)] //เสมอ
+        public void Playerlose_Pokdeng(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
+        {
+            var sut = new Pokdeng();
+            sut.PlayerBalance = balance;
+            sut.CheckGameResult(bet, p1card1, p1card2, p1card3, p1sym1, p1sym2, p1sym3, p2card1, p2card2, p2card3, p2sym1, p2sym2, p2sym3);
+            Assert.Equal(expectedBalance, sut.PlayerBalance);
+        }
     }
 }
-
 
 
 

@@ -58,19 +58,38 @@ namespace CodeBasic
             // เสมอ
             if (SumTwoP1 % 10 == SumTwoP2 % 10 || SumthreeP1 % 10 == SumthreeP2 % 10)
             {
+               
+            }
+             // P2 pok *2
+            else if (((SumTwoP2 % 10 > SumTwoP1 % 10 && SumTwoP2 == 8 || SumTwoP2 == 9) && SumTwoCardP2)
+            || (SumTwoP2 % 10 > SumTwoP1 % 10 && SumTwoP2 == 8 || SumTwoP2 == 9) && SumTwoSymbolP2)
+
+            {
+
+                PlayerBalance += betAmount * 2;
 
             }
-               //P2 Win *1
-            else if ((SumTwoP2 % 10 > SumTwoP1 % 10 )&& SumTwoP2 ==8 || SumTwoP2 ==9  )
+             // P1 pok *2
+            else if (((SumTwoP1 % 10 > SumTwoP2 % 10 && SumTwoP1 == 8 || SumTwoP1 == 9) && SumTwoCardP1)
+            || (SumTwoP1 % 10 > SumTwoP2 % 10 && SumTwoP1 == 8 || SumTwoP1 == 9) && SumTwoSymbolP1)
+
             {
-               
+
+                PlayerBalance -= betAmount * 2;
+
+            }
+            //P2 Win *1
+            else if ((SumTwoP2 % 10 > SumTwoP1 % 10) && SumTwoP2 == 8 || SumTwoP2 == 9)
+            {
+
                 PlayerBalance += betAmount;
 
             }
-                  //P1 Win *1
-            else if ((SumTwoP2 % 10 < SumTwoP1 % 10 )&& SumTwoP1 ==8 || SumTwoP1 ==9  )
+
+            //P1 Win *1
+            else if ((SumTwoP2 % 10 < SumTwoP1 % 10) && SumTwoP1 == 8 || SumTwoP1 == 9)
             {
-               
+
                 PlayerBalance -= betAmount;
 
             }
@@ -104,7 +123,7 @@ namespace CodeBasic
             //P2 Win *1
             else if (SumTwoP2 % 10 > SumTwoP1 % 10)
             {
-                
+
                 PlayerBalance += betAmount;
 
             }
