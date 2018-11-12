@@ -6,6 +6,7 @@ namespace CodeBasic
 {
     public class Pokdeng
     {
+        // PlayerBalance คือเงินของผู้เล่น
         public int PlayerBalance { get; set; }
 
         // Club, Diamond, Heart, Spade (case sensitive)
@@ -36,11 +37,11 @@ namespace CodeBasic
            var SumP2Win = SumthreeP2 > SumthreeP1;
 
            //ในกรณีที่ P1 ชนะ และได้เงินสองเท่า
-            var SumTwoSymbolP1 = p1CardSymbol1 == p1CardSymbol2 && SumTwoP1 > SumTwoP2;
-            var SumTwoCardP1 = p1CardNo1 == p1CardNo2 && SumTwoP1 > SumTwoP2;
+            var SumTwoSymbolP1 = p1CardSymbol1 == p1CardSymbol2 ;
+            var SumTwoCardP1 = p1CardNo1 == p1CardNo2 ;
             // ในกรณีที่ P2 ชนะ และได้เงินสองเท่า
-            var SumTwoSymbolP2 = p2CardSymbol1 == p2CardSymbol2 && SumTwoP1 < SumTwoP2;
-            var SumTwoCardP2 = p1CardNo1 == p1CardNo2 && SumTwoP1 < SumTwoP2;
+            var SumTwoSymbolP2 = p2CardSymbol1 == p2CardSymbol2;
+            var SumTwoCardP2 = p2CardNo1 == p2CardNo2 ;
 
             // ในกรณีที่ P1 ชนะ และได้เงินสามเท่า
             var SumThreeSymbolP1 = p1CardSymbol1 == p1CardSymbol2 &&  p1CardSymbol2 ==  p1CardSymbol3
@@ -55,20 +56,32 @@ namespace CodeBasic
             && SumthreeP1 < SumthreeP2;
 
             // ถ้าเจ้ามือมีไพ่สองใบ และ ลูกขามีใบสามใบ
-            if (SumTwoP1 == SumTwoP2 || SumthreeP1 == SumthreeP2 )
+            if (SumTwoP1%10 == SumTwoP2%10 || SumthreeP1%10 == SumthreeP2%10 )
            {
 
            }
-           else if(SumTwoP2 % 10 > SumTwoP1 % 10 )
+           
+            else if((SumTwoP2 % 10 > SumTwoP1 % 10) && SumTwoSymbolP2 || (SumTwoP2 % 10 > SumTwoP1 % 10) && SumTwoCardP2)
            {
+              PlayerBalance += betAmount*2;
+
+           }
+         
+
+            else if(SumTwoP2 % 10 > SumTwoP1 % 10 )
+           {
+                 betAmount = 100;
               PlayerBalance += betAmount;
 
            }
+
+          
            else if(SumTwoP1 % 10 > SumTwoP2 % 10 )
            {
               PlayerBalance -= betAmount;
 
            }
+
             
         }
     }

@@ -7,15 +7,7 @@ namespace CodeBasic.Tests
 {
     public class PokdengTest
     {
-        // [Fact]
-        // public void NotImplementedException()
-        // {
-        //    var Pokdeng = new PokdengLogic();
-        //    var Balance = Pokdeng.PlayerBalance;
-        //    Pokdeng.CheckGameResult(100,1,2,1,"club","diamond","diamond",3,2,2,"club","club","diamond");
-        //    Assert.Equal(10,Pokdeng.PlayerBalance);
-
-        // }
+       
         private const string club = "club";
         private const string diamond = "diamond";
         private const string heart = "heart";
@@ -47,7 +39,7 @@ namespace CodeBasic.Tests
 
         [Theory(DisplayName = "ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม'มากกว่า'เจ้ามือ -ได้เงินเท่ากับที่เดิมพัน")]
         [InlineData(100, 2, 3, club, spade, 5, 2, spade, diamond, 1000, 1100)]
-        [InlineData(100, 10, 2, club, spade, 9, 8, spade, diamond, 1000, 1100)]
+        [InlineData(100, 3, 2, club, spade, 9, 8, spade, diamond, 1000, 1100)]
 
         public void PlayerWin_NormalCase(int bet, int p1card1, int p1card2, string p1sym1, string p1sym2, int p2card1, int p2card2, string p2sym1, string p2sym2, int balance, int expectedBalance)
         {
@@ -67,16 +59,16 @@ namespace CodeBasic.Tests
             Assert.Equal(expectedBalance, sut.PlayerBalance);
         }
 
-//           [Theory(DisplayName = "(2เด้ง) ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม'มากกว่า'เจ้ามือ && เป็นดอกเดียวกัน ||เป็นเลขเดียวกัน -ได้เงินเดิมพันเพิ่ม 2เท่า")]
-//         [InlineData(100, 3, 2, club, diamond, 3, 4, club, club, 1000, 1200)]
-//         [InlineData(100, 2, 3, diamond, heart, 3, 3, spade, diamond, 1000, 1200)]
-//         public void PlayerWin_2deng(int bet, int p1card1, int p1card2, string p1sym1, string p1sym2, int p2card1, int p2card2, string p2sym1, string p2sym2, int balance, int expectedBalance)
-//             {
-//                 var sut = new Pokdeng();
-//                 sut.PlayerBalance = balance;
-//                 sut.CheckGameResult(bet, p1card1, p1card2, 0, p1sym1, p1sym2, string.Empty, p2card1, p2card2, 0, p2sym1, p2sym2, string.Empty);
-//                 Assert.Equal(expectedBalance, sut.PlayerBalance);
-//             }
+        [Theory(DisplayName = "(2เด้ง) ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม'มากกว่า'เจ้ามือ && เป็นดอกเดียวกัน ||เป็นเลขเดียวกัน -ได้เงินเดิมพันเพิ่ม 2เท่า")]
+        [InlineData(100, 3, 2, club, diamond, 3, 4, club, club, 1000, 1200)]
+        [InlineData(100, 2, 3, diamond, heart, 3, 3, spade, diamond, 1000, 1200)]
+        public void PlayerWin_2deng(int bet, int p1card1, int p1card2, string p1sym1, string p1sym2, int p2card1, int p2card2, string p2sym1, string p2sym2, int balance, int expectedBalance)
+            {
+                var sut = new Pokdeng();
+                sut.PlayerBalance = balance;
+                sut.CheckGameResult(bet, p1card1, p1card2, 0, p1sym1, p1sym2, string.Empty, p2card1, p2card2, 0, p2sym1, p2sym2, string.Empty);
+                Assert.Equal(expectedBalance, sut.PlayerBalance);
+            }
 
 //         [Theory(DisplayName = "(2เด้ง) ผู้เล่นแพ้เจ้ามือ ผู้เล่นได้แต้ม'น้อยกว่า'เจ้ามือ && ไพ่เจ้ามือเป็นดอกเดียวกัน ||เป็นเลขเดียวกัน -เสียเงินเดิมพันเพิ่ม 2เท่า")]
 //         [InlineData(100, 3, 4, club, club, 3, 2, club, diamond, 1000, 800)]
