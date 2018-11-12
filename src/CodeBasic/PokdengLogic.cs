@@ -16,11 +16,15 @@ namespace CodeBasic
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
-            var DealerPoint = p1CardNo1 + p1CardNo2 + p1CardNo3;
-            var PlayerPoint = p2CardNo1 + p2CardNo2 + p2CardNo3;
+            var DealerPoint3 = p1CardNo1 + p1CardNo2 + p1CardNo3;
+            var PlayerPoint3 = p2CardNo1 + p2CardNo2 + p2CardNo3;
+            var DealerPoint3Card = DealerPoint3 % 10;
+            var PlayerPoint3Card = PlayerPoint3 % 10;
 
-            var DealerPoint2Card = p1CardNo1 + p1CardNo2;
-            var PlayerPoint2Card = p2CardNo1 + p2CardNo2;
+            var DealerPoint2 = p1CardNo1 + p1CardNo2;
+            var PlayerPoint2 = p2CardNo1 + p2CardNo2;
+            var DealerPoint2Card = DealerPoint2 % 10;
+            var PlayerPoint2Card = PlayerPoint2 % 10;
 
             var DealerSame2Symbol = p1CardSymbol1 == p1CardSymbol2;
             var PlayerSame2Symbol = p2CardSymbol1 == p2CardSymbol2;
@@ -31,15 +35,19 @@ namespace CodeBasic
             var DealerSame2Card = p1CardNo1 == p1CardNo2;
             var PlayerSame2Card = p2CardNo1 == p2CardNo2;
 
+            var DealerSame3Card = p1CardNo1 == p1CardNo2 && p1CardNo2 == p1CardNo3;
+            var PlayerSame3Card = p2CardNo1 == p2CardNo2 && p2CardNo2 == p2CardNo3;
+
+
             //ผู้เล่น'เสมอ'เจ้ามือ
-            var isgamedraw = DealerPoint == PlayerPoint;
+            var isgamedraw = DealerPoint3Card == PlayerPoint3Card;
 
             //ผู้เล่น'ชนะ'เจ้ามือ
-            var isplayerwin = PlayerPoint > DealerPoint;
+            var isplayerwin = PlayerPoint3Card > DealerPoint3Card;
             var isplayerwin2card = PlayerPoint2Card > DealerPoint2Card;
 
             //ผู้เล่น'แพ้'เจ้ามือ
-            var isplayerlose = DealerPoint > PlayerPoint;
+            var isplayerlose = DealerPoint3Card > PlayerPoint3Card;
 
             // ฝ่ายใดฝ่ายหนึ่ง 'ป๊อก' จะไม่เกิดไพ่ใบที่3 ขึ้น
 
@@ -53,7 +61,7 @@ namespace CodeBasic
             {
                 PlayerBalance += betAmount;
             }
-            else if (DealerPoint2Card >= 8 && DealerSame2Symbol || DealerSame2Card ) //ป๊อกเด้ง
+            else if (DealerPoint2Card >= 8 && DealerSame2Symbol || DealerSame2Card) //ป๊อกเด้ง
             {
                 PlayerBalance -= (betAmount * 2);
             }
@@ -66,6 +74,10 @@ namespace CodeBasic
             {
                 PlayerBalance += (betAmount * 3);
             }
+            // else if (isplayerwin && PlayerSame3Card) //3เด้ง-เลขเดียวกัน(เล่นจริงคือตอง)
+            // {
+            //     PlayerBalance += (betAmount * 3);
+            // }
             else if (isplayerwin && PlayerSame2Symbol)
             {
                 PlayerBalance += (betAmount * 2);
