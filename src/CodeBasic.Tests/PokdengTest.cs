@@ -18,6 +18,7 @@ namespace CodeBasic.Tests
         [InlineData(10, 4, 5, 6, Symbol.Heart, Symbol.Heart, Symbol.Club, 11, 6, 4, Symbol.Heart, Symbol.Heart, Symbol.Heart, 170)]
         [InlineData(10, 4, 4, 4, Symbol.Heart, Symbol.Heart, Symbol.Club, 11, 6, 4, Symbol.Heart, Symbol.Heart, Symbol.Heart, 150)]
         [InlineData(10, 4, 4, 4, Symbol.Heart, Symbol.Heart, Symbol.Club, 11, 8, 0, Symbol.Heart, Symbol.Heart, "", 220)]
+        [InlineData(10, 3, 3, 0, Symbol.Heart, Symbol.Diamond, "", 11, 1, 1, Symbol.Heart, Symbol.Club, Symbol.Spade, 180)]
         public void Result(int betAmount,
             int p1CardNo1, int p1CardNo2, int p1CardNo3,
             string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3,
@@ -59,15 +60,15 @@ namespace CodeBasic.Tests
         }
 
         [Theory(DisplayName = "TwoDeng")]
-        [InlineData(4, 4, Symbol.Club, Symbol.Heart, true)]
-        [InlineData(3, 3, Symbol.Club, Symbol.Heart, true)]
-        [InlineData(10, 9, Symbol.Heart, Symbol.Heart, true)]
-        [InlineData(1, 3, Symbol.Spade, Symbol.Spade, true)]
-        [InlineData(5, 4, Symbol.Heart, Symbol.Heart, true)]
-        public void CheckTwoDeng(int cardNo1, int cardNo2, string cardNo1Symbol, string cardNo2Symbol, bool expected)
+        [InlineData(4, 4,0, Symbol.Club, Symbol.Heart,"", true)]
+        [InlineData(3, 3,0, Symbol.Club, Symbol.Heart, "", true)]
+        [InlineData(10, 9,0, Symbol.Heart, Symbol.Heart, "", true)]
+        [InlineData(1, 3,0, Symbol.Spade, Symbol.Spade, "", true)]
+        [InlineData(5, 4,0, Symbol.Heart, Symbol.Heart, "", true)]
+        public void CheckTwoDeng(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol, bool expected)
         {
             var sut = new Pokdeng();
-            var result = sut.IsTwoDengCheck(cardNo1, cardNo2, cardNo1Symbol, cardNo2Symbol);
+            var result = sut.IsTwoDengCheck(cardNo1, cardNo2, cardNo3, cardNo1Symbol, cardNo2Symbol, cardNo3Symbol);
             Assert.Equal(expected, result);
         }
 

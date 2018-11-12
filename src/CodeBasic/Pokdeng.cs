@@ -23,14 +23,14 @@ namespace CodeBasic
             int p2CardNo1, int p2CardNo2, int p2CardNo3,
             string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
-            var playable = Playable(betAmount, p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3, p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
+            var playable = CheckToPlay(betAmount, p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3, p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
             if (playable)
             {
                 var playerBalance = PlayerBalance;
                 var isP1Pok = IsPokCheck(p1CardNo1, p1CardNo2, p1CardNo3);
                 var isP2Pok = IsPokCheck(p2CardNo1, p2CardNo2, p2CardNo3);
-                var isP1TwoDeng = IsTwoDengCheck(p1CardNo1, p1CardNo2, p1CardSymbol1, p1CardSymbol2);
-                var isP2TwoDeng = IsTwoDengCheck(p2CardNo1, p2CardNo2, p2CardSymbol1, p2CardSymbol2);
+                var isP1TwoDeng = IsTwoDengCheck(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
+                var isP2TwoDeng = IsTwoDengCheck(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
                 var isP1ThreeDeng = IsThreeDengCheck(p1CardNo1, p1CardNo2, p1CardNo3, p1CardSymbol1, p1CardSymbol2, p1CardSymbol3);
                 var isP2ThreeDeng = IsThreeDengCheck(p2CardNo1, p2CardNo2, p2CardNo3, p2CardSymbol1, p2CardSymbol2, p2CardSymbol3);
                 var p1Point = SumCard(p1CardNo1, p1CardNo2, p1CardNo3);
@@ -85,6 +85,10 @@ namespace CodeBasic
                         {
                             playerBalance -= betAmount * 3;
                         }
+                        else if (isP1TwoDeng)
+                        {
+                            playerBalance -= betAmount * 2;
+                        }
                         else
                         {
                             playerBalance -= betAmount;
@@ -92,7 +96,12 @@ namespace CodeBasic
                     }
                     else if (p1Point < p2Point)
                     {
-                        if (isP2ThreeDeng || p2Ghost || p2Sort)
+                        if (isP2TwoDeng)
+                        {
+                            playerBalance += betAmount * 2;
+
+                        }
+                        else if (isP2ThreeDeng || p2Ghost || p2Sort)
                         {
                             playerBalance += betAmount * 3;
                         }
@@ -106,12 +115,11 @@ namespace CodeBasic
             }
 
         }
-        public bool Playable(int betAmount, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3, int p2CardNo1, int p2CardNo2, int p2CardNo3, string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
+        public bool CheckToPlay(int betAmount, int p1CardNo1, int p1CardNo2, int p1CardNo3, string p1CardSymbol1, string p1CardSymbol2, string p1CardSymbol3, int p2CardNo1, int p2CardNo2, int p2CardNo3, string p2CardSymbol1, string p2CardSymbol2, string p2CardSymbol3)
         {
-            var BetAmountEnough = ((betAmount > 0) && (betAmount * 5 <= PlayerBalance));
             var IsRealCards = ((p1CardNo1 > 0 && p1CardNo1 <= 13) && (p1CardNo2 > 0 && p1CardNo2 <= 13) && (p1CardNo3 >= 0 && p1CardNo3 <= 13)) && ((p2CardNo1 > 0 && p2CardNo1 <= 13) && (p2CardNo2 > 0 && p2CardNo2 <= 13) && (p1CardNo3 >= 0 && p1CardNo3 <= 13));
 
-            if (BetAmountEnough && IsRealCards)
+            if (betAmount > 0 && IsRealCards)
             {
                 if (betAmount * 5 <= PlayerBalance)
                 {
@@ -161,9 +169,9 @@ namespace CodeBasic
             return false;
         }
 
-        public bool IsTwoDengCheck(int cardNo1, int cardNo2, string cardNo1Symbol, string cardNo2Symbol)
+        public bool IsTwoDengCheck(int cardNo1, int cardNo2, int cardNo3, string cardNo1Symbol, string cardNo2Symbol, string cardNo3Symbol)
         {
-            if (cardNo1 == cardNo2 || cardNo1Symbol == cardNo2Symbol)
+            if (cardNo1 == cardNo2 || cardNo1Symbol == cardNo2Symbol && (cardNo3 == 0 && cardNo3Symbol == ""))
             {
                 return true;
             }
