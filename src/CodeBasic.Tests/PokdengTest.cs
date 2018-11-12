@@ -7,15 +7,6 @@ namespace CodeBasic.Tests
 {
     public class PokdengTest
     {
-        // [Fact]
-        // public void NotImplementedException()
-        // {
-        //    var Pokdeng = new PokdengLogic();
-        //    var Balance = Pokdeng.PlayerBalance;
-        //    Pokdeng.CheckGameResult(100,1,2,1,"club","diamond","diamond",3,2,2,"club","club","diamond");
-        //    Assert.Equal(10,Pokdeng.PlayerBalance);
-
-        // }
         private const string club = "club";
         private const string diamond = "diamond";
         private const string heart = "heart";
@@ -111,7 +102,6 @@ namespace CodeBasic.Tests
 
         [Theory(DisplayName = "(3เด้ง) ผู้เล่นแพ้เจ้ามือ ผู้เล่นได้แต้ม'น้อยกว่า'เจ้ามือ && เป็นดอกเดียวกัน -เสียเงินเดิมพันเพิ่ม 3เท่า")]
         [InlineData(200, 4, 2, 3, diamond, diamond, diamond, 3, 4, 1, spade, spade, spade, 1000, 400)]
-        //[InlineData(200, 3, 3, 3, diamond, heart, spade, 3, 4, 1, club, spade, spade, 1000, 400)]
         [InlineData(200, 4, 2, 3, diamond, diamond, diamond, 3, 1, 5, spade, spade, spade, 1000, 1000)] //เสมอ
         public void Playerlose_3deng(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
         {
@@ -121,15 +111,15 @@ namespace CodeBasic.Tests
             Assert.Equal(expectedBalance, sut.PlayerBalance);
         }
 
-        // [Theory (DisplayName = "(3เด้ง) ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม'มากกว่า'เจ้ามือ && เป็นเลขเดียวกัน -ได้เงินเดิมพันเพิ่ม 3เท่า")]
-        // [InlineData(200, 3, 1, 1, club, club, spade, 3, 3, 3, diamond, heart, spade, 1000, 1600)]
-        // public void Playerlose_3dengsamenumber(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
-        // {
-        //     var sut = new PokdengLogic();
-        //     sut.PlayerBalance = balance;
-        //     sut.CheckGameResult(bet, p1card1, p1card2, p1card3, p1sym1, p1sym2, p1sym3, p2card1, p2card2, p2card3, p2sym1, p2sym2, p2sym3);
-        //     Assert.Equal(expectedBalance, sut.PlayerBalance);
-        // }
+        [Theory(DisplayName = "(3เด้ง) ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม'มากกว่า'เจ้ามือ && เป็นเลขเดียวกัน -ได้เงินเดิมพันเพิ่ม 3เท่า")]
+        [InlineData(200, 3, 1, 1, club, club, spade, 3, 3, 3, diamond, heart, spade, 1000, 1600)]
+        public void Playerlose_3dengsamenumber(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
+        {
+            var sut = new PokdengLogic();
+            sut.PlayerBalance = balance;
+            sut.CheckGameResult(bet, p1card1, p1card2, p1card3, p1sym1, p1sym2, p1sym3, p2card1, p2card2, p2card3, p2sym1, p2sym2, p2sym3);
+            Assert.Equal(expectedBalance, sut.PlayerBalance);
+        }
 
         [Theory(DisplayName = "(ไพ่ป๊อก) ผู้เล่นชนะเจ้ามือ ผู้เล่นได้แต้ม >=8 ในไพ่'สองใบแรก'ก่อน && เจ้ามือ <8 -ได้เงินเท่ากับที่เดิมพัน")]
         [InlineData(200, 4, 2, 0, diamond, diamond, diamond, 3, 5, 0, diamond, spade, spade, 1000, 1200)]
@@ -145,6 +135,8 @@ namespace CodeBasic.Tests
         [Theory(DisplayName = "(ไพ่ป๊อก) ผู้เล่นแพ้เจ้ามือ เจ้ามือได้แต้ม >=8 ในไพ่'สองใบแรก'ก่อน && ผู้เล่น <8 -เสียเงินเท่ากับที่เดิมพัน")]
         [InlineData(200, 3, 5, 0, spade, diamond, diamond, 4, 2, 0, spade, spade, spade, 1000, 800)]
         [InlineData(200, 4, 5, 0, diamond, club, diamond, 4, 2, 0, spade, spade, spade, 1000, 800)]
+        //[InlineData(200, 4, 4, 0, diamond, club, diamond, 0, 4, 4, spade, club, spade, 1000, 800)] //แพ้3ใบ
+        [InlineData(200, 3, 6, 0, diamond, club, diamond, 3, 4, 1, spade, club, spade, 1000, 800)]
         [InlineData(200, 2, 5, 2, diamond, club, heart, 3, 4, 2, spade, spade, spade, 1000, 1000)] //เสมอ
         public void Playerlose_Pok(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
         {
@@ -170,8 +162,7 @@ namespace CodeBasic.Tests
         [InlineData(200, 3, 5, 0, diamond, diamond, diamond, 4, 2, 1, spade, spade, spade, 1000, 600)]
         //ผู้เล่นแพ้เจ้ามือ ผู้เล่นได้แต้ม <8 เจ้ามือได้แต้ม 8 && เป็นเลขเดียวกัน(4,4),(9,9) -เสียเงินเดิมพันเพิ่ม 2เท่า
         [InlineData(200, 4, 4, 0, diamond, club, diamond, 4, 2, 0, spade, spade, spade, 1000, 600)]
-        // TODO
-        //[InlineData(200, 9, 9, 0, diamond, club, diamond, 4, 4, 0, spade, club, spade, 1000, 1000)] //เสมอ
+        [InlineData(200, 9, 9, 0, diamond, club, diamond, 4, 4, 0, spade, club, spade, 1000, 1000)] //เสมอ
         public void Playerlose_Pokdeng(int bet, int p1card1, int p1card2, int p1card3, string p1sym1, string p1sym2, string p1sym3, int p2card1, int p2card2, int p2card3, string p2sym1, string p2sym2, string p2sym3, int balance, int expectedBalance)
         {
             var sut = new PokdengLogic();

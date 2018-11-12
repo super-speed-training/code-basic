@@ -30,7 +30,7 @@ namespace CodeBasic
             var PlayerSame2Symbol = p2CardSymbol1 == p2CardSymbol2;
 
             var DealerSame3Symbol = p1CardSymbol1 == p1CardSymbol2 && p1CardSymbol2 == p1CardSymbol3;
-            var PlayerSame3Symbol = p2CardSymbol1 == p2CardSymbol2 && p1CardSymbol2 == p1CardSymbol3;
+            var PlayerSame3Symbol = p2CardSymbol1 == p2CardSymbol2 && p2CardSymbol2 == p2CardSymbol3;
 
             var DealerSame2Card = p1CardNo1 == p1CardNo2;
             var PlayerSame2Card = p2CardNo1 == p2CardNo2;
@@ -44,19 +44,19 @@ namespace CodeBasic
 
             //ผู้เล่น'ชนะ'เจ้ามือ
             var isplayerwin = PlayerPoint3Card > DealerPoint3Card;
-            var isplayerwin2card = PlayerPoint2Card > DealerPoint2Card;
 
             //ผู้เล่น'แพ้'เจ้ามือ
             var isplayerlose = DealerPoint3Card > PlayerPoint3Card;
 
-            // ฝ่ายใดฝ่ายหนึ่ง 'ป๊อก' จะไม่เกิดไพ่ใบที่3 ขึ้น
-
             if (isgamedraw) return;
+            else if (isplayerwin && PlayerSame3Card) //3เด้ง-เลขเดียวกัน(เล่นจริงคือตอง)
+            {
+                PlayerBalance += (betAmount * 3);
+            }
             else if (PlayerPoint2Card >= 8 && PlayerSame2Symbol || PlayerSame2Card) //ป๊อกเด้ง
             {
                 PlayerBalance += (betAmount * 2);
             }
-
             else if (PlayerPoint2Card >= 8) //ป๊อก
             {
                 PlayerBalance += betAmount;
@@ -65,8 +65,8 @@ namespace CodeBasic
             {
                 PlayerBalance -= (betAmount * 2);
             }
-
-            else if (DealerPoint2Card >= 8) //ป๊อก)
+            else if (DealerPoint2Card >= 8 && PlayerPoint2Card <8
+             || DealerPoint2Card >= 8 && PlayerPoint3 <=9 ) //ป๊อก)
             {
                 PlayerBalance -= betAmount;
             }
@@ -74,10 +74,6 @@ namespace CodeBasic
             {
                 PlayerBalance += (betAmount * 3);
             }
-            // else if (isplayerwin && PlayerSame3Card) //3เด้ง-เลขเดียวกัน(เล่นจริงคือตอง)
-            // {
-            //     PlayerBalance += (betAmount * 3);
-            // }
             else if (isplayerwin && PlayerSame2Symbol)
             {
                 PlayerBalance += (betAmount * 2);
