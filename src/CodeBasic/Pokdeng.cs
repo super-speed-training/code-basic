@@ -59,6 +59,11 @@ namespace CodeBasic
            {
 
            }
+           else if(SumTwoP2 % 10 > SumTwoP1 % 10 )
+           {
+              PlayerBalance += betAmount;
+
+           }
             
         }
     }
