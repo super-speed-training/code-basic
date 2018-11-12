@@ -67,6 +67,13 @@ namespace CodeBasic
                 PlayerBalance += betAmount;
 
             }
+                  //P1 Win *1
+            else if ((SumTwoP2 % 10 < SumTwoP1 % 10 )&& SumTwoP1 ==8 || SumTwoP1 ==9  )
+            {
+               
+                PlayerBalance -= betAmount;
+
+            }
 
             //P2 Win *3
             else if ((SumthreeP1 % 10 < SumthreeP2 % 10) && SumThreeSymbolP2 || (SumthreeP2 % 10 > SumthreeP1 % 10) && SumThreeCardP2)
