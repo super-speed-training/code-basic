@@ -1,0 +1,18 @@
+{
+  "Name": "Johon",
+  "Age": 0,
+  "Married": true,
+  "Address": {
+    "Zipcode": 40000
+  },
+  "Course": [
+    {
+      "Id": 1,
+      "Name": "Sexual"
+    },
+    {
+      "Id": 2,
+      "Name": "Math"
+    }
+  ]
+}

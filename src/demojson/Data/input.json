@@ -1,0 +1,19 @@
+{
+  "Balance": 10000,
+  "Name": "Doobadook",
+  "Married": true,
+  "Address": {
+      "StreetAddress": "919",
+      "Zipcode": 40000
+  },
+  "Course": [
+    {
+      "Id": 1,
+      "Name": "Sexual"
+    },
+    {
+      "Id": 2,
+      "Name": "Math"
+    }
+  ]
+}
