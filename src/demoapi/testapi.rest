@@ -1,0 +1,28 @@
+GET https://localhost:5001/api/todo
+
+###
+
+GET https://localhost:5001/api/todo/1
+
+###
+
+POST https://localhost:5001/api/todo
+Content-Type: application/json
+
+{
+  "name": "เข้า code dojo",
+  "isComplete": false
+}
+
+###
+
+DELETE https://localhost:5001/api/todo/2
+###
+
+PUT https://localhost:5001/api/todo/2
+Content-Type: application/json
+
+{
+  "name": "xxx",
+  "isComplete": false
+}
